@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deck 7 — Mercado de Ouro e Prata | Newmont Argentina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:'Inter',sans-serif;overflow:hidden;color:#E8E8E8}
+h1,h2,h3{color:#fff}
+h1{font-weight:900;letter-spacing:-.03em;line-height:1.08}
+h2{font-weight:800;letter-spacing:-.025em;line-height:1.12;font-size:clamp(26px,3.2vw,38px)}
+h3{font-weight:700;letter-spacing:-.015em;color:#fff}
+p,span,li{font-weight:400;line-height:1.55;color:#D4D4D4}
+.presentation{width:100vw;height:100vh;overflow:hidden;position:relative}
+.slides{display:flex;height:100%;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.slide{width:100vw;height:100vh;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;padding:56px 72px}
+.slide::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(900px 420px at 72% 18%, rgba(255,214,0,.08) 0%, transparent 42%),
+  radial-gradient(800px 380px at 35% 20%, rgba(255,184,0,.06) 0%, transparent 42%),
+  linear-gradient(180deg,#000 0%,#050505 45%,#000 100%)}
+.slide::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.25;
+  background-image:radial-gradient(rgba(255,255,255,.05) .8px, transparent .8px);background-size:24px 24px}
+.slide>*{position:relative;z-index:1}
+.wrap{max-width:1340px;width:100%;max-height:92vh;overflow-y:auto;padding-right:6px}
+.wrap::-webkit-scrollbar{width:5px}.wrap::-webkit-scrollbar-thumb{background:rgba(255,214,0,.3);border-radius:4px}
+.gt{background:linear-gradient(135deg,#FFD600 0%,#FFB800 50%,#FFD600 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.gl{width:90px;height:4px;border-radius:2px;background:linear-gradient(90deg,#FFD600,#FFB800);margin-bottom:18px;animation:lineG .8s ease both;transform-origin:left}
+.gl.ce{margin:0 auto 18px auto;transform-origin:center}
+@keyframes lineG{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.05);padding:20px 20px;backdrop-filter:blur(8px);transition:all .4s ease}
+.card:hover{border-color:rgba(255,214,0,.3);transform:translateY(-2px)}
+.cp{background:linear-gradient(145deg, rgba(20,20,20,.95) 0%, rgba(10,10,10,.98) 55%, rgba(0,0,0,1) 100%);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.6), 0 0 36px rgba(255,214,0,.07);padding:20px 20px;backdrop-filter:blur(10px)}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:9px 20px;border-radius:999px;margin-bottom:22px;background:rgba(255,214,0,.1);border:1px solid rgba(255,214,0,.3);font-size:12.5px;font-weight:600;color:#FFD600;letter-spacing:.05em;text-transform:uppercase}
+.tag-sm{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:7px;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.tf{background:rgba(94,232,154,.12);color:#5EE89A;border:1px solid rgba(94,232,154,.3)}
+.te{background:rgba(255,214,0,.12);color:#FFD600;border:1px solid rgba(255,214,0,.3)}
+.tj{background:rgba(200,109,215,.12);color:#C86DD7;border:1px solid rgba(200,109,215,.3)}
+.tp{background:rgba(255,107,107,.12);color:#FF6B6B;border:1px solid rgba(255,107,107,.3)}
+.ic{width:42px;height:42px;border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,214,0,.1)}
+.ic svg{width:21px;height:21px;color:#FFD600}
+.s5c{position:relative;overflow:hidden}
+.s5c::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#FFD600}
+.s5n{font-size:38px;font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:5px;color:#FFD600}
+.s5n.sm{font-size:27px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
+.grid5{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:12px}
+.quote{font-size:22px;font-weight:600;color:#fff;line-height:1.45;max-width:880px;margin:0 auto 18px auto;text-align:center;font-style:italic}
+.progress{position:fixed;top:0;left:0;height:3px;z-index:1000;background:linear-gradient(90deg,#FFD600,#FFB800,#FFD600);background-size:200% auto;animation:shimmer 3s linear infinite;transition:width .6s ease}
+.fs-btn{position:fixed;top:18px;left:18px;z-index:999;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:10px 16px;border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:7px;transition:all .3s ease;backdrop-filter:blur(6px);letter-spacing:.04em;text-transform:uppercase}
+.fs-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,214,0,.4)}
+.fs-btn svg{width:14px;height:14px}
+.top-right{position:fixed;top:18px;right:18px;z-index:999;display:flex;gap:10px;align-items:center}
+.lang-sel{display:flex;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:4px;backdrop-filter:blur(6px)}
+.lang-sel button{background:transparent;border:none;color:#999;padding:6px 11px;border-radius:8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .25s ease}
+.lang-sel button.active{background:#FFD600;color:#000}
+.home-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:9px 14px;border-radius:11px;cursor:pointer;font-size:11px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;backdrop-filter:blur(6px);transition:all .25s ease}
+.home-btn:hover{background:rgba(255,214,0,.15);color:#FFD600;border-color:rgba(255,214,0,.4)}
+.sc{position:fixed;bottom:30px;left:36px;z-index:998;color:#999;font-size:13px;font-weight:600;letter-spacing:.05em;background:rgba(0,0,0,.5);padding:8px 16px;border-radius:9px;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.08)}
+.sc .cn{color:#FFD600;font-weight:800}
+.ind{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:998;display:flex;gap:6px;background:rgba(0,0,0,.5);padding:8px 14px;border-radius:18px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08)}
+.ind .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);transition:all .4s ease;cursor:pointer}
+.ind .dot.active{background:#FFD600;box-shadow:0 0 12px rgba(255,214,0,.7);width:30px;border-radius:5px}
+.nav-arr{position:fixed;bottom:26px;right:36px;z-index:998;display:flex;gap:9px}
+.nav-arr button{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#D4D4D4;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(6px)}
+.nav-arr button:hover{background:rgba(255,214,0,.25);border-color:rgba(255,214,0,.5);color:#000;transform:scale(1.05)}
+.checklist{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.checklist li{list-style:none;padding-left:16px;position:relative;font-size:12.5px;color:#D4D4D4}
+.checklist li::before{content:'✓';position:absolute;left:0;color:#FFD600;font-weight:900}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{color:#FFD600;text-align:left;padding:8px 10px;border-bottom:1px solid rgba(255,214,0,.3);font-weight:700}
+td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.07);color:#D4D4D4}
+.donut-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center}
+.donut{width:150px;height:150px;border-radius:50%;flex-shrink:0}
+.donut.sm{width:120px;height:120px}
+.dleg{display:flex;flex-direction:column;gap:7px}
+.dleg .di{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#D4D4D4}
+.dleg .sq{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.bchart{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.brow{display:grid;grid-template-columns:160px 1fr 70px;align-items:center;gap:8px}
+.brow .lbl{font-size:11.5px;color:#D4D4D4;text-align:right}
+.btrack{background:rgba(255,255,255,.06);border-radius:7px;height:14px;overflow:hidden}
+.bfill{height:100%;border-radius:7px;background:linear-gradient(90deg,#FFD600,#FFB800)}
+.bfill.red{background:linear-gradient(90deg,#FF6B6B,#CC3B3B)}
+.bfill.green{background:linear-gradient(90deg,#5EE89A,#2BA866)}
+.bval{font-size:11px;color:#FFD600;font-weight:700}
+.mapbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;backdrop-filter:blur(8px)}
+.map-note{font-size:10px;color:#999;margin-bottom:6px;letter-spacing:.03em;text-transform:uppercase}
+.sparkbars{display:flex;align-items:flex-end;gap:4px;height:70px;margin-top:10px}
+.sparkbars .bar{flex:1;background:linear-gradient(180deg,#FFD600,#FFB800);border-radius:3px 3px 0 0;position:relative}
+.sparkbars .bar span{position:absolute;top:-16px;left:0;right:0;text-align:center;font-size:8.5px;color:#999}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeScale{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.slide.active .au{animation:fadeUp .7s ease both}
+.slide.active .as{animation:fadeScale .7s ease both}
+.d1{animation-delay:.1s!important}.d2{animation-delay:.2s!important}.d3{animation-delay:.3s!important}
+.d4{animation-delay:.4s!important}.d5{animation-delay:.5s!important}.d6{animation-delay:.6s!important}.d7{animation-delay:.7s!important}
+.s1{text-align:center;max-width:980px;margin:0 auto}
+.s1 h1{font-size:clamp(42px,5.8vw,68px);margin-bottom:20px}
+.s1 .tag{font-size:18px;color:#D4D4D4;max-width:640px;margin:0 auto;line-height:1.5}
+[data-lang]{display:none}
+.lang-pt [data-lang="pt"]{display:block}
+.lang-en [data-lang="en"]{display:block}
+.lang-es [data-lang="es"]{display:block}
+[data-lang-inline]{display:none}
+.lang-pt [data-lang-inline="pt"]{display:inline}
+.lang-en [data-lang-inline="en"]{display:inline}
+.lang-es [data-lang-inline="es"]{display:inline}
+</style>
+</head>
+<body class="lang-pt">
+<div class="progress" id="prog" style="width:8%"></div>
+<div class="top-right">
+  <div class="lang-sel">
+    <button data-l="pt" class="active" onclick="setLang('pt')">PT</button>
+    <button data-l="en" onclick="setLang('en')">EN</button>
+    <button data-l="es" onclick="setLang('es')">ES</button>
+  </div>
+  <a class="home-btn" href="index.html">
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"></path></svg>
+    <span data-lang="pt">Index</span><span data-lang="en">Index</span><span data-lang="es">Index</span>
+  </a>
+</div>
+<button class="fs-btn" onclick="toggleFs()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"></path></svg>
+  <span id="fsTxt" data-lang="pt">Tela cheia</span><span id="fsTxtE" data-lang="en">Fullscreen</span><span id="fsTxtS" data-lang="es">Pantalla</span>
+</button>
+<div class="sc"><span class="cn" id="cn">1</span> / 12</div>
+<div class="ind" id="ind"></div>
+<div class="nav-arr"><button onclick="prev()">‹</button><button onclick="next()">›</button></div>
+
+<div class="presentation"><div class="slides" id="sw">
+
+<!-- 1 -->
+<section class="slide active">
+  <div class="s1">
+    <div class="badge au d1" data-lang="pt">Deck 7 de 9 · Mercado de Ouro e Prata</div>
+    <div class="badge au d1" data-lang="en">Deck 7 of 9 · Gold & Silver Market</div>
+    <div class="badge au d1" data-lang="es">Deck 7 de 9 · Mercado de Oro y Plata</div>
+    <h1 class="au d2">
+      <span data-lang="pt">O <span class="gt">ouro</span> que sustenta o programa</span>
+      <span data-lang="en">The <span class="gt">gold</span> that sustains the program</span>
+      <span data-lang="es">El <span class="gt">oro</span> que sostiene el programa</span>
+    </h1>
+    <p class="tag au d3">
+      <span data-lang="pt">Peso econômico, preços, volumes e distribuição provincial do setor minerário argentino — o pano de fundo financeiro de Cerro Negro.</span>
+      <span data-lang="en">Economic weight, prices, volumes and provincial distribution of the Argentine mining sector — Cerro Negro's financial backdrop.</span>
+      <span data-lang="es">Peso económico, precios, volúmenes y distribución provincial del sector minero argentino — el trasfondo financiero de Cerro Negro.</span>
+    </p>
+  </div>
+</section>
+
+<!-- 2 - peso do setor -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">O peso do setor <span class="gt">minerário</span> em 2025</span><span data-lang="en">The weight of the <span class="gt">mining sector</span> in 2025</span><span data-lang="es">El peso del sector <span class="gt">minero</span> en 2025</span></h2>
+    <div class="grid5" style="margin-top:22px">
+      <div class="card as d2" style="text-align:center"><div class="s5n sm">US$ 6.073M</div><p style="font-size:11px"><span data-lang="pt">Exportações mineiras 2025 <span class="tag-sm tf">F</span></span><span data-lang="en">2025 mining exports <span class="tag-sm tf">F</span></span><span data-lang="es">Exportaciones mineras 2025 <span class="tag-sm tf">F</span></span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">+30%</div><p style="font-size:11px"><span data-lang="pt">Alta vs. 2024 (US$ 4.673M)</span><span data-lang="en">Growth vs 2024 (US$ 4,673M)</span><span data-lang="es">Alza vs. 2024 (US$ 4.673M)</span></p></div>
+      <div class="card as d4" style="text-align:center"><div class="s5n sm">6,9%</div><p style="font-size:11px"><span data-lang="pt">Da exportação total do país</span><span data-lang="en">Of total country exports</span><span data-lang="es">De la exportación total del país</span></p></div>
+      <div class="card as d5" style="text-align:center"><div class="s5n sm">+27%</div><p style="font-size:11px"><span data-lang="pt">Crescimento do IED em mineração</span><span data-lang="en">FDI growth in mining</span><span data-lang="es">Crecimiento de la IED en minería</span></p></div>
+      <div class="card as d6" style="text-align:center"><div class="s5n sm">~65%</div><p style="font-size:11px"><span data-lang="pt">Das aplicações ao RIGI são mineiras</span><span data-lang="en">Of RIGI applications are mining</span><span data-lang="es">De las aplicaciones al RIGI son mineras</span></p></div>
+    </div>
+    <div class="card s5c au d2" style="margin-top:18px"><p style="font-size:12.5px"><span class="tag-sm te">E</span> <span data-lang="pt">Projeção da CAEM para 2026: exportações acima de US$ 9.000 milhões, o que elevaria a participação de ~7% para mais de 10% do total exportado pelo país. Projeção setorial, não realizada (CAEM, 01/06/2026).</span><span data-lang="en">CAEM projection for 2026: exports above US$ 9,000 million, which would raise the share from ~7% to over 10% of total country exports. Sector projection, not realized (CAEM, 06/01/2026).</span><span data-lang="es">Proyección de la CAEM para 2026: exportaciones por encima de US$ 9.000 millones, lo que elevaría la participación de ~7% a más de 10% del total exportado por el país. Proyección sectorial, no realizada (CAEM, 01/06/2026).</span></p></div>
+    <p class="au d4" style="margin-top:10px;font-size:11px;color:#777">Fonte: Presidencia de la Nación, EITI; CAEM (06/01/2026 e 01/06/2026) — relatório consolidado, seção 3.1.</p>
+  </div>
+</section>
+
+<!-- 3 - composição donut -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Composição das exportações: <span class="gt">ouro domina</span></span><span data-lang="en">Export composition: <span class="gt">gold dominates</span></span><span data-lang="es">Composición de las exportaciones: <span class="gt">el oro domina</span></span></h2>
+    <div class="grid2" style="margin-top:20px;align-items:center">
+      <div class="donut-wrap au d2">
+        <div class="donut" style="background:conic-gradient(#FFD600 0% 67.4%, #FFB800 67.4% 82.5%, #FF6B6B 82.5% 95.4%, rgba(255,255,255,.1) 95.4% 100%)"></div>
+        <div class="dleg">
+          <div class="di"><span class="sq" style="background:#FFD600"></span>Ouro — 67,4% <span class="tag-sm tf" style="margin-left:4px">F</span></div>
+          <div class="di"><span class="sq" style="background:#FFB800"></span>Lítio — 15,1%</div>
+          <div class="di"><span class="sq" style="background:#FF6B6B"></span>Prata — 12,9%</div>
+          <div class="di"><span class="sq" style="background:rgba(255,255,255,.2)"></span><span data-lang="pt">Outros — 4,6%</span><span data-lang="en">Other — 4.6%</span><span data-lang="es">Otros — 4,6%</span></div>
+        </div>
+      </div>
+      <table class="au d3">
+        <tr><th>Produto</th><th>2025</th><th>2024</th></tr>
+        <tr><td>Ouro</td><td>67,4%</td><td>67,2%</td></tr>
+        <tr><td>Lítio</td><td>15,1%</td><td>13,8%</td></tr>
+        <tr><td>Prata</td><td>12,9%</td><td>14,0%</td></tr>
+        <tr><td><span data-lang="pt">Soma dos 3</span><span data-lang="en">Sum of 3</span><span data-lang="es">Suma de los 3</span></td><td>95,4%</td><td>94,9%*</td></tr>
+      </table>
+    </div>
+    <div class="card s5c au d4" style="margin-top:16px"><p style="font-size:12.5px"><span class="tag-sm te">E</span> <span data-lang="pt">Estimativa sobre US$ 6.073 milhões: ouro ≈ US$ 4.100 milhões; ouro + prata ≈ US$ 4.900 milhões. Confiança média — cálculo derivado, não publicado oficialmente por produto em valor absoluto.</span><span data-lang="en">Estimate on US$ 6,073 million: gold ≈ US$ 4,100 million; gold + silver ≈ US$ 4,900 million. Medium confidence — derived calculation, not officially published by product in absolute value.</span><span data-lang="es">Estimación sobre US$ 6.073 millones: oro ≈ US$ 4.100 millones; oro + plata ≈ US$ 4.900 millones. Confianza media — cálculo derivado, no publicado oficialmente por producto en valor absoluto.</span></p></div>
+  </div>
+</section>
+
+<!-- 4 - preço e volume -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Recorde de receita, <span class="gt">queda de volume</span></span><span data-lang="en">Record revenue, <span class="gt">volume drop</span></span><span data-lang="es">Récord de ingresos, <span class="gt">caída de volumen</span></span></h2>
+    <div class="grid2" style="margin-top:20px">
+      <div class="cp au d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <h3 style="font-size:15px"><span data-lang="pt">Preço do ouro em 2025</span><span data-lang="en">Gold price in 2025</span><span data-lang="es">Precio del oro en 2025</span> <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <p style="font-size:12.5px;margin-top:8px"><span data-lang="pt">Superou US$ 3.000 por onça-troy (Tiempo de San Juan, 24/07/2025) — marco histórico. Este valor não é a referência de novembro de 2026.</span><span data-lang="en">Surpassed US$ 3,000 per troy ounce (Tiempo de San Juan, 07/24/2025) — historic landmark. Not the reference value for November 2026.</span><span data-lang="es">Superó US$ 3.000 por onza-troy (Tiempo de San Juan, 24/07/2025) — hito histórico. No es la referencia de noviembre de 2026.</span></p>
+      </div>
+      <div class="cp au d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/></svg></div>
+        <h3 style="font-size:15px"><span data-lang="pt">Produção física cai</span><span data-lang="en">Physical production drops</span><span data-lang="es">La producción física cae</span> <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <p style="font-size:12.5px;margin-top:8px"><span data-lang="pt">CAEM (06/01/2026): ouro e prata atingiram recorde de exportação em 2025, mas com queda de produção física. O lítio é exceção, com crescimento de produção e exportação.</span><span data-lang="en">CAEM (01/06/2026): gold and silver reached export records in 2025, but with falling physical production. Lithium is the exception, with growing production and exports.</span><span data-lang="es">CAEM (06/01/2026): oro y plata alcanzaron récord de exportación en 2025, pero con caída de producción física. El litio es la excepción, con crecimiento de producción y exportación.</span></p>
+      </div>
+    </div>
+    <div class="card s5c au d4" style="margin-top:16px"><p style="font-size:12.5px"><span class="tag-sm tj">J</span> <span data-lang="pt">O setor depende do preço para sustentar a receita, enquanto o custo social cresce com o volume. Quando o preço cai ou o volume se mantém em queda, cresce a pressão por produtividade, emprego local e regularização — fator direto na tensão trabalhista de Cerro Negro.</span><span data-lang="en">The sector depends on price to sustain revenue, while social cost grows with volume. When price falls or volume keeps dropping, pressure for productivity, local employment and regularization grows — a direct factor in Cerro Negro's labor tension.</span><span data-lang="es">El sector depende del precio para sostener los ingresos, mientras el costo social crece con el volumen. Cuando el precio cae o el volumen se mantiene en baja, crece la presión por productividad, empleo local y regularización — factor directo en la tensión laboral de Cerro Negro.</span></p></div>
+  </div>
+</section>
+
+<!-- 5 - distribuição provincial -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Distribuição provincial das <span class="gt">exportações 2025</span></span><span data-lang="en">Provincial distribution of <span class="gt">2025 exports</span></span><span data-lang="es">Distribución provincial de las <span class="gt">exportaciones 2025</span></span></h2>
+    <div class="bchart au d2">
+      <div class="brow"><span class="lbl">Santa Cruz (Cerro Negro) <span class="tag-sm tf">F</span></span><div class="btrack"><div class="bfill" style="width:100%"></div></div><span class="bval">39,5%</span></div>
+      <div class="brow"><span class="lbl">San Juan (Veladero)</span><div class="btrack"><div class="bfill" style="width:73%"></div></div><span class="bval">28,9%</span></div>
+      <div class="brow"><span class="lbl">Jujuy</span><div class="btrack"><div class="bfill" style="width:40%"></div></div><span class="bval">15,9%</span></div>
+      <div class="brow"><span class="lbl">Salta</span><div class="btrack"><div class="bfill" style="width:21%"></div></div><span class="bval">8,3%</span></div>
+      <div class="brow"><span class="lbl">Catamarca</span><div class="btrack"><div class="bfill" style="width:15%"></div></div><span class="bval">5,8%</span></div>
+    </div>
+    <p class="au d3" style="margin-top:12px;font-size:11.5px;color:#999">Fonte: Presidencia de la Nación, EITI. As cinco províncias concentram 98,4% das exportações <span class="tag-sm tf">F</span></p>
+    <table class="au d4" style="margin-top:14px">
+      <tr><th>Província</th><th><span data-lang="pt">Produto dominante</span><span data-lang="en">Dominant product</span><span data-lang="es">Producto dominante</span></th><th><span data-lang="pt">Estimativa US$</span><span data-lang="en">US$ estimate</span><span data-lang="es">Estimación US$</span></th></tr>
+      <tr><td>Santa Cruz</td><td><span data-lang="pt">Ouro (84,2%) e prata (15,5%)</span><span data-lang="en">Gold (84.2%) and silver (15.5%)</span><span data-lang="es">Oro (84,2%) y plata (15,5%)</span></td><td>≈ US$ 2.400M <span class="tag-sm te">E</span></td></tr>
+      <tr><td>San Juan</td><td>Ouro (96,7%)</td><td>≈ US$ 1.750M <span class="tag-sm te">E</span></td></tr>
+      <tr><td>Jujuy</td><td><span data-lang="pt">Lítio e prata</span><span data-lang="en">Lithium and silver</span><span data-lang="es">Litio y plata</span></td><td>[P]</td></tr>
+      <tr><td>Salta</td><td><span data-lang="pt">Lítio, prata e ouro</span><span data-lang="en">Lithium, silver and gold</span><span data-lang="es">Litio, plata y oro</span></td><td>[P]</td></tr>
+      <tr><td>Catamarca</td><td><span data-lang="pt">Lítio, prata e ouro</span><span data-lang="en">Lithium, silver and gold</span><span data-lang="es">Litio, plata y oro</span></td><td>[P]</td></tr>
+    </table>
+    <p class="au d5" style="margin-top:8px;font-size:11px;color:#777"><span data-lang="pt">Pendente: séries de produção física por província e por operação (SIACAM / Secretaría de Minería).</span><span data-lang="en">Pending: physical production series by province and operation (SIACAM / Secretaría de Minería).</span><span data-lang="es">Pendiente: series de producción física por provincia y por operación (SIACAM / Secretaría de Minería).</span></p>
+  </div>
+</section>
+
+<!-- 6 - operações por província -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Operações de ouro e prata por <span class="gt">província</span></span><span data-lang="en">Gold and silver operations by <span class="gt">province</span></span><span data-lang="es">Operaciones de oro y plata por <span class="gt">provincia</span></span></h2>
+    <div class="grid2" style="margin-top:18px">
+      <div class="cp au d2">
+        <h3 style="font-size:14px">Santa Cruz <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <p style="font-size:12.5px;margin-top:6px">San José, Cerro Vanguardia, <strong>Cerro Negro (Newmont)</strong>, Manantial Espejo, Cerro Moro, Don Nicolás, Cap Oeste e Lomada de Leiva.</p>
+      </div>
+      <div class="cp au d3">
+        <h3 style="font-size:14px">San Juan <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <p style="font-size:12.5px;margin-top:6px">Veladero, Casposo e Gualcamayo.</p>
+      </div>
+      <div class="cp au d4">
+        <h3 style="font-size:14px">Catamarca <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <p style="font-size:12.5px;margin-top:6px">Bajo de la Alumbrera (cobre e ouro), Mina Fénix, Farallón Negro e Tres Quebradas.</p>
+      </div>
+      <div class="cp au d5">
+        <h3 style="font-size:14px">Salta / Jujuy <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <p style="font-size:12.5px;margin-top:6px">Salta: Lindero, Cerro Ratones, Mariana, Sal de Oro. Jujuy: Mina Aguilar, Puna Operations, Martín Bronce, Providencia (lítio).</p>
+      </div>
+    </div>
+    <p class="au d6" style="margin-top:12px;font-size:11px;color:#777">Fonte: CAEM, Informe Productivo de la Minería Argentina (mai/2026). Nota: o controle societário mudou ao longo do tempo — confirmar no registro antes de uso formal.</p>
+  </div>
+</section>
+
+<!-- 7 - fiscalidade e regalias -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Fiscalidade e <span class="gt">regalias</span></span><span data-lang="en">Taxation and <span class="gt">royalties</span></span><span data-lang="es">Fiscalidad y <span class="gt">regalías</span></span></h2>
+    <div class="grid3" style="margin-top:20px">
+      <div class="card as d2" style="text-align:center"><div class="s5n sm">8% → 0%</div><p style="font-size:12px"><span data-lang="pt">Direitos de exportação do ouro — não renovação do Decreto 785/2020</span><span data-lang="en">Gold export duties — non-renewal of Decree 785/2020</span><span data-lang="es">Derechos de exportación del oro — no renovación del Decreto 785/2020</span> <span class="tag-sm tf">F</span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">3%</div><p style="font-size:12px"><span data-lang="pt">Regalias sobre faturamento FOB das exportações</span><span data-lang="en">Royalties on FOB export revenue</span><span data-lang="es">Regalías sobre facturación FOB de las exportaciones</span> <span class="tag-sm tf">F</span></p></div>
+      <div class="card as d4" style="text-align:center"><div class="s5n sm">US$ 20,9M</div><p style="font-size:12px"><span data-lang="pt">Regalias geradas em San Juan em 5 meses de 2025 (55% ao Tesouro provincial)</span><span data-lang="en">Royalties generated in San Juan in 5 months of 2025 (55% to provincial Treasury)</span><span data-lang="es">Regalías generadas en San Juan en 5 meses de 2025 (55% al Tesoro provincial)</span> <span class="tag-sm tf">F</span></p></div>
+    </div>
+    <div class="card s5c au d4" style="margin-top:16px"><p style="font-size:12.5px"><span class="tag-sm tj">J</span> <span data-lang="pt">A pressão fiscal se concentrou no nível provincial após a zeragem do direito de exportação federal. Províncias dependentes de regalias tendem a endurecer fiscalização e exigir emprego local — o conflito em Santa Cruz segue essa lógica.</span><span data-lang="en">Fiscal pressure concentrated at the provincial level after the federal export duty was zeroed. Royalty-dependent provinces tend to tighten enforcement and demand local employment — the Santa Cruz conflict follows this logic.</span><span data-lang="es">La presión fiscal se concentró en el nivel provincial tras la eliminación del derecho de exportación federal. Las provincias dependientes de regalías tienden a endurecer la fiscalización y exigir empleo local — el conflicto en Santa Cruz sigue esa lógica.</span></p></div>
+  </div>
+</section>
+
+<!-- 8 - marco regulatório -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Marco regulatório e <span class="gt">atores</span></span><span data-lang="en">Regulatory framework and <span class="gt">actors</span></span><span data-lang="es">Marco regulatorio y <span class="gt">actores</span></span></h2>
+    <table class="au d2" style="margin-top:16px">
+      <tr><th><span data-lang="pt">Norma / instituição</span><span data-lang="en">Norm / institution</span><span data-lang="es">Norma / institución</span></th><th><span data-lang="pt">Função</span><span data-lang="en">Function</span><span data-lang="es">Función</span></th><th><span data-lang="pt">Relevância</span><span data-lang="en">Relevance</span><span data-lang="es">Relevancia</span></th></tr>
+      <tr><td>Código de Minería</td><td><span data-lang="pt">Concessões, obrigações, fiscalização</span><span data-lang="en">Concessions, obligations, enforcement</span><span data-lang="es">Concesiones, obligaciones, fiscalización</span></td><td><span data-lang="pt">Base de licenças e sanções</span><span data-lang="en">Basis for licenses and sanctions</span><span data-lang="es">Base de licencias y sanciones</span></td></tr>
+      <tr><td><span data-lang="pt">Dominio originario provincial</span></td><td><span data-lang="pt">Recursos minerais pertencem às províncias</span><span data-lang="en">Mineral resources belong to the provinces</span><span data-lang="es">Los recursos minerales pertenecen a las provincias</span></td><td><span data-lang="pt">Negociação é com governos provinciais</span><span data-lang="en">Negotiation is with provincial governments</span><span data-lang="es">La negociación es con gobiernos provinciales</span></td></tr>
+      <tr><td>Lei 90/10 (Santa Cruz)</td><td><span data-lang="pt">Emprego e fornecedores locais</span><span data-lang="en">Local employment and suppliers</span><span data-lang="es">Empleo y proveedores locales</span></td><td><span data-lang="pt">Centro do conflito de Cerro Negro</span><span data-lang="en">Center of the Cerro Negro conflict</span><span data-lang="es">Centro del conflicto de Cerro Negro</span></td></tr>
+      <tr><td>RIGI</td><td><span data-lang="pt">Estabilidade para grandes investimentos</span><span data-lang="en">Stability for large investments</span><span data-lang="es">Estabilidad para grandes inversiones</span></td><td><span data-lang="pt">Benefício com contestação política</span><span data-lang="en">Benefit with political contestation</span><span data-lang="es">Beneficio con contestación política</span></td></tr>
+      <tr><td>Lei 27.401</td><td><span data-lang="pt">Responsabilidade penal empresarial</span><span data-lang="en">Corporate criminal liability</span><span data-lang="es">Responsabilidad penal empresarial</span></td><td><span data-lang="pt">Compliance em interações com agentes públicos</span><span data-lang="en">Compliance in interactions with public agents</span><span data-lang="es">Compliance en interacciones con agentes públicos</span></td></tr>
+      <tr><td>Secretaría de Minería</td><td><span data-lang="pt">Política e estatísticas</span><span data-lang="en">Policy and statistics</span><span data-lang="es">Política y estadísticas</span></td><td><span data-lang="pt">Fonte primária de dados</span><span data-lang="en">Primary data source</span><span data-lang="es">Fuente primaria de datos</span></td></tr>
+      <tr><td>Ministerio de Energía y Minería (Santa Cruz)</td><td><span data-lang="pt">Fiscalização e policía minera</span><span data-lang="en">Enforcement and mining police</span><span data-lang="es">Fiscalización y policía minera</span></td><td><span data-lang="pt">Órgão das atas de set./nov. 2026</span><span data-lang="en">Body behind Sep/Nov 2026 minutes</span><span data-lang="es">Órgano de las actas de sep./nov. 2026</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 9 - lei de glaciares -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">A Lei de <span class="gt">Glaciares</span>: disputa em andamento</span><span data-lang="en">The <span class="gt">Glaciers</span> Law: ongoing dispute</span><span data-lang="es">La Ley de <span class="gt">Glaciares</span>: disputa en curso</span></h2>
+    <div class="grid2" style="margin-top:22px">
+      <div class="cp au d2">
+        <h3 style="font-size:14px"><span data-lang="pt">Confirmado</span><span data-lang="en">Confirmed</span><span data-lang="es">Confirmado</span> <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <p style="font-size:12.5px;margin-top:8px"><span data-lang="pt">A Câmara de Diputados sancionou a reforma da Lei 26.639 por 137 a 111 votos, após meia sanção do Senado (Chequeado, 09/04/2026).</span><span data-lang="en">The Chamber of Deputies passed the reform of Law 26,639 by 137 to 111 votes, after half-approval by the Senate (Chequeado, 04/09/2026).</span><span data-lang="es">La Cámara de Diputados sancionó la reforma de la Ley 26.639 por 137 a 111 votos, tras la media sanción del Senado (Chequeado, 09/04/2026).</span></p>
+      </div>
+      <div class="cp au d3">
+        <h3 style="font-size:14px"><span data-lang="pt">Pendente</span><span data-lang="en">Pending</span><span data-lang="es">Pendiente</span> <span class="tag-sm tp" style="margin-left:4px">P</span></h3>
+        <p style="font-size:12.5px;margin-top:8px"><span data-lang="pt">Promulgação, número da lei no Boletín Oficial e texto vigente não lidos. Até a promulgação, o efeito em San Juan e Catamarca é incerto.</span><span data-lang="en">Enactment, law number in the Boletín Oficial, and current text not read. Until enactment, the effect on San Juan and Catamarca is uncertain.</span><span data-lang="es">Promulgación, número de la ley en el Boletín Oficial y texto vigente no leídos. Hasta la promulgación, el efecto en San Juan y Catamarca es incierto.</span></p>
+      </div>
+    </div>
+    <p class="au d4" style="margin-top:14px;max-width:850px;font-size:12.5px"><span class="tag-sm tj">J</span> <span data-lang="pt">A disputa relevante passa a ser o texto promulgado. Sem mudança de nível na matriz de riscos enquanto isso não ocorrer. Monitorar como gatilho de revisão antecipada (Deck 9).</span><span data-lang="en">The relevant dispute becomes the enacted text. No level change in the risk matrix until this happens. Monitor as an early-review trigger (Deck 9).</span><span data-lang="es">La disputa relevante pasa a ser el texto promulgado. Sin cambio de nivel en la matriz de riesgos hasta que eso ocurra. Monitorear como gatillo de revisión anticipada (Deck 9).</span></p>
+  </div>
+</section>
+
+<!-- 10 - mercado em 2026 preços -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">2026: duas datas de preço, <span class="gt">leituras distintas</span></span><span data-lang="en">2026: two price dates, <span class="gt">different readings</span></span><span data-lang="es">2026: dos fechas de precio, <span class="gt">lecturas distintas</span></span></h2>
+    <div class="grid2" style="margin-top:20px">
+      <div class="cp au d2">
+        <h3 style="font-size:14px"><span data-lang="pt">CAEM, fevereiro de 2026</span><span data-lang="en">CAEM, February 2026</span><span data-lang="es">CAEM, febrero de 2026</span> <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <table style="margin-top:8px">
+          <tr><td>Ouro</td><td>US$ 5.030/oz (+9,4% no mês)</td></tr>
+          <tr><td>Prata</td><td>US$ 86/oz (+34,5%)</td></tr>
+          <tr><td>Lítio (carbonato)</td><td>US$ 13.905/t (+42,7%)</td></tr>
+        </table>
+      </div>
+      <div class="cp au d3">
+        <h3 style="font-size:14px"><span data-lang="pt">Mining Press, junho de 2026</span><span data-lang="en">Mining Press, June 2026</span><span data-lang="es">Mining Press, junio de 2026</span> <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <table style="margin-top:8px">
+          <tr><td>Ouro</td><td>US$ 4.228/oz (+26,1% no ano)</td></tr>
+          <tr><td>Prata</td><td>US$ 66,7/oz (+85,3% no ano; pico ~US$ 120 em jan/26)</td></tr>
+          <tr><td>Lítio</td><td>US$ 21.075/t LCE</td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="au d4" style="margin-top:14px;max-width:850px;font-size:12.5px"><span class="tag-sm tj">J</span> <span data-lang="pt">O preço de 2025 (acima de US$ 3.000) é marco histórico e não é a referência de novembro de 2026. Registrar as duas datas sem escolher uma — são leituras de momentos diferentes do mesmo ano.</span><span data-lang="en">The 2025 price (above US$ 3,000) is a historic landmark and is not the reference for November 2026. Record both dates without choosing one — they are readings from different moments in the same year.</span><span data-lang="es">El precio de 2025 (por encima de US$ 3.000) es un hito histórico y no es la referencia de noviembre de 2026. Registrar ambas fechas sin elegir una — son lecturas de momentos distintos del mismo año.</span></p>
+  </div>
+</section>
+
+<!-- 11 - volume x receita 1º sem 2026 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">1º semestre de 2026: <span class="gt">volume cai, receita sobe</span></span><span data-lang="en">H1 2026: <span class="gt">volume falls, revenue rises</span></span><span data-lang="es">1er semestre de 2026: <span class="gt">el volumen cae, los ingresos suben</span></span></h2>
+    <div class="grid3" style="margin-top:18px">
+      <div class="card as d2" style="text-align:center"><div class="s5n sm">−15,7%</div><p style="font-size:11.5px"><span data-lang="pt">Produção de ouro, prata e doré, jan–jul/26 (INDEC)</span><span data-lang="en">Gold, silver and doré production, Jan–Jul/26 (INDEC)</span><span data-lang="es">Producción de oro, plata y doré, ene–jul/26 (INDEC)</span> <span class="tag-sm tf">F</span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">US$ 4.742M</div><p style="font-size:11.5px"><span data-lang="pt">Exportações mineiras 1º sem. 2026 (+74,4%) — Clarín/INDEC</span><span data-lang="en">H1 2026 mining exports (+74.4%) — Clarín/INDEC</span><span data-lang="es">Exportaciones mineras 1er sem. 2026 (+74,4%) — Clarín/INDEC</span> <span class="tag-sm tf">F</span></p></div>
+      <div class="card as d4" style="text-align:center"><div class="s5n sm">US$ 4.650M</div><p style="font-size:11.5px"><span data-lang="pt">Mesmo período, outro recorte (Mining Press)</span><span data-lang="en">Same period, different cut (Mining Press)</span><span data-lang="es">Mismo período, otro recorte (Mining Press)</span> <span class="tag-sm tf">F</span></p></div>
+    </div>
+    <div class="bchart au d3" style="margin-top:16px">
+      <div class="brow"><span class="lbl">Ouro — US$ 2.921M</span><div class="btrack"><div class="bfill" style="width:52%"></div></div><span class="bval">+52,0%</span></div>
+      <div class="brow"><span class="lbl">Lítio — US$ 1.115M</span><div class="btrack"><div class="bfill green" style="width:100%"></div></div><span class="bval">+190,1%</span></div>
+      <div class="brow"><span class="lbl">Prata — US$ 580,8M</span><div class="btrack"><div class="bfill" style="width:94%"></div></div><span class="bval">+94,1%</span></div>
+      <div class="brow"><span class="lbl">Cobre — US$ 33,4M</span><div class="btrack"><div class="bfill" style="width:3%;opacity:.6"></div></div><span class="bval">marginal</span></div>
+    </div>
+    <p class="au d4" style="margin-top:10px;font-size:11px;color:#777"><span data-lang="pt">Ouro e prata crescem em valor (preço), não em volume. Santa Cruz e San Juan concentram mais de 62% do exportado nesse recorte. Suíça, China e EUA são os principais destinos. A diferença entre US$ 4.742M e US$ 4.650M é de recorte metodológico — registrar ambas.</span><span data-lang="en">Gold and silver grow in value (price), not volume. Santa Cruz and San Juan account for over 62% of exports in this cut. Switzerland, China and the US are the main destinations. The gap between US$ 4,742M and US$ 4,650M is a methodological cut — record both.</span><span data-lang="es">El oro y la plata crecen en valor (precio), no en volumen. Santa Cruz y San Juan concentran más de 62% de lo exportado en este recorte. Suiza, China y EE.UU. son los principales destinos. La diferencia entre US$ 4.742M y US$ 4.650M es de recorte metodológico — registrar ambas.</span></p>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <div class="wrap" style="text-align:center">
+    <div class="gl ce au d1"></div>
+    <p class="quote au d2">
+      <span data-lang="pt">"Quando o preço sobe e o volume cai, a pressão por produtividade recai sobre quem está no terreno."</span>
+      <span data-lang="en">"When price rises and volume falls, the pressure for productivity falls on those on the ground."</span>
+      <span data-lang="es">"Cuando el precio sube y el volumen cae, la presión por productividad recae sobre quienes están en el terreno."</span>
+    </p>
+    <h2 class="au d3"><span data-lang="pt">Santa Cruz: <span class="gt">39,5%</span> das exportações, no centro da tensão</span><span data-lang="en">Santa Cruz: <span class="gt">39.5%</span> of exports, at the center of the tension</span><span data-lang="es">Santa Cruz: <span class="gt">39,5%</span> de las exportaciones, en el centro de la tensión</span></h2>
+    <p class="au d4" style="max-width:800px;margin:14px auto 0;font-size:13px"><span data-lang="pt">Energía 360 (07/11/2026): Santa Cruz manteve 39,5% das exportações mineiras no 1º semestre de 2026; a mineração responde por ~89% das exportações provinciais. Séries de produção física por mina (SIACAM) permanecem pendentes.</span><span data-lang="en">Energía 360 (11/07/2026): Santa Cruz kept 39.5% of mining exports in H1 2026; mining accounts for ~89% of provincial exports. Physical production series by mine (SIACAM) remain pending.</span><span data-lang="es">Energía 360 (07/11/2026): Santa Cruz mantuvo el 39,5% de las exportaciones mineras en el 1er semestre de 2026; la minería representa ~89% de las exportaciones provinciales. Las series de producción física por mina (SIACAM) permanecen pendientes.</span></p>
+    <h3 class="au d5" style="margin-top:20px"><span data-lang="pt">Siga para o <span class="gt">Deck 8 — Panorama Político</span></span><span data-lang="en">Continue to <span class="gt">Deck 8 — Political Landscape</span></span><span data-lang="es">Continúe al <span class="gt">Deck 8 — Panorama Político</span></span></h3>
+    <a class="home-btn au d6" style="display:inline-flex;margin-top:18px" href="index.html">
+      <span data-lang="pt">Voltar ao Index</span><span data-lang="en">Back to Index</span><span data-lang="es">Volver al Index</span>
+    </a>
+  </div>
+</section>
+
+</div></div>
+
+<script>
+const T = 12; let C = 0;
+const W = document.getElementById('sw');
+const CN = document.getElementById('cn');
+const P = document.getElementById('prog');
+const I = document.getElementById('ind');
+for (let i = 0; i < T; i++) { const d = document.createElement('div'); d.classList.add('dot'); if (i === 0) d.classList.add('active'); d.onclick = () => go(i); I.appendChild(d); }
+function upd() { I.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === C)); CN.textContent = C + 1; P.style.width = ((C + 1) / T * 100) + '%'; document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === C)); }
+function go(i) { if (i < 0 || i >= T) return; C = i; W.style.transform = `translateX(-${C * 100}vw)`; upd(); }
+function next() { if (C < T - 1) go(C + 1); }
+function prev() { if (C > 0) go(C - 1); }
+document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); } if (e.key === 'f' || e.key === 'F') toggleFs(); });
+let tx = 0;
+document.addEventListener('touchstart', e => tx = e.changedTouches[0].screenX);
+document.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].screenX; if (Math.abs(d) > 50) { d > 0 ? next() : prev(); } });
+function toggleFs() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(() => {}); } else { document.exitFullscreen(); } }
+document.addEventListener('fullscreenchange', () => { document.getElementById('fsTxt').textContent = document.fullscreenElement ? 'Sair' : 'Tela cheia'; document.getElementById('fsTxtE').textContent = document.fullscreenElement ? 'Exit' : 'Fullscreen'; document.getElementById('fsTxtS').textContent = document.fullscreenElement ? 'Salir' : 'Pantalla'; });
+function setLang(l) { document.body.className = 'lang-' + l; document.querySelectorAll('.lang-sel button').forEach(b => b.classList.toggle('active', b.dataset.l === l)); }
+upd();
+</script>
+</body>
+</html>

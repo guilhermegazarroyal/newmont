@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deck 6 — Protocolos de Resposta & Preparação | Newmont Argentina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:'Inter',sans-serif;overflow:hidden;color:#E8E8E8}
+h1,h2,h3{color:#fff}
+h1{font-weight:900;letter-spacing:-.03em;line-height:1.08}
+h2{font-weight:800;letter-spacing:-.025em;line-height:1.12;font-size:clamp(26px,3.2vw,38px)}
+h3{font-weight:700;letter-spacing:-.015em;color:#fff}
+p,span,li{font-weight:400;line-height:1.55;color:#D4D4D4}
+.presentation{width:100vw;height:100vh;overflow:hidden;position:relative}
+.slides{display:flex;height:100%;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.slide{width:100vw;height:100vh;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;padding:56px 72px}
+.slide::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(900px 420px at 72% 18%, rgba(255,214,0,.08) 0%, transparent 42%),
+  radial-gradient(800px 380px at 35% 20%, rgba(255,184,0,.06) 0%, transparent 42%),
+  linear-gradient(180deg,#000 0%,#050505 45%,#000 100%)}
+.slide::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.25;
+  background-image:radial-gradient(rgba(255,255,255,.05) .8px, transparent .8px);background-size:24px 24px}
+.slide>*{position:relative;z-index:1}
+.wrap{max-width:1340px;width:100%;max-height:92vh;overflow-y:auto;padding-right:6px}
+.wrap::-webkit-scrollbar{width:5px}.wrap::-webkit-scrollbar-thumb{background:rgba(255,214,0,.3);border-radius:4px}
+.gt{background:linear-gradient(135deg,#FFD600 0%,#FFB800 50%,#FFD600 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.gl{width:90px;height:4px;border-radius:2px;background:linear-gradient(90deg,#FFD600,#FFB800);margin-bottom:18px;animation:lineG .8s ease both;transform-origin:left}
+.gl.ce{margin:0 auto 18px auto;transform-origin:center}
+@keyframes lineG{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.05);padding:20px 20px;backdrop-filter:blur(8px);transition:all .4s ease}
+.card:hover{border-color:rgba(255,214,0,.3);transform:translateY(-2px)}
+.cp{background:linear-gradient(145deg, rgba(20,20,20,.95) 0%, rgba(10,10,10,.98) 55%, rgba(0,0,0,1) 100%);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.6), 0 0 36px rgba(255,214,0,.07);padding:20px 20px;backdrop-filter:blur(10px)}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:9px 20px;border-radius:999px;margin-bottom:22px;background:rgba(255,214,0,.1);border:1px solid rgba(255,214,0,.3);font-size:12.5px;font-weight:600;color:#FFD600;letter-spacing:.05em;text-transform:uppercase}
+.tag-sm{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:7px;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.tf{background:rgba(94,232,154,.12);color:#5EE89A;border:1px solid rgba(94,232,154,.3)}
+.te{background:rgba(255,214,0,.12);color:#FFD600;border:1px solid rgba(255,214,0,.3)}
+.tj{background:rgba(200,109,215,.12);color:#C86DD7;border:1px solid rgba(200,109,215,.3)}
+.tp{background:rgba(255,107,107,.12);color:#FF6B6B;border:1px solid rgba(255,107,107,.3)}
+.tn{width:56px;height:56px;border-radius:15px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#000;animation:glowP 3s ease-in-out infinite}
+.tn.n1{background:linear-gradient(145deg,#FFD600,#E6B800)}
+.tn.n2{background:linear-gradient(145deg,#FFC400,#D9A300);animation-delay:.5s}
+.tn.n3{background:linear-gradient(145deg,#FFB800,#CC9200);animation-delay:1s}
+@keyframes glowP{0%,100%{box-shadow:0 0 14px rgba(255,214,0,.15)}50%{box-shadow:0 0 28px rgba(255,214,0,.3)}}
+.ic{width:42px;height:42px;border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,214,0,.1)}
+.ic svg{width:21px;height:21px;color:#FFD600}
+.s5c{position:relative;overflow:hidden}
+.s5c::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#FFD600}
+.s5n{font-size:38px;font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:5px;color:#FFD600}
+.s5n.sm{font-size:27px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
+.grid5{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:12px}
+.quote{font-size:22px;font-weight:600;color:#fff;line-height:1.45;max-width:880px;margin:0 auto 18px auto;text-align:center;font-style:italic}
+.progress{position:fixed;top:0;left:0;height:3px;z-index:1000;background:linear-gradient(90deg,#FFD600,#FFB800,#FFD600);background-size:200% auto;animation:shimmer 3s linear infinite;transition:width .6s ease}
+.fs-btn{position:fixed;top:18px;left:18px;z-index:999;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:10px 16px;border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:7px;transition:all .3s ease;backdrop-filter:blur(6px);letter-spacing:.04em;text-transform:uppercase}
+.fs-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,214,0,.4)}
+.fs-btn svg{width:14px;height:14px}
+.top-right{position:fixed;top:18px;right:18px;z-index:999;display:flex;gap:10px;align-items:center}
+.lang-sel{display:flex;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:4px;backdrop-filter:blur(6px)}
+.lang-sel button{background:transparent;border:none;color:#999;padding:6px 11px;border-radius:8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .25s ease}
+.lang-sel button.active{background:#FFD600;color:#000}
+.home-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:9px 14px;border-radius:11px;cursor:pointer;font-size:11px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;backdrop-filter:blur(6px);transition:all .25s ease}
+.home-btn:hover{background:rgba(255,214,0,.15);color:#FFD600;border-color:rgba(255,214,0,.4)}
+.sc{position:fixed;bottom:30px;left:36px;z-index:998;color:#999;font-size:13px;font-weight:600;letter-spacing:.05em;background:rgba(0,0,0,.5);padding:8px 16px;border-radius:9px;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.08)}
+.sc .cn{color:#FFD600;font-weight:800}
+.ind{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:998;display:flex;gap:6px;background:rgba(0,0,0,.5);padding:8px 14px;border-radius:18px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08)}
+.ind .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);transition:all .4s ease;cursor:pointer}
+.ind .dot.active{background:#FFD600;box-shadow:0 0 12px rgba(255,214,0,.7);width:30px;border-radius:5px}
+.nav-arr{position:fixed;bottom:26px;right:36px;z-index:998;display:flex;gap:9px}
+.nav-arr button{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#D4D4D4;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(6px)}
+.nav-arr button:hover{background:rgba(255,214,0,.25);border-color:rgba(255,214,0,.5);color:#000;transform:scale(1.05)}
+.checklist{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.checklist li{list-style:none;padding-left:16px;position:relative;font-size:12.5px;color:#D4D4D4}
+.checklist li::before{content:'✓';position:absolute;left:0;color:#FFD600;font-weight:900}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{color:#FFD600;text-align:left;padding:8px 10px;border-bottom:1px solid rgba(255,214,0,.3);font-weight:700}
+td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.07);color:#D4D4D4}
+.donut-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center}
+.donut{width:150px;height:150px;border-radius:50%;flex-shrink:0}
+.donut.sm{width:120px;height:120px}
+.dleg{display:flex;flex-direction:column;gap:7px}
+.dleg .di{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#D4D4D4}
+.dleg .sq{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.bchart{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.brow{display:grid;grid-template-columns:190px 1fr 70px;align-items:center;gap:8px}
+.brow .lbl{font-size:11.5px;color:#D4D4D4;text-align:right}
+.btrack{background:rgba(255,255,255,.06);border-radius:7px;height:14px;overflow:hidden}
+.bfill{height:100%;border-radius:7px;background:linear-gradient(90deg,#FFD600,#FFB800)}
+.bfill.red{background:linear-gradient(90deg,#FF6B6B,#CC3B3B)}
+.bfill.green{background:linear-gradient(90deg,#5EE89A,#2BA866)}
+.bval{font-size:11px;color:#FFD600;font-weight:700}
+.mapbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;backdrop-filter:blur(8px)}
+.map-note{font-size:10px;color:#999;margin-bottom:6px;letter-spacing:.03em;text-transform:uppercase}
+.mat{display:grid;grid-template-columns:150px 1fr 1fr 1fr 1fr;gap:5px;margin-top:14px}
+.mat .hd{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.04em;text-align:center;padding:6px;font-weight:700}
+.mat .rl{font-size:10.5px;color:#999;text-transform:uppercase;letter-spacing:.03em;display:flex;align-items:center;padding:0 6px;font-weight:700}
+.mat .cell{border-radius:10px;min-height:52px;padding:6px 8px;display:flex;flex-direction:column;justify-content:center;gap:2px;font-size:9.5px;border:1px solid rgba(255,255,255,.08)}
+.mat .lo{background:rgba(255,184,0,.06)}
+.mat .md{background:rgba(255,214,0,.1)}
+.mat .hi{background:rgba(255,107,107,.1)}
+.mat .cr{background:rgba(255,60,60,.18)}
+.chip{display:inline-block;padding:2px 6px;border-radius:6px;font-size:9px;font-weight:800;margin:1px 0;color:#000}
+.chip.r{background:#FF6B6B}
+.chip.y{background:#FFD600}
+.chip.g{background:#FFB800}
+.fl{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
+.fs{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:130px;padding:0 8px}
+.fs .fi{width:66px;height:66px;border-radius:18px;background:rgba(255,214,0,.08);border:1px solid rgba(255,214,0,.18);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.fs .fi svg{width:28px;height:28px;color:#FFD600}
+.fs span{font-size:12.5px;font-weight:600;color:#F5F7FB}
+.fa{display:flex;align-items:center;padding-bottom:26px;margin:0 6px}
+.fa svg{width:22px;height:22px;color:#7E879B}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeScale{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.slide.active .au{animation:fadeUp .7s ease both}
+.slide.active .as{animation:fadeScale .7s ease both}
+.d1{animation-delay:.1s!important}.d2{animation-delay:.2s!important}.d3{animation-delay:.3s!important}
+.d4{animation-delay:.4s!important}.d5{animation-delay:.5s!important}.d6{animation-delay:.6s!important}.d7{animation-delay:.7s!important}
+.s1{text-align:center;max-width:980px;margin:0 auto}
+.s1 h1{font-size:clamp(42px,5.8vw,68px);margin-bottom:20px}
+.s1 .tag{font-size:18px;color:#D4D4D4;max-width:640px;margin:0 auto;line-height:1.5}
+[data-lang]{display:none}
+.lang-pt [data-lang="pt"]{display:block}
+.lang-en [data-lang="en"]{display:block}
+.lang-es [data-lang="es"]{display:block}
+[data-lang-inline]{display:none}
+.lang-pt [data-lang-inline="pt"]{display:inline}
+.lang-en [data-lang-inline="en"]{display:inline}
+.lang-es [data-lang-inline="es"]{display:inline}
+</style>
+</head>
+<body class="lang-pt">
+<div class="progress" id="prog" style="width:7%"></div>
+<div class="top-right">
+  <div class="lang-sel">
+    <button data-l="pt" class="active" onclick="setLang('pt')">PT</button>
+    <button data-l="en" onclick="setLang('en')">EN</button>
+    <button data-l="es" onclick="setLang('es')">ES</button>
+  </div>
+  <a class="home-btn" href="index.html">
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"></path></svg>
+    <span data-lang="pt">Index</span><span data-lang="en">Index</span><span data-lang="es">Index</span>
+  </a>
+</div>
+<button class="fs-btn" onclick="toggleFs()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"></path></svg>
+  <span id="fsTxt" data-lang="pt">Tela cheia</span><span id="fsTxtE" data-lang="en">Fullscreen</span><span id="fsTxtS" data-lang="es">Pantalla</span>
+</button>
+<div class="sc"><span class="cn" id="cn">1</span> / 14</div>
+<div class="ind" id="ind"></div>
+<div class="nav-arr"><button onclick="prev()">‹</button><button onclick="next()">›</button></div>
+
+<div class="presentation"><div class="slides" id="sw">
+
+<!-- 1 -->
+<section class="slide active">
+  <div class="s1">
+    <div class="badge au d1" data-lang="pt">Deck 6 de 9 · Protocolos e Preparação</div>
+    <div class="badge au d1" data-lang="en">Deck 6 of 9 · Protocols and Preparation</div>
+    <div class="badge au d1" data-lang="es">Deck 6 de 9 · Protocolos y Preparación</div>
+    <h1 class="au d2">
+      <span data-lang="pt">Protocolo conhecido é <span class="gt">crise reduzida</span></span>
+      <span data-lang="en">A known protocol is a <span class="gt">reduced crisis</span></span>
+      <span data-lang="es">Protocolo conocido es <span class="gt">crisis reducida</span></span>
+    </h1>
+    <p class="tag au d3">
+      <span data-lang="pt">Preparação pré-embarque, roteiros de resposta, protocolos específicos, contatos de emergência e gatilhos de revisão — a camada prática do relatório consolidado.</span>
+      <span data-lang="en">Pre-departure preparation, response playbooks, specific protocols, emergency contacts and review triggers — the practical layer of the consolidated report.</span>
+      <span data-lang="es">Preparación previa al embarque, guiones de respuesta, protocolos específicos, contactos de emergencia y gatillos de revisión — la capa práctica del informe consolidado.</span>
+    </p>
+  </div>
+</section>
+
+<!-- 2 - antes de embarcar, checklist completo -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Antes de <span class="gt">embarcar</span>: checklist prioritário</span><span data-lang="en">Before <span class="gt">departure</span>: priority checklist</span><span data-lang="es">Antes de <span class="gt">embarcar</span>: checklist prioritario</span></h2>
+    <div class="grid3" style="margin-top:20px">
+      <div class="cp au d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11V7a3 3 0 116 0v4M5 11h14v10H5z"></path></svg></div>
+        <h3 style="font-size:14px"><span data-lang="pt">Documentos e saúde</span><span data-lang="en">Documents and health</span><span data-lang="es">Documentos y salud</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">Passaporte válido por período superior à estadia</span><span data-lang="en">Passport valid well beyond the stay</span><span data-lang="es">Pasaporte vigente por período superior a la estadía</span></li>
+          <li><span data-lang="pt">Apólice com cobertura médica alta e evacuação, incluindo a Patagônia, antes do embarque — titular e dependentes</span><span data-lang="en">High-coverage health and evacuation policy, including Patagonia, before departure — holder and dependents</span><span data-lang="es">Póliza con cobertura médica alta y evacuación, incluyendo la Patagonia, antes del embarque — titular y dependientes</span></li>
+          <li><span data-lang="pt">Medicamento contínuo na bagagem de mão, com receita traduzida</span><span data-lang="en">Ongoing medication in hand luggage, translated prescription</span><span data-lang="es">Medicamento continuo en equipaje de mano, receta traducida</span></li>
+        </ul>
+      </div>
+      <div class="cp au d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3 style="font-size:14px"><span data-lang="pt">Briefing e família</span><span data-lang="en">Briefing and family</span><span data-lang="es">Briefing y familia</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">Briefing cobrindo Cerro Negro, AMBA, exposição digital e evacuação médica</span><span data-lang="en">Briefing covering Cerro Negro, AMBA, digital exposure and medical evacuation</span><span data-lang="es">Briefing sobre Cerro Negro, AMBA, exposición digital y evacuación médica</span></li>
+          <li><span data-lang="pt">Palavra-código familiar combinada antes do embarque, conhecida só pela família <span class="tag-sm tf">F</span></span><span data-lang="en">Family safe word agreed before departure, known only by the family <span class="tag-sm tf">F</span></span><span data-lang="es">Palabra-código familiar acordada antes del embarque, conocida solo por la familia <span class="tag-sm tf">F</span></span></li>
+          <li><span data-lang="pt">Regra de baixa exposição assinada no onboarding, estendida à família</span><span data-lang="en">Low-exposure rule signed at onboarding, extended to family</span><span data-lang="es">Regla de baja exposición firmada en el onboarding, extendida a la familia</span></li>
+        </ul>
+      </div>
+      <div class="cp au d4">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M13 21V11l6 4v6"></path></svg></div>
+        <h3 style="font-size:14px"><span data-lang="pt">Viagem ao site</span><span data-lang="en">Travel to the site</span><span data-lang="es">Viaje al sitio</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">Motorista da operação, veículo revisado, kit de inverno, dois meios de comunicação</span><span data-lang="en">Operation driver, serviced vehicle, winter kit, two communication means</span><span data-lang="es">Conductor de la operación, vehículo revisado, kit de invierno, dos medios de comunicación</span></li>
+          <li><span data-lang="pt">Check-in combinado; seguro que cubra evacuação aeromédica</span><span data-lang="en">Agreed check-in; insurance covering aeromedical evacuation</span><span data-lang="es">Check-in acordado; seguro que cubra evacuación aeromédica</span></li>
+          <li><span data-lang="pt">Visitante com restrição clínica não embarca sem liberação médica</span><span data-lang="en">Visitor with clinical restriction does not travel without medical clearance</span><span data-lang="es">Visitante con restricción clínica no viaja sin autorización médica</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card s5c au d5" style="margin-top:16px"><p style="font-size:12px"><span class="tag-sm tp">P</span> <span data-lang="pt">Regras de seguro obrigatório para ingresso na Dirección Nacional de Migraciones não confirmadas. O Decreto 366/2025 não prova seguro obrigatório de ingresso. A apólice com evacuação antes do embarque segue como política do programa, não como exigência legal confirmada.</span><span data-lang="en">Mandatory insurance rules for entry via Dirección Nacional de Migraciones not confirmed. Decree 366/2025 does not prove mandatory entry insurance. The pre-departure evacuation policy remains program policy, not a confirmed legal requirement.</span><span data-lang="es">Reglas de seguro obligatorio para el ingreso en la Dirección Nacional de Migraciones no confirmadas. El Decreto 366/2025 no prueba seguro obligatorio de ingreso. La póliza con evacuación antes del embarque sigue como política del programa, no como exigencia legal confirmada.</span></p></div>
+  </div>
+</section>
+
+<!-- 3 - briefing e checagem familiar em números -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Cronograma de <span class="gt">onboarding</span> familiar</span><span data-lang="en"><span class="gt">Family onboarding</span> schedule</span><span data-lang="es">Cronograma de <span class="gt">onboarding</span> familiar</span></h2>
+    <div class="fl au d2" style="margin-top:30px">
+      <div class="fs"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11V7a3 3 0 116 0v4M5 11h14v10H5z"/></svg></div><span data-lang="pt">30 dias antes: documentos, seguro, passaporte</span><span data-lang="en">30 days before: documents, insurance, passport</span><span data-lang="es">30 días antes: documentos, seguro, pasaporte</span></div>
+      <div class="fa">→</div>
+      <div class="fs"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg></div><span data-lang="pt">7 dias antes: briefing de 60 min e palavra-código</span><span data-lang="en">7 days before: 60-min briefing and safe word</span><span data-lang="es">7 días antes: briefing de 60 min y palabra-código</span></div>
+      <div class="fa">→</div>
+      <div class="fs"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><span data-lang="pt">1º dia: contato do consulado gravado e impresso</span><span data-lang="en">Day 1: consulate contact saved and printed</span><span data-lang="es">1er día: contacto del consulado guardado e impreso</span></div>
+      <div class="fa">→</div>
+      <div class="fs"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><span data-lang="pt">14 primeiros dias: check-in manhã e noite</span><span data-lang="en">First 14 days: morning and night check-in</span><span data-lang="es">Primeros 14 días: chequeo mañana y noche</span></div>
+    </div>
+    <div class="grid3" style="margin-top:26px">
+      <div class="card as d2" style="text-align:center"><div class="s5n sm">60 min</div><p style="font-size:12px"><span data-lang="pt">Duração do briefing de segurança pré-embarque</span><span data-lang="en">Duration of the pre-departure security briefing</span><span data-lang="es">Duración del briefing de seguridad previo al embarque</span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">14 dias</div><p style="font-size:12px"><span data-lang="pt">Janela de check-in intensivo manhã/noite</span><span data-lang="en">Intensive morning/night check-in window</span><span data-lang="es">Ventana de chequeo intensivo mañana/noche</span></p></div>
+      <div class="card as d4" style="text-align:center"><div class="s5n sm">2</div><p style="font-size:12px"><span data-lang="pt">Meios de comunicação obrigatórios em viagem ao site</span><span data-lang="en">Mandatory communication means for site travel</span><span data-lang="es">Medios de comunicación obligatorios en viaje al sitio</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 - contatos de emergência detalhados -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Contatos de <span class="gt">emergência</span> na Argentina</span><span data-lang="en">Emergency <span class="gt">contacts</span> in Argentina</span><span data-lang="es">Contactos de <span class="gt">emergencia</span> en Argentina</span></h2>
+    <div class="grid5" style="margin-top:20px">
+      <div class="card as d2" style="text-align:center"><div class="s5n sm">911</div><p style="font-size:11px"><span data-lang="pt">Emergência policial e médica na AMBA <span class="tag-sm tp">P</span> confirmar em Santa Cruz</span><span data-lang="en">Police and medical emergency in AMBA <span class="tag-sm tp">P</span> confirm in Santa Cruz</span><span data-lang="es">Emergencia policial y médica en AMBA <span class="tag-sm tp">P</span> confirmar en Santa Cruz</span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">107</div><p style="font-size:11px"><span data-lang="pt">SAME — emergência médica <span class="tag-sm tp">P</span> confirmar cobertura regional</span><span data-lang="en">SAME — medical emergency <span class="tag-sm tp">P</span> confirm regional coverage</span><span data-lang="es">SAME — emergencia médica <span class="tag-sm tp">P</span> confirmar cobertura regional</span></p></div>
+      <div class="card as d4" style="text-align:center"><div class="s5n sm">100</div><p style="font-size:11px"><span data-lang="pt">Bombeiros <span class="tag-sm tp">P</span> confirmar cobertura regional</span><span data-lang="en">Fire department <span class="tag-sm tp">P</span> confirm regional coverage</span><span data-lang="es">Bomberos <span class="tag-sm tp">P</span> confirmar cobertura regional</span></p></div>
+      <div class="card as d5" style="text-align:center"><div class="s5n sm"><span data-lang="pt">Consulado</span><span data-lang="en">Consulate</span><span data-lang="es">Consulado</span></div><p style="font-size:11px"><span data-lang="pt">Posto consular do país de origem — confirmar plantão no portal oficial na data do embarque</span><span data-lang="en">Home country consular post — confirm duty officer on official portal on departure date</span><span data-lang="es">Sede consular del país de origen — confirmar guardia en el portal oficial en la fecha del embarque</span></p></div>
+      <div class="card as d6" style="text-align:center"><div class="s5n sm">Newmont</div><p style="font-size:11px"><span data-lang="pt">Número interno de Segurança Corporativa — inserido no kit individual antes da viagem</span><span data-lang="en">Corporate Security internal line — inserted in the individual kit before travel</span><span data-lang="es">Línea interna de Seguridad Corporativa — insertada en el kit individual antes del viaje</span></p></div>
+    </div>
+    <div class="card s5c au d4" style="margin-top:16px"><p style="font-size:12.5px"><span class="tag-sm tj">J</span> <span data-lang="pt">A ordem de chamada depende de haver ferido: havendo ferido, 911 primeiro; não havendo, número interno da empresa primeiro. Isso vale para toda a seção 9 do relatório.</span><span data-lang="en">Call order depends on whether someone is injured: if so, 911 first; if not, internal company number first. This applies across report section 9.</span><span data-lang="es">El orden de llamada depende de si hay heridos: si hay, 911 primero; si no, número interno de la empresa primero. Esto aplica a toda la sección 9 del informe.</span></p></div>
+  </div>
+</section>
+
+<!-- 5 - roteiro de resposta tabela completa -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Roteiro de resposta a <span class="gt">incidentes</span> (seção 9.1)</span><span data-lang="en">Incident response <span class="gt">playbook</span> (section 9.1)</span><span data-lang="es">Guion de respuesta a <span class="gt">incidentes</span> (sección 9.1)</span></h2>
+    <table class="au d2" style="margin-top:16px">
+      <tr>
+        <th><span data-lang="pt">Situação</span><span data-lang="en">Situation</span><span data-lang="es">Situación</span></th>
+        <th><span data-lang="pt">1º passo</span><span data-lang="en">1st step</span><span data-lang="es">1er paso</span></th>
+        <th><span data-lang="pt">2º passo</span><span data-lang="en">2nd step</span><span data-lang="es">2do paso</span></th>
+      </tr>
+      <tr><td><span data-lang="pt">Roubo em andamento</span><span data-lang="en">Robbery in progress</span><span data-lang="es">Robo en curso</span></td><td><span data-lang="pt">Entregar o bem, não correr atrás</span><span data-lang="en">Hand over the item, don't chase</span><span data-lang="es">Entregar el bien, no correr</span></td><td><span data-lang="pt">911; bloqueio remoto do aparelho; aviso à Segurança</span><span data-lang="en">911; remote device lock; notify Security</span><span data-lang="es">911; bloqueo remoto del aparato; aviso a Seguridad</span></td></tr>
+      <tr><td><span data-lang="pt">Suspeita de droga em bebida</span><span data-lang="en">Suspected drink spiking</span><span data-lang="es">Sospecha de droga en bebida</span></td><td><span data-lang="pt">Não ficar sozinho; 911 e hospital</span><span data-lang="en">Don't stay alone; 911 and hospital</span><span data-lang="es">No quedarse solo; 911 y hospital</span></td><td><span data-lang="pt">Não assinar nada nem pagar "acerto"</span><span data-lang="en">Don't sign anything or pay a "settlement"</span><span data-lang="es">No firmar nada ni pagar un "arreglo"</span></td></tr>
+      <tr><td><span data-lang="pt">Acidente na RN 40 ou no site</span><span data-lang="en">Accident on RN 40 or site</span><span data-lang="es">Accidente en la RN 40 o el sitio</span></td><td><span data-lang="pt">Acionar rádio/acampamento e o 911</span><span data-lang="en">Call camp radio and 911</span><span data-lang="es">Avisar por radio/campamento y al 911</span></td><td><span data-lang="pt">Seguro e evacuação; não remover ferido grave sem orientação, salvo risco imediato</span><span data-lang="en">Insurance and evacuation; don't move a severely injured person without guidance, unless immediate risk</span><span data-lang="es">Seguro y evacuación; no mover a un herido grave sin orientación, salvo riesgo inmediato</span></td></tr>
+      <tr><td><span data-lang="pt">Inspeção ou polícia no portão</span><span data-lang="en">Inspection or police at the gate</span><span data-lang="es">Inspección o policía en el portón</span></td><td><span data-lang="pt">Identificar, registrar, abrir por canal jurídico; não confrontar</span><span data-lang="en">Identify, record, open through legal channel; don't confront</span><span data-lang="es">Identificar, registrar, abrir por canal jurídico; no confrontar</span></td><td><span data-lang="pt">Expatriado sai da cena; porta-voz único</span><span data-lang="en">Expatriate leaves the scene; single spokesperson</span><span data-lang="es">El expatriado se retira de la escena; vocero único</span></td></tr>
+      <tr><td><span data-lang="pt">Protesto no trajeto</span><span data-lang="en">Protest on route</span><span data-lang="es">Protesta en el trayecto</span></td><td><span data-lang="pt">Desviar; não atravessar cordão</span><span data-lang="en">Reroute; don't cross the line</span><span data-lang="es">Desviar; no cruzar el cordón</span></td><td><span data-lang="pt">Reagendar</span><span data-lang="en">Reschedule</span><span data-lang="es">Reprogramar</span></td></tr>
+      <tr><td><span data-lang="pt">Perda de documento</span><span data-lang="en">Document loss</span><span data-lang="es">Pérdida de documento</span></td><td><span data-lang="pt">Comunicar ao consulado do país de origem; registrar boletim na polícia</span><span data-lang="en">Notify the home country consulate; file a police report</span><span data-lang="es">Comunicar al consulado del país de origen; registrar denuncia policial</span></td><td><span data-lang="pt">Cópias digitais já separadas</span><span data-lang="en">Digital copies already set aside</span><span data-lang="es">Copias digitales ya separadas</span></td></tr>
+      <tr><td><span data-lang="pt">Menção hostil com nome de familiar</span><span data-lang="en">Hostile mention naming a family member</span><span data-lang="es">Mención hostil con nombre de un familiar</span></td><td><span data-lang="pt">Não responder; capturar tela; acionar Segurança, Jurídico e Comunicação</span><span data-lang="en">Don't respond; take a screenshot; notify Security, Legal and Communications</span><span data-lang="es">No responder; capturar pantalla; activar Seguridad, Jurídico y Comunicación</span></td><td><span data-lang="pt">Avaliar a escola no mesmo dia</span><span data-lang="en">Assess the school the same day</span><span data-lang="es">Evaluar la escuela el mismo día</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 6 - falso sequestro com dados reais -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Protocolo: <span class="gt">falso sequestro</span> virtual</span><span data-lang="en">Protocol: <span class="gt">virtual kidnapping</span></span><span data-lang="es">Protocolo: <span class="gt">falso secuestro</span> virtual</span></h2>
+    <p class="au d2" style="max-width:850px;margin-top:8px"><span data-lang="pt">O golpista liga ou envia mensagem dizendo que um familiar foi sequestrado, detido ou sofreu acidente, com gritos simulados, exigindo pagamento imediato. Não entra na série de sequestros reais da UFECO — é o golpe mais frequente contra famílias de executivos <span class="tag-sm tj">J</span>.</span><span data-lang="en">The scammer calls or messages claiming a family member was kidnapped, detained or injured, with simulated screams, demanding immediate payment. Not part of UFECO's real-kidnapping series — the most frequent scam against executive families <span class="tag-sm tj">J</span>.</span><span data-lang="es">El estafador llama o envía un mensaje diciendo que un familiar fue secuestrado, detenido o sufrió un accidente, con gritos simulados, exigiendo pago inmediato. No entra en la serie de secuestros reales de UFECO — es la estafa más frecuente contra familias de ejecutivos <span class="tag-sm tj">J</span>.</span></p>
+    <div class="grid3" style="margin-top:20px">
+      <div class="card s5c au d2"><div class="tn n1">1</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Desligue</span><span data-lang="en">Hang up</span><span data-lang="es">Cuelgue</span></h3><p style="text-align:center;margin-top:6px;font-size:12.5px"><span data-lang="pt">Não entre em negociação nem prolongue a ligação</span><span data-lang="en">Don't negotiate or stay on the call</span><span data-lang="es">No negocie ni prolongue la llamada</span></p></div>
+      <div class="card s5c au d3"><div class="tn n2">2</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Verifique</span><span data-lang="en">Verify</span><span data-lang="es">Verifique</span></h3><p style="text-align:center;margin-top:6px;font-size:12.5px"><span data-lang="pt">Ligue para o número já gravado da pessoa, nunca para o número que a chamada devolve; use a palavra-código</span><span data-lang="en">Call the person's already-saved number, never the number the call returns; use the safe word</span><span data-lang="es">Llame al número ya guardado de la persona, nunca al número que devuelve la llamada; use la palabra clave</span></p></div>
+      <div class="card s5c au d4"><div class="tn n3">3</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Acione</span><span data-lang="en">Escalate</span><span data-lang="es">Active</span></h3><p style="text-align:center;margin-top:6px;font-size:12.5px"><span data-lang="pt">Vítima real: 911. Sem vítima: número interno primeiro. Não pagar, não confirmar escola, turno ou viagem</span><span data-lang="en">Real victim: 911. No victim: internal number first. Don't pay or confirm school, shift or travel</span><span data-lang="es">Víctima real: 911. Sin víctima: número interno primero. No pagar ni confirmar escuela, turno o viaje</span></p></div>
+    </div>
+    <div class="donut-wrap au d4" style="margin-top:22px">
+      <div class="donut" style="background:conic-gradient(#FF6B6B 0% 35.7%, #FFB800 35.7% 64.3%, #FFD600 64.3% 85.7%, rgba(255,255,255,.15) 85.7% 92.8%, rgba(255,255,255,.08) 92.8% 100%)"></div>
+      <div class="dleg">
+        <h3 style="font-size:13px;margin-bottom:4px"><span data-lang="pt">Sequestro extorsivo real, 2025 — por local <span class="tag-sm tf">F</span></span><span data-lang="en">Real extortive kidnapping, 2025 — by location <span class="tag-sm tf">F</span></span><span data-lang="es">Secuestro extorsivo real, 2025 — por lugar <span class="tag-sm tf">F</span></span></h3>
+        <div class="di"><span class="sq" style="background:#FF6B6B"></span>Buenos Aires (Província) — 5</div>
+        <div class="di"><span class="sq" style="background:#FFB800"></span>Cidade de Buenos Aires — 4</div>
+        <div class="di"><span class="sq" style="background:#FFD600"></span>Córdoba — 3</div>
+        <div class="di"><span class="sq" style="background:rgba(255,255,255,.15)"></span>Salta — 1</div>
+        <div class="di"><span class="sq" style="background:rgba(255,255,255,.08)"></span>Misiones — 1</div>
+      </div>
+    </div>
+    <p class="au d5" style="margin-top:10px;font-size:11px;color:#777;text-align:center">UFECO, Informe anual 2025 (mar/2026). 14 casos no total, mínimo da série de dez anos. Nenhum em Santa Cruz, San Juan, Catamarca ou Jujuy.</p>
+  </div>
+</section>
+
+<!-- 7 - fraude pagamento / phishing com contexto setorial -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Protocolo: <span class="gt">fraude de pagamento</span> e phishing</span><span data-lang="en">Protocol: <span class="gt">payment fraud</span> and phishing</span><span data-lang="es">Protocolo: <span class="gt">fraude de pago</span> y phishing</span></h2>
+    <div class="grid2" style="margin-top:20px">
+      <div class="cp au d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h3 style="font-size:14px"><span data-lang="pt">Falso executivo / BEC</span><span data-lang="en">Fake executive / BEC</span><span data-lang="es">Falso ejecutivo / BEC</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">Nenhuma aprovação de pagamento por mensagem pessoal</span><span data-lang="en">No payment approval via personal message</span><span data-lang="es">Ninguna aprobación de pago por mensaje personal</span></li>
+          <li><span data-lang="pt">Confirmar por canal independente, usando contato já cadastrado</span><span data-lang="en">Confirm through an independent, already-registered channel</span><span data-lang="es">Confirmar por canal independiente, usando un contacto ya registrado</span></li>
+          <li><span data-lang="pt">Dupla confirmação obrigatória para qualquer mudança de conta bancária de fornecedor</span><span data-lang="en">Mandatory dual confirmation for any vendor bank account change</span><span data-lang="es">Doble confirmación obligatoria para cualquier cambio de cuenta bancaria de proveedor</span></li>
+        </ul>
+      </div>
+      <div class="cp au d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg></div>
+        <h3 style="font-size:14px"><span data-lang="pt">Phishing / smishing / falso suporte</span><span data-lang="en">Phishing / smishing / fake support</span><span data-lang="es">Phishing / smishing / falso soporte</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">Não clicar em links recebidos — acessar o serviço digitando o endereço</span><span data-lang="en">Don't click received links — access the service by typing the address</span><span data-lang="es">No hacer clic en enlaces recibidos — acceder al servicio escribiendo la dirección</span></li>
+          <li><span data-lang="pt">Nunca instalar aplicativos ou permitir acesso remoto por indicação de terceiros</span><span data-lang="en">Never install apps or allow remote access on a third party's instruction</span><span data-lang="es">Nunca instalar aplicaciones ni permitir acceso remoto por indicación de terceros</span></li>
+          <li><span data-lang="pt">Se clicou ou deu dados: trocar senhas e bloquear no banco</span><span data-lang="en">If clicked or gave data: change passwords and block at the bank</span><span data-lang="es">Si hizo clic o dio datos: cambiar contraseñas y bloquear en el banco</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card s5c au d4" style="margin-top:14px"><p style="font-size:12.5px"><span class="tag-sm tj">J</span> <span data-lang="pt">Os contenciosos com governos provinciais são janela clássica de fraude a fornecedores. Nenhuma aprovação de pagamento por mensagem pessoal enquanto o contencioso de Cerro Negro estiver aberto.</span><span data-lang="en">Disputes with provincial governments are a classic window for vendor fraud. No payment approval via personal message while the Cerro Negro dispute is open.</span><span data-lang="es">Los litigios con gobiernos provinciales son ventana clásica de fraude a proveedores. Ninguna aprobación de pago por mensaje personal mientras el litigio de Cerro Negro esté abierto.</span></p></div>
+  </div>
+</section>
+
+<!-- 8 - incidente digital timeline -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Protocolo: <span class="gt">incidente digital</span></span><span data-lang="en">Protocol: <span class="gt">digital incident</span></span><span data-lang="es">Protocolo: <span class="gt">incidente digital</span></span></h2>
+    <div class="grid2" style="margin-top:20px">
+      <div class="card s5c au d2">
+        <h3 style="font-size:14px"><span data-lang="pt">Primeiras 2 horas</span><span data-lang="en">First 2 hours</span><span data-lang="es">Primeras 2 horas</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">Não apagar mensagens, não formatar aparelho, não editar registros</span><span data-lang="en">Don't delete messages, format the device, or edit records</span><span data-lang="es">No borrar mensajes, no formatear el dispositivo, no editar registros</span></li>
+          <li><span data-lang="pt">Desconectar da rede se houver suspeita de acesso remoto</span><span data-lang="en">Disconnect from the network if remote access is suspected</span><span data-lang="es">Desconectar de la red si se sospecha acceso remoto</span></li>
+          <li><span data-lang="pt">Trocar senhas por dispositivo limpo; encerrar sessões ativas</span><span data-lang="en">Change passwords from a clean device; close active sessions</span><span data-lang="es">Cambiar contraseñas desde un dispositivo limpio; cerrar sesiones activas</span></li>
+          <li><span data-lang="pt">Bloquear cartões, contas e linha telefônica pelos canais oficiais</span><span data-lang="en">Block cards, accounts and phone line through official channels</span><span data-lang="es">Bloquear tarjetas, cuentas y línea telefónica por los canales oficiales</span></li>
+          <li><span data-lang="pt">Comunicar Segurança Corporativa, TI e Jurídico</span><span data-lang="en">Notify Corporate Security, IT and Legal</span><span data-lang="es">Comunicar a Seguridad Corporativa, TI y Jurídico</span></li>
+        </ul>
+      </div>
+      <div class="card s5c au d3">
+        <h3 style="font-size:14px"><span data-lang="pt">Primeiras 24 horas</span><span data-lang="en">First 24 hours</span><span data-lang="es">Primeras 24 horas</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">Denúncia formal às autoridades competentes, incluindo unidade de cibercrime</span><span data-lang="en">Formal report to the competent authorities, including cybercrime unit</span><span data-lang="es">Denuncia formal ante las autoridades competentes, incluyendo unidad de cibercrimen</span></li>
+          <li><span data-lang="pt">Reportar ao CERT.ar quando houver componente técnico relevante</span><span data-lang="en">Report to CERT.ar when there is a relevant technical component</span><span data-lang="es">Reportar al CERT.ar cuando haya un componente técnico relevante</span></li>
+          <li><span data-lang="pt">Avaliar com banco e Jurídico a contestação de transações</span><span data-lang="en">Assess transaction disputes with bank and Legal</span><span data-lang="es">Evaluar con el banco y Jurídico la impugnación de transacciones</span></li>
+          <li><span data-lang="pt">Ameaça física ou risco iminente: 911 e Segurança imediatamente</span><span data-lang="en">Physical threat or imminent risk: 911 and Security immediately</span><span data-lang="es">Amenaza física o riesgo inminente: 911 y Seguridad de inmediato</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid3" style="margin-top:16px">
+      <div class="card as d2" style="text-align:center"><div class="s5n sm">MFA</div><p style="font-size:11px"><span data-lang="pt">Obrigatório em e-mail, banco e nuvem</span><span data-lang="en">Mandatory on email, bank and cloud</span><span data-lang="es">Obligatorio en correo, banco y nube</span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">MDM</div><p style="font-size:11px"><span data-lang="pt">Gestão de dispositivos com bloqueio e apagamento remoto</span><span data-lang="en">Device management with remote lock and wipe</span><span data-lang="es">Gestión de dispositivos con bloqueo y borrado remoto</span></p></div>
+      <div class="card as d4" style="text-align:center"><div class="s5n sm">SIM</div><p style="font-size:11px"><span data-lang="pt">PIN na operadora contra troca de chip (SIM swap)</span><span data-lang="en">Carrier PIN against SIM swap</span><span data-lang="es">PIN en la operadora contra cambio de chip (SIM swap)</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 - cerro negro inspeção com cronologia resumida -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Protocolo: <span class="gt">inspeção</span> em Cerro Negro</span><span data-lang="en">Protocol: <span class="gt">inspection</span> at Cerro Negro</span><span data-lang="es">Protocolo: <span class="gt">inspección</span> en Cerro Negro</span></h2>
+    <p class="au d2" style="max-width:860px;margin-top:8px"><span data-lang="pt">O episódio de setembro de 2026 mostrou o custo de ser percebido como quem impede o Estado de entrar. A inspeção se enfrenta com assessoria jurídica, protocolo e registro — não com portão trancado.</span><span data-lang="en">The September 2026 episode showed the cost of being seen as blocking the State's access. Inspections are handled with legal counsel, protocol and documentation — not a locked gate.</span><span data-lang="es">El episodio de septiembre de 2026 mostró el costo de ser percibido como quien impide el ingreso del Estado. La inspección se enfrenta con asesoría jurídica, protocolo y registro — no con un portón cerrado.</span></p>
+    <div class="grid3" style="margin-top:18px">
+      <div class="card au d2"><div class="tn n1">1</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Identificar e registrar</span><span data-lang="en">Identify and record</span><span data-lang="es">Identificar y registrar</span></h3><p style="text-align:center;margin-top:6px;font-size:12.5px"><span data-lang="pt">Confirmar identificação da autoridade; registrar o procedimento em vídeo</span><span data-lang="en">Confirm the authority's identification; record the procedure on video</span><span data-lang="es">Confirmar la identificación de la autoridad; registrar el procedimiento en video</span></p></div>
+      <div class="card au d3"><div class="tn n2">2</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Abrir por canal jurídico</span><span data-lang="en">Open through the legal channel</span><span data-lang="es">Abrir por canal jurídico</span></h3><p style="text-align:center;margin-top:6px;font-size:12.5px"><span data-lang="pt">Acionar o jurídico trabalhista argentino; não confrontar nem negar acesso</span><span data-lang="en">Engage Argentine labor counsel; don't confront or deny access</span><span data-lang="es">Activar al jurídico laboral argentino; no confrontar ni negar el acceso</span></p></div>
+      <div class="card au d4"><div class="tn n3">3</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Expatriado sai da frente</span><span data-lang="en">Expatriate steps back</span><span data-lang="es">El expatriado se retira</span></h3><p style="text-align:center;margin-top:6px;font-size:12.5px"><span data-lang="pt">Porta-voz único; nenhum comentário à imprensa sem texto aprovado</span><span data-lang="en">Single spokesperson; no press comments without approved wording</span><span data-lang="es">Vocero único; ningún comentario a la prensa sin texto aprobado</span></p></div>
+    </div>
+    <div class="bchart au d4" style="margin-top:18px">
+      <div class="brow"><span class="lbl">11/09 — <span data-lang="pt">6 cessações, ordem judicial</span><span data-lang="en">6 stoppages, judicial order</span><span data-lang="es">6 cesaciones, orden judicial</span></span><div class="btrack"><div class="bfill" style="width:40%"></div></div><span class="bval">[F]</span></div>
+      <div class="brow"><span class="lbl">14/09 — <span data-lang="pt">clausura de 8 setores</span><span data-lang="en">closure of 8 sectors</span><span data-lang="es">clausura de 8 sectores</span></span><div class="btrack"><div class="bfill red" style="width:70%"></div></div><span class="bval">[F]</span></div>
+      <div class="brow"><span class="lbl">15/09 — <span data-lang="pt">reunião Vidal–Newmont</span><span data-lang="en">Vidal–Newmont meeting</span><span data-lang="es">reunión Vidal–Newmont</span></span><div class="btrack"><div class="bfill" style="width:55%"></div></div><span class="bval">[F]</span></div>
+      <div class="brow"><span class="lbl">22/09 — <span data-lang="pt">reunião de seguimento, prazos</span><span data-lang="en">follow-up meeting, deadlines</span><span data-lang="es">reunión de seguimiento, plazos</span></span><div class="btrack"><div class="bfill" style="width:60%"></div></div><span class="bval">[F]</span></div>
+    </div>
+    <p class="au d5" style="margin-top:8px;font-size:11px;color:#777"><span data-lang="pt">Após 22/09 permanecem pendentes: resultado dos sumários, multas, acordo da Lei 90/10, efetividade da reabertura. Ver Deck 3 para a cronologia completa.</span><span data-lang="en">After 09/22, pending: proceedings outcome, fines, 90/10 Law agreement, effectiveness of reopening. See Deck 3 for the full timeline.</span><span data-lang="es">Después del 22/09 permanecen pendientes: resultado de los sumarios, multas, acuerdo de la Ley 90/10, efectividad de la reapertura. Ver Deck 3 para la cronología completa.</span></p>
+  </div>
+</section>
+
+<!-- 10 - matriz de risco relevante ao deck -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Riscos cobertos por <span class="gt">este protocolo</span></span><span data-lang="en">Risks covered by <span class="gt">this protocol</span></span><span data-lang="es">Riesgos cubiertos por <span class="gt">este protocolo</span></span></h2>
+    <div class="mat au d2">
+      <div class="hd"></div>
+      <div class="hd"><span data-lang="pt">Baixo</span><span data-lang="en">Low</span><span data-lang="es">Bajo</span></div>
+      <div class="hd"><span data-lang="pt">Médio</span><span data-lang="en">Medium</span><span data-lang="es">Medio</span></div>
+      <div class="hd"><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></div>
+      <div class="hd"><span data-lang="pt">Crítico</span><span data-lang="en">Critical</span><span data-lang="es">Crítico</span></div>
+      <div class="rl"><span data-lang="pt">Muito provável</span><span data-lang="en">Very likely</span><span data-lang="es">Muy probable</span></div>
+      <div class="cell lo"></div><div class="cell md"></div>
+      <div class="cell cr"><span class="chip r">#2</span><span data-lang="pt">Dano reputacional/Lei 90/10</span><span data-lang="en">Reputational damage/90-10 Law</span><span data-lang="es">Daño reputacional/Ley 90/10</span></div>
+      <div class="cell cr"></div>
+      <div class="rl"><span data-lang="pt">Provável</span><span data-lang="en">Likely</span><span data-lang="es">Probable</span></div>
+      <div class="cell lo"></div>
+      <div class="cell md"></div>
+      <div class="cell hi"><span class="chip y">#1</span> <span class="chip y">#5</span><span data-lang="pt">Conflito trabalhista / Phishing</span><span data-lang="en">Labor conflict / Phishing</span><span data-lang="es">Conflicto laboral / Phishing</span></div>
+      <div class="cell hi"></div>
+      <div class="rl"><span data-lang="pt">Possível</span><span data-lang="en">Possible</span><span data-lang="es">Posible</span></div>
+      <div class="cell lo"></div><div class="cell md"></div>
+      <div class="cell hi"><span class="chip g">#7</span><span data-lang="pt">Acidente de rota</span><span data-lang="en">Route accident</span><span data-lang="es">Accidente de ruta</span></div>
+      <div class="cell cr"><span class="chip g">#8</span><span data-lang="pt">Evacuação médica</span><span data-lang="en">Medical evacuation</span><span data-lang="es">Evacuación médica</span></div>
+      <div class="rl"><span data-lang="pt">Raro</span><span data-lang="en">Rare</span><span data-lang="es">Raro</span></div>
+      <div class="cell lo"></div><div class="cell md"><span class="chip r">#10</span><span data-lang="pt">Sequestro extorsivo</span><span data-lang="en">Extortive kidnapping</span><span data-lang="es">Secuestro extorsivo</span></div><div class="cell hi"></div><div class="cell cr"></div>
+    </div>
+    <p class="au d4" style="margin-top:10px;font-size:11px;color:#777"><span data-lang="pt">Cada risco da matriz consolidada (seção 5.3) tem um protocolo direto neste deck — fraude de pagamento, inspeção, sequestro e evacuação médica.</span><span data-lang="en">Every risk in the consolidated matrix (section 5.3) has a direct protocol in this deck — payment fraud, inspection, kidnapping and medical evacuation.</span><span data-lang="es">Cada riesgo de la matriz consolidada (sección 5.3) tiene un protocolo directo en este deck — fraude de pago, inspección, secuestro y evacuación médica.</span></p>
+  </div>
+</section>
+
+<!-- 11 - residência e escola -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Residência, <span class="gt">escola</span> e prestadores</span><span data-lang="en">Residence, <span class="gt">school</span> and service staff</span><span data-lang="es">Residencia, <span class="gt">escuela</span> y prestadores</span></h2>
+    <div class="grid3" style="margin-top:20px">
+      <div class="card s5c au d2"><h3 style="font-size:14px"><span data-lang="pt">Bairro</span><span data-lang="en">Neighborhood</span><span data-lang="es">Barrio</span></h3><p style="font-size:12.5px;margin-top:6px"><span data-lang="pt">Movimento e portaria, evitando a beira de villas e corredores sem controle. Conurbano norte (San Isidro, Vicente López, Tigre, Pilar) não usa a taxa de 2,5 da Cidade — a Província tem taxa superior.</span><span data-lang="en">Activity and doorman, avoiding villa edges and uncontrolled corridors. North suburbs (San Isidro, Vicente López, Tigre, Pilar) do not use the Ciudad's 2.5 rate — the Province has a higher rate.</span><span data-lang="es">Movimiento y portería, evitando el borde de villas y corredores sin control. Conurbano norte (San Isidro, Vicente López, Tigre, Pilar) no usa la tasa de 2,5 de la Ciudad — la Provincia tiene tasa superior.</span></p></div>
+      <div class="card s5c au d3"><h3 style="font-size:14px"><span data-lang="pt">Prestadores</span><span data-lang="en">Service staff</span><span data-lang="es">Prestadores</span></h3><p style="font-size:12.5px;margin-top:6px"><span data-lang="pt">Domésticos e motoristas com verificação de antecedentes conforme legislação argentina e consentimento formal.</span><span data-lang="en">Household staff and drivers with background checks per Argentine law and formal consent.</span><span data-lang="es">Personal doméstico y conductores con verificación de antecedentes según legislación argentina y consentimiento formal.</span></p></div>
+      <div class="card s5c au d4"><h3 style="font-size:14px"><span data-lang="pt">Escola</span><span data-lang="en">School</span><span data-lang="es">Escuela</span></h3><p style="font-size:12.5px;margin-top:6px"><span data-lang="pt">Quem retira a criança é definido por código de retirada e segundo adulto autorizado. A escola não precisa conhecer o cargo do responsável.</span><span data-lang="en">Who picks up the child is defined by a pickup code and second authorized adult. The school doesn't need to know the guardian's title.</span><span data-lang="es">Quién retira al niño se define por código de retiro y segundo adulto autorizado. La escuela no necesita conocer el cargo del responsable.</span></p></div>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card as d2" style="text-align:center"><div class="s5n sm">~15/dia</div><p style="font-size:11.5px"><span data-lang="pt">Roubos com moto na Ciudad em 2025 — risco cotidiano dominante <span class="tag-sm tf">F</span></span><span data-lang="en">Motorbike robberies in the Ciudad in 2025 — dominant daily risk <span class="tag-sm tf">F</span></span><span data-lang="es">Robos con moto en la Ciudad en 2025 — riesgo cotidiano dominante <span class="tag-sm tf">F</span></span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">9 de 12</div><p style="font-size:11.5px"><span data-lang="pt">Sequestros extorsivos de 2026 (até 31/08) na Província de Buenos Aires <span class="tag-sm tf">F</span></span><span data-lang="en">2026 extortive kidnappings (through 08/31) in Buenos Aires Province <span class="tag-sm tf">F</span></span><span data-lang="es">Secuestros extorsivos de 2026 (hasta el 31/08) en la Provincia de Buenos Aires <span class="tag-sm tf">F</span></span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 - recomendações complementares -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Recomendações complementares <span class="gt">(até 90 dias)</span></span><span data-lang="en">Complementary recommendations <span class="gt">(within 90 days)</span></span><span data-lang="es">Recomendaciones complementarias <span class="gt">(hasta 90 días)</span></span></h2>
+    <ul class="checklist au d2" style="margin-top:18px;font-size:14px;gap:12px">
+      <li><span data-lang="pt">Mapa de atores de Santa Cruz e San Juan (governo, sindicatos, imprensa), com responsável nomeado</span><span data-lang="en">Map of actors in Santa Cruz and San Juan (government, unions, press), with a named owner</span><span data-lang="es">Mapa de actores de Santa Cruz y San Juan (gobierno, sindicatos, prensa), con responsable nombrado</span></li>
+      <li><span data-lang="pt">Levantamento de rotas de combustível, insumos e pessoal, com pontos de estrangulamento</span><span data-lang="en">Survey of fuel, supply and personnel routes, with bottleneck points</span><span data-lang="es">Levantamiento de rutas de combustible, insumos y personal, con puntos de estrangulamiento</span></li>
+      <li><span data-lang="pt">Dupla confirmação para qualquer mudança de conta bancária de fornecedor</span><span data-lang="en">Dual confirmation for any vendor bank account change</span><span data-lang="es">Doble confirmación para cualquier cambio de cuenta bancaria de proveedor</span></li>
+      <li><span data-lang="pt">Gestão de dispositivos móveis para quem viaja ao site e para quem aprova pagamentos</span><span data-lang="en">Mobile device management for site travelers and payment approvers</span><span data-lang="es">Gestión de dispositivos móviles para quienes viajan al sitio y aprueban pagos</span></li>
+      <li><span data-lang="pt">Não contratar "inteligência" informal sobre sindicalistas ou funcionários provinciais</span><span data-lang="en">Do not hire informal "intelligence" on unionists or provincial officials</span><span data-lang="es">No contratar "inteligencia" informal sobre sindicalistas o funcionarios provinciales</span></li>
+      <li><span data-lang="pt">Não manter segurança armada privada em via pública sem licença provincial</span><span data-lang="en">Do not keep private armed security on public roads without a provincial license</span><span data-lang="es">No mantener seguridad armada privada en vía pública sin licencia provincial</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 13 - gatilhos de revisão e mapa -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Gatilhos de <span class="gt">revisão antecipada</span></span><span data-lang="en">Early <span class="gt">review triggers</span></span><span data-lang="es">Gatillos de <span class="gt">revisión anticipada</span></span></h2>
+    <div class="grid2" style="margin-top:16px;align-items:start">
+      <ul class="checklist au d2" style="font-size:12.5px;gap:8px">
+        <li><span data-lang="pt">Nova inspeção, clausura, sanção ou convocação formal em Cerro Negro</span><span data-lang="en">New inspection, closure, sanction or formal summons at Cerro Negro</span><span data-lang="es">Nueva inspección, clausura, sanción o convocatoria formal en Cerro Negro</span></li>
+        <li><span data-lang="pt">Greve ou assembleia de sindicato com presença no yacimiento</span><span data-lang="en">Strike or union assembly at the yacimiento</span><span data-lang="es">Huelga o asamblea sindical con presencia en el yacimiento</span></li>
+        <li><span data-lang="pt">Nome de executivo ou família em peça política ou sindical</span><span data-lang="en">Executive or family named in political or union content</span><span data-lang="es">Nombre de ejecutivo o familia en pieza política o sindical</span></li>
+        <li><span data-lang="pt">Incidente com expatriado ou dependente na AMBA</span><span data-lang="en">Incident with expatriate or dependent in AMBA</span><span data-lang="es">Incidente con expatriado o dependiente en AMBA</span></li>
+        <li><span data-lang="pt">Fechamento ou condição adversa relevante na RN 40</span><span data-lang="en">Closure or relevant adverse condition on RN 40</span><span data-lang="es">Cierre o condición adversa relevante en la RN 40</span></li>
+        <li><span data-lang="pt">Informe mensal da UFECO com caso em Santa Cruz, San Juan, Catamarca, Salta, Jujuy, ou vítima ligada ao programa</span><span data-lang="en">UFECO monthly report with a case in Santa Cruz, San Juan, Catamarca, Salta, Jujuy, or a victim linked to the program</span><span data-lang="es">Informe mensual de la UFECO con caso en Santa Cruz, San Juan, Catamarca, Salta, Jujuy, o víctima ligada al programa</span></li>
+        <li><span data-lang="pt">Fonte primária posterior a 22/09/2026 sobre sumário, multa, reabertura ou acordo da Lei 90/10</span><span data-lang="en">Primary source after 09/22/2026 on proceedings, fines, reopening or 90/10 Law agreement</span><span data-lang="es">Fuente primaria posterior al 22/09/2026 sobre sumario, multa, reapertura o acuerdo de la Ley 90/10</span></li>
+      </ul>
+      <div class="mapbox au d3">
+        <div class="map-note"><span data-lang="pt">Mapa — pontos de atenção do programa</span><span data-lang="en">Map — program attention points</span><span data-lang="es">Mapa — puntos de atención del programa</span></div>
+        <iframe src="https://www.google.com/maps?q=Argentina&z=5&output=embed" width="100%" height="280" style="border:0;border-radius:12px;filter:grayscale(.3) contrast(1.1)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <p style="font-size:11px;margin-top:8px;color:#999"><span data-lang="pt">AMBA (incidentes individuais) · Cerro Negro, Santa Cruz (conflito trabalhista) · San Juan, Catamarca (comunitário/hídrico)</span><span data-lang="en">AMBA (individual incidents) · Cerro Negro, Santa Cruz (labor conflict) · San Juan, Catamarca (community/water)</span><span data-lang="es">AMBA (incidentes individuales) · Cerro Negro, Santa Cruz (conflicto laboral) · San Juan, Catamarca (comunitario/hídrico)</span></p>
+      </div>
+    </div>
+    <div class="card s5c au d4" style="margin-top:14px;text-align:center"><p style="font-size:13px"><span class="tag-sm tf">F</span> <span data-lang="pt">Revisão obrigatória do programa até 13 de fevereiro de 2027, ou antes por qualquer gatilho acima.</span><span data-lang="en">Mandatory program review by February 13, 2027, or earlier upon any trigger above.</span><span data-lang="es">Revisión obligatoria del programa hasta el 13 de febrero de 2027, o antes por cualquier gatillo arriba.</span></p></div>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <div class="wrap" style="text-align:center">
+    <div class="gl ce au d1"></div>
+    <p class="quote au d2">
+      <span data-lang="pt">"Preparação não é pessimismo — é a forma mais eficiente de proteger quem você ama."</span>
+      <span data-lang="en">"Preparation is not pessimism — it's the most efficient way to protect who you love."</span>
+      <span data-lang="es">"Prepararse no es pesimismo — es la forma más eficiente de proteger a quien amas."</span>
+    </p>
+    <h2 class="au d3"><span data-lang="pt">Siga para o <span class="gt">Deck 7 — Mercado de Ouro e Prata</span></span><span data-lang="en">Continue to <span class="gt">Deck 7 — Gold & Silver Market</span></span><span data-lang="es">Continúe al <span class="gt">Deck 7 — Mercado de Oro y Plata</span></span></h2>
+    <p class="au d4" style="max-width:750px;margin:14px auto 0;font-size:13px"><span data-lang="pt">Revise estes protocolos com a família e a equipe local a cada trimestre. Reavaliação formal do programa até 13 de fevereiro de 2027.</span><span data-lang="en">Review these protocols with family and local team quarterly. Formal program reassessment by February 13, 2027.</span><span data-lang="es">Revise estos protocolos con la familia y el equipo local cada trimestre. Reevaluación formal del programa hasta el 13 de febrero de 2027.</span></p>
+    <a class="home-btn au d5" style="display:inline-flex;margin-top:18px" href="index.html">
+      <span data-lang="pt">Voltar ao Index</span><span data-lang="en">Back to Index</span><span data-lang="es">Volver al Index</span>
+    </a>
+  </div>
+</section>
+
+</div></div>
+
+<script>
+const T = 14; let C = 0;
+const W = document.getElementById('sw');
+const CN = document.getElementById('cn');
+const P = document.getElementById('prog');
+const I = document.getElementById('ind');
+for (let i = 0; i < T; i++) { const d = document.createElement('div'); d.classList.add('dot'); if (i === 0) d.classList.add('active'); d.onclick = () => go(i); I.appendChild(d); }
+function upd() { I.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === C)); CN.textContent = C + 1; P.style.width = ((C + 1) / T * 100) + '%'; document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === C)); }
+function go(i) { if (i < 0 || i >= T) return; C = i; W.style.transform = `translateX(-${C * 100}vw)`; upd(); }
+function next() { if (C < T - 1) go(C + 1); }
+function prev() { if (C > 0) go(C - 1); }
+document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); } if (e.key === 'f' || e.key === 'F') toggleFs(); });
+let tx = 0;
+document.addEventListener('touchstart', e => tx = e.changedTouches[0].screenX);
+document.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].screenX; if (Math.abs(d) > 50) { d > 0 ? next() : prev(); } });
+function toggleFs() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(() => {}); } else { document.exitFullscreen(); } }
+document.addEventListener('fullscreenchange', () => { document.getElementById('fsTxt').textContent = document.fullscreenElement ? 'Sair' : 'Tela cheia'; document.getElementById('fsTxtE').textContent = document.fullscreenElement ? 'Exit' : 'Fullscreen'; document.getElementById('fsTxtS').textContent = document.fullscreenElement ? 'Salir' : 'Pantalla'; });
+function setLang(l) { document.body.className = 'lang-' + l; document.querySelectorAll('.lang-sel button').forEach(b => b.classList.toggle('active', b.dataset.l === l)); }
+upd();
+</script>
+</body>
+</html>

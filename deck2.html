@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deck 2 — AMBA | Newmont Argentina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:'Inter',sans-serif;overflow:hidden;color:#E8E8E8}
+h1,h2,h3{color:#fff}
+h1{font-weight:900;letter-spacing:-.03em;line-height:1.08}
+h2{font-weight:800;letter-spacing:-.025em;line-height:1.12;font-size:clamp(28px,3.4vw,40px)}
+h3{font-weight:700;letter-spacing:-.015em;color:#fff}
+p,span,li{font-weight:400;line-height:1.6;color:#D4D4D4}
+.presentation{width:100vw;height:100vh;overflow:hidden;position:relative}
+.slides{display:flex;height:100%;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.slide{width:100vw;height:100vh;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;padding:70px 80px}
+.slide::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(900px 420px at 72% 18%, rgba(255,214,0,.08) 0%, transparent 42%),
+  radial-gradient(800px 380px at 35% 20%, rgba(255,184,0,.06) 0%, transparent 42%),
+  linear-gradient(180deg,#000 0%,#050505 45%,#000 100%)}
+.slide::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.25;
+  background-image:radial-gradient(rgba(255,255,255,.05) .8px, transparent .8px);background-size:24px 24px}
+.slide>*{position:relative;z-index:1}
+.wrap{max-width:1300px;width:100%}
+.gt{background:linear-gradient(135deg,#FFD600 0%,#FFB800 50%,#FFD600 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.gl{width:90px;height:4px;border-radius:2px;background:linear-gradient(90deg,#FFD600,#FFB800);margin-bottom:22px;animation:lineG .8s ease both;transform-origin:left}
+.gl.ce{margin:0 auto 22px auto;transform-origin:center}
+@keyframes lineG{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:22px;box-shadow:0 16px 48px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.05);padding:30px 26px;backdrop-filter:blur(8px);transition:all .4s ease}
+.card:hover{border-color:rgba(255,214,0,.3);transform:translateY(-3px);box-shadow:0 24px 60px rgba(0,0,0,.6), 0 0 30px rgba(255,214,0,.1)}
+.cp{background:linear-gradient(145deg, rgba(20,20,20,.95) 0%, rgba(10,10,10,.98) 55%, rgba(0,0,0,1) 100%);border:1px solid rgba(255,255,255,.1);border-radius:22px;box-shadow:0 20px 50px rgba(0,0,0,.6), 0 0 40px rgba(255,214,0,.08);padding:30px 26px;backdrop-filter:blur(10px);transition:all .4s ease}
+.cp:hover{border-color:rgba(255,214,0,.3);transform:translateY(-3px) scale(1.01);box-shadow:0 28px 64px rgba(0,0,0,.7), 0 0 50px rgba(255,214,0,.15)}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:10px 24px;border-radius:999px;margin-bottom:28px;background:rgba(255,214,0,.1);border:1px solid rgba(255,214,0,.3);font-size:14px;font-weight:600;color:#FFD600;letter-spacing:.05em;text-transform:uppercase}
+.tn{width:68px;height:68px;border-radius:18px;margin:0 auto 22px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#000;animation:glowP 3s ease-in-out infinite}
+.tn.n1{background:linear-gradient(145deg,#FFD600,#E6B800)}
+.tn.n2{background:linear-gradient(145deg,#FFC400,#D9A300);animation-delay:.5s}
+.tn.n3{background:linear-gradient(145deg,#FFB800,#CC9200);animation-delay:1s}
+@keyframes glowP{0%,100%{box-shadow:0 0 18px rgba(255,214,0,.15)}50%{box-shadow:0 0 36px rgba(255,214,0,.35)}}
+.ic{width:50px;height:50px;border-radius:14px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;background:rgba(255,214,0,.1)}
+.ic svg{width:24px;height:24px;color:#FFD600}
+.s5c{position:relative;overflow:hidden}
+.s5c::before{content:'';position:absolute;top:0;left:0;width:5px;height:100%;border-radius:2px 0 0 2px;background:#FFD600}
+.s5n{font-size:48px;font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px;color:#FFD600}
+.s5n.sm{font-size:34px}
+.bwc{border-radius:20px;padding:26px 22px}
+.bwc.cr{background:rgba(255,80,80,.06);border:1px solid rgba(255,80,80,.15)}
+.bwc.cy{background:rgba(255,214,0,.06);border:1px solid rgba(255,214,0,.2)}
+.bwc.cg{background:rgba(255,184,0,.06);border:1px solid rgba(255,184,0,.2)}
+.bwd{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px}
+.mapbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:18px;backdrop-filter:blur(8px);position:relative}
+.map-note{font-size:11px;color:#999;margin-bottom:8px;letter-spacing:.03em;text-transform:uppercase}
+.legend-map{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+.leg{display:flex;align-items:center;gap:7px;font-size:11px;color:#999}
+.dot{width:9px;height:9px;border-radius:3px}
+.dot.a{background:#FFD600}
+.dot.b{background:rgba(255,255,255,.15)}
+.tag{display:inline-block;font-size:10px;font-weight:800;padding:2px 7px;border-radius:6px;margin-left:6px;letter-spacing:.04em;vertical-align:middle}
+.tag.f{background:rgba(94,232,154,.15);color:#5EE89A;border:1px solid rgba(94,232,154,.3)}
+.tag.j{background:rgba(255,214,0,.15);color:#FFD600;border:1px solid rgba(255,214,0,.3)}
+.tag.p{background:rgba(255,107,107,.15);color:#FF6B6B;border:1px solid rgba(255,107,107,.3)}
+.bars{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+.barrow{display:grid;grid-template-columns:200px 1fr 150px;align-items:center;gap:14px}
+.barlbl{font-size:13px;color:#D4D4D4;font-weight:600}
+.bartrack{height:16px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;position:relative}
+.barfill{height:100%;border-radius:8px;background:linear-gradient(90deg,#FFD600,#FFB800)}
+.barval{font-size:12px;color:#999;text-align:right}
+.flow3{display:flex;flex-direction:column;gap:14px}
+.flowrow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center}
+.flowcell{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px}
+.flowcell.sit{border-color:rgba(255,214,0,.25)}
+.flowcell h4{font-size:13px;color:#FFD600;font-weight:700;margin-bottom:4px}
+.flowcell p{font-size:12.5px;color:#D4D4D4;margin:0}
+.flowarrow{color:#7E879B;font-size:18px}
+.quote{font-size:26px;font-weight:600;color:#fff;line-height:1.5;max-width:900px;margin:0 auto 22px auto;text-align:center;font-style:italic}
+.progress{position:fixed;top:0;left:0;height:3px;z-index:1000;background:linear-gradient(90deg,#FFD600,#FFB800,#FFD600);background-size:200% auto;animation:shimmer 3s linear infinite;transition:width .6s ease}
+.fs-btn{position:fixed;top:20px;left:20px;z-index:999;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:12px 18px;border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px;transition:all .3s ease;backdrop-filter:blur(6px);letter-spacing:.04em;text-transform:uppercase}
+.fs-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,214,0,.4)}
+.fs-btn svg{width:16px;height:16px}
+.top-right{position:fixed;top:20px;right:20px;z-index:999;display:flex;gap:10px;align-items:center}
+.lang-sel{display:flex;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:4px;backdrop-filter:blur(6px)}
+.lang-sel button{background:transparent;border:none;color:#999;padding:7px 12px;border-radius:9px;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .25s ease;letter-spacing:.03em}
+.lang-sel button.active{background:#FFD600;color:#000}
+.home-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:10px 16px;border-radius:12px;cursor:pointer;font-size:12px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;backdrop-filter:blur(6px);transition:all .25s ease}
+.home-btn:hover{background:rgba(255,214,0,.15);color:#FFD600;border-color:rgba(255,214,0,.4)}
+.sc{position:fixed;bottom:36px;left:40px;z-index:998;color:#999;font-size:14px;font-weight:600;letter-spacing:.05em;background:rgba(0,0,0,.5);padding:10px 18px;border-radius:10px;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.08)}
+.sc .cn{color:#FFD600;font-weight:800}
+.ind{position:fixed;bottom:36px;left:50%;transform:translateX(-50%);z-index:998;display:flex;gap:7px;background:rgba(0,0,0,.5);padding:10px 16px;border-radius:20px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08)}
+.ind .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18);transition:all .4s ease;cursor:pointer}
+.ind .dot.active{background:#FFD600;box-shadow:0 0 14px rgba(255,214,0,.7);width:34px;border-radius:5px}
+.nav-arr{position:fixed;bottom:32px;right:40px;z-index:998;display:flex;gap:10px}
+.nav-arr button{width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#D4D4D4;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(6px)}
+.nav-arr button:hover{background:rgba(255,214,0,.25);border-color:rgba(255,214,0,.5);color:#000;transform:scale(1.05)}
+.checklist{display:flex;flex-direction:column;gap:7px;margin-top:8px}
+.checklist li{list-style:none;padding-left:18px;position:relative;font-size:13.5px;color:#D4D4D4}
+.checklist li::before{content:'✓';position:absolute;left:0;color:#FFD600;font-weight:900}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{color:#FFD600;text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,214,0,.3);font-weight:700}
+td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.07);color:#D4D4D4}
+@keyframes fadeUp{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeScale{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+.slide.active .au{animation:fadeUp .7s ease both}
+.slide.active .as{animation:fadeScale .7s ease both}
+.d1{animation-delay:.1s!important}.d2{animation-delay:.22s!important}.d3{animation-delay:.34s!important}
+.d4{animation-delay:.46s!important}.d5{animation-delay:.58s!important}.d6{animation-delay:.7s!important}.d7{animation-delay:.82s!important}
+.s1{text-align:center;max-width:1000px;margin:0 auto}
+.s1 h1{font-size:clamp(50px,6.6vw,78px);margin-bottom:24px}
+.s1 .tag{font-size:21px;color:#D4D4D4;max-width:650px;margin:0 auto;line-height:1.5}
+[data-lang]{display:none}
+.lang-pt [data-lang="pt"]{display:block}
+.lang-en [data-lang="en"]{display:block}
+.lang-es [data-lang="es"]{display:block}
+[data-lang-inline]{display:none}
+.lang-pt [data-lang-inline="pt"]{display:inline}
+.lang-en [data-lang-inline="en"]{display:inline}
+.lang-es [data-lang-inline="es"]{display:inline}
+</style>
+</head>
+<body class="lang-pt">
+<div class="progress" id="prog" style="width:10%"></div>
+<button class="fs-btn" onclick="toggleFs()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"></path></svg>
+  <span id="fsTxt" data-lang="pt">Tela cheia</span><span id="fsTxtE" data-lang="en">Fullscreen</span><span id="fsTxtS" data-lang="es">Pantalla</span>
+</button>
+<div class="top-right">
+  <div class="lang-sel">
+    <button data-l="pt" class="active" onclick="setLang('pt')">PT</button>
+    <button data-l="en" onclick="setLang('en')">EN</button>
+    <button data-l="es" onclick="setLang('es')">ES</button>
+  </div>
+  <a class="home-btn" href="index.html">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"></path></svg>
+    <span data-lang="pt">Index</span><span data-lang="en">Index</span><span data-lang="es">Index</span>
+  </a>
+</div>
+<div class="sc"><span class="cn" id="cn">1</span> / 10</div>
+<div class="ind" id="ind"></div>
+<div class="nav-arr"><button onclick="prev()">‹</button><button onclick="next()">›</button></div>
+
+<div class="presentation"><div class="slides" id="sw">
+
+<!-- 1 -->
+<section class="slide active">
+  <div class="s1">
+    <div class="badge au d1" data-lang="pt">Deck 2 de 6 · Segurança para Expatriados</div>
+    <div class="badge au d1" data-lang="en">Deck 2 of 6 · Expatriate Security</div>
+    <div class="badge au d1" data-lang="es">Deck 2 de 6 · Seguridad para Expatriados</div>
+    <h1 class="au d2">
+      <span data-lang="pt">AMBA: crime do <span class="gt">dia a dia</span> e protestos</span>
+      <span data-lang="en">AMBA: everyday <span class="gt">crime</span> and protests</span>
+      <span data-lang="es">AMBA: delito del <span class="gt">día a día</span> y protestas</span>
+    </h1>
+    <p class="tag au d3">
+      <span data-lang="pt">Entenda onde o risco real está concentrado em Buenos Aires — e como a rotina disciplinada reduz a exposição, sem alarmismo.</span>
+      <span data-lang="en">Understand where real risk is concentrated in Buenos Aires — and how disciplined routine reduces exposure, without alarmism.</span>
+      <span data-lang="es">Entienda dónde se concentra el riesgo real en Buenos Aires — y cómo la rutina disciplinada reduce la exposición, sin alarmismo.</span>
+    </p>
+  </div>
+</section>
+
+<!-- 2 - mapa -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Geografia do risco na <span class="gt">AMBA</span></span><span data-lang="en">Geography of risk in <span class="gt">AMBA</span></span><span data-lang="es">Geografía del riesgo en <span class="gt">AMBA</span></span></h2>
+    <div class="grid2" style="margin-top:26px;align-items:start">
+      <div class="mapbox au d3">
+        <div class="map-note"><span data-lang="pt">Mapa — Área Metropolitana de Buenos Aires</span><span data-lang="en">Map — Buenos Aires Metropolitan Area</span><span data-lang="es">Mapa — Área Metropolitana de Buenos Aires</span></div>
+        <iframe src="https://www.google.com/maps?q=-34.6037,-58.3816&z=11&output=embed" width="100%" height="380" style="border:0;border-radius:14px;filter:grayscale(.3) contrast(1.1)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="legend-map">
+          <div class="leg"><span class="dot a"></span><span data-lang="pt">Zona norte — residencial controlada</span><span data-lang="en">North zone — controlled residential</span><span data-lang="es">Zona norte — residencial controlada</span></div>
+          <div class="leg"><span class="dot b"></span><span data-lang="pt">Microcentro / Sul — maior exposição</span><span data-lang="en">Downtown / South — higher exposure</span><span data-lang="es">Microcentro / Sur — mayor exposición</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card s5c au d4"><h3>CABA</h3><p><span data-lang="pt">Escritório, moradia e vida social. Risco dominante: furto, motochorro, golpe em bebida, exposição digital.</span><span data-lang="en">Office, housing and social life. Dominant risk: theft, motorbike robbery, drink spiking, digital exposure.</span><span data-lang="es">Oficina, vivienda y vida social. Riesgo dominante: hurto, motochorro, estafa con bebida, exposición digital.</span></p></div>
+        <div class="card s5c au d5"><h3><span data-lang="pt">Zona norte da Província</span><span data-lang="en">Province's north zone</span><span data-lang="es">Zona norte de la Provincia</span> <span class="tag p">P</span></h3><p><span data-lang="pt">San Isidro, Vicente López, Pilar, Tigre — moradia familiar e escolas. A taxa de 2,5 da Ciudad não se aplica aqui: a Província tem taxa superior <span class="tag j">J</span>. 9 dos 12 sequestros extorsivos de 2026 (até 31/08) ocorreram na Província — taxas provinciais do SNIC 2025 ainda pendentes de extração <span class="tag p">P</span>.</span><span data-lang="en">San Isidro, Vicente López, Pilar, Tigre — family housing and schools. The Ciudad's 2.5 rate doesn't apply here: the Province has a higher rate <span class="tag j">J</span>. 9 of 12 extortive kidnappings in 2026 (through Aug 31) occurred in the Province — SNIC 2025 provincial rates still pending extraction <span class="tag p">P</span>.</span><span data-lang="es">San Isidro, Vicente López, Pilar, Tigre — vivienda familiar y escuelas. La tasa de 2,5 de la Ciudad no aplica aquí: la Provincia tiene tasa superior <span class="tag j">J</span>. 9 de los 12 secuestros extorsivos de 2026 (hasta el 31/08) ocurrieron en la Provincia — tasas provinciales del SNIC 2025 aún pendientes de extracción <span class="tag p">P</span>.</span></p></div>
+        <div class="card s5c au d6"><h3>Aeroparque / Ezeiza</h3><p><span data-lang="pt">Corredores de rotação. Risco de furto de bagagem e abordagem na chegada.</span><span data-lang="en">Rotation corridors. Risk of baggage theft and approach upon arrival.</span><span data-lang="es">Corredores de rotación. Riesgo de hurto de equipaje y abordaje al llegar.</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 - mapa del delito completo -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Mapa del Delito CABA 2025: os <span class="gt">6 indicadores</span></span><span data-lang="en">CABA Crime Map 2025: the <span class="gt">6 indicators</span></span><span data-lang="es">Mapa del Delito CABA 2025: los <span class="gt">6 indicadores</span></span></h2>
+    <div class="bars au d2" style="margin-top:22px">
+      <div class="barrow"><div class="barlbl"><span data-lang="pt">Homicídios dolosos</span><span data-lang="en">Intentional homicides</span><span data-lang="es">Homicidios dolosos</span><span class="tag f">F</span></div><div class="bartrack"><div class="barfill" style="width:1%"></div></div><div class="barval">78 · −3%</div></div>
+      <div class="barrow"><div class="barlbl"><span data-lang="pt">Roubos totais</span><span data-lang="en">Total robberies</span><span data-lang="es">Robos totales</span><span class="tag f">F</span></div><div class="bartrack"><div class="barfill" style="width:100%"></div></div><div class="barval">50.069 · −27%</div></div>
+      <div class="barrow"><div class="barlbl"><span data-lang="pt">Roubos com moto</span><span data-lang="en">Motorbike robberies</span><span data-lang="es">Robos con moto</span><span class="tag f">F</span></div><div class="bartrack"><div class="barfill" style="width:11%"></div></div><div class="barval">5.587 · −3%</div></div>
+      <div class="barrow"><div class="barlbl"><span data-lang="pt">Roubos com arma</span><span data-lang="en">Armed robberies</span><span data-lang="es">Robos con arma</span><span class="tag f">F</span></div><div class="bartrack"><div class="barfill" style="width:11%"></div></div><div class="barval">5.566 · −34%</div></div>
+      <div class="barrow"><div class="barlbl"><span data-lang="pt">Roubos de veículo</span><span data-lang="en">Vehicle robberies</span><span data-lang="es">Robos de vehículo</span><span class="tag f">F</span></div><div class="bartrack"><div class="barfill" style="width:1%"></div></div><div class="barval">524 · −54%</div></div>
+      <div class="barrow"><div class="barlbl"><span data-lang="pt">Furtos</span><span data-lang="en">Thefts</span><span data-lang="es">Hurtos</span><span class="tag f">F</span></div><div class="bartrack"><div class="barfill" style="width:99%"></div></div><div class="barval">49.641 · −21%</div></div>
+    </div>
+    <p class="au d6" style="margin-top:20px;max-width:900px"><span data-lang="pt">Fonte: Mapa del Delito 2025, Governo da Ciudad (fev/2026), via Infobae, Clarín e Buenos Aires Times. Homicídio nacional: 3,6/100 mil hab., −7,3% (SNIC) <span class="tag f">F</span>. Roubo com moto cai só 3% — é o risco cotidiano mais relevante <span class="tag j">J</span>.</span><span data-lang="en">Source: 2025 Crime Map, City Government (Feb/2026), via Infobae, Clarín and Buenos Aires Times. National homicide: 3.6/100k pop., −7.3% (SNIC) <span class="tag f">F</span>. Motorbike robbery drops only 3% — the most relevant daily risk <span class="tag j">J</span>.</span><span data-lang="es">Fuente: Mapa del Delito 2025, Gobierno de la Ciudad (feb/2026), vía Infobae, Clarín y Buenos Aires Times. Homicidio nacional: 3,6/100 mil hab., −7,3% (SNIC) <span class="tag f">F</span>. El robo con moto cae solo 3% — es el riesgo cotidiano más relevante <span class="tag j">J</span>.</span></p>
+  </div>
+</section>
+
+<!-- 4 - o que realmente acontece todo dia -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">O que acontece <span class="gt">todos os dias</span></span><span data-lang="en">What happens <span class="gt">every day</span></span><span data-lang="es">Lo que ocurre <span class="gt">todos los días</span></span></h2>
+    <div class="grid3" style="margin-top:28px">
+      <div class="card s5c au d2" style="text-align:center"><div class="s5n sm">~137</div><p><span data-lang="pt">Roubos por dia na Ciudad de Buenos Aires em 2025</span><span data-lang="en">Robberies per day in Ciudad de Buenos Aires in 2025</span><span data-lang="es">Robos por día en la Ciudad de Buenos Aires en 2025</span></p></div>
+      <div class="card s5c au d3" style="text-align:center"><div class="s5n sm">~15</div><p><span data-lang="pt">Roubos com moto por dia — a modalidade que mais importa (queda de apenas 3%)</span><span data-lang="en">Motorbike robberies per day — the most relevant type (only 3% drop)</span><span data-lang="es">Robos con moto por día — la modalidad más relevante (caída de solo 3%)</span></p></div>
+      <div class="card s5c au d4" style="text-align:center"><div class="s5n sm">~136</div><p><span data-lang="pt">Furtos por dia na Ciudad em 2025</span><span data-lang="en">Thefts per day in the Ciudad in 2025</span><span data-lang="es">Hurtos por día en la Ciudad en 2025</span></p></div>
+    </div>
+    <p class="au d5" style="margin-top:28px;max-width:850px"><span data-lang="pt">18% dos homicídios de 2025 em CABA decorreram de roubo. A maioria não é "assalto a estrangeiro" — é crime patrimonial oportunista, ligado à rotina previsível.</span><span data-lang="en">18% of 2025 homicides in CABA stemmed from robbery. Most are not "attacks on foreigners" — they are opportunistic property crime tied to predictable routines.</span><span data-lang="es">18% de los homicidios de 2025 en CABA derivaron de robo. La mayoría no es "asalto a extranjero" — es delito patrimonial oportunista, ligado a la rutina previsible.</span></p>
+  </div>
+</section>
+
+<!-- 5 - sequestro contexto correto -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Sequestro extorsivo: o <span class="gt">contexto correto</span></span><span data-lang="en">Extortive kidnapping: the <span class="gt">right context</span></span><span data-lang="es">Secuestro extorsivo: el <span class="gt">contexto correcto</span></span></h2>
+    <div class="grid3" style="margin-top:22px">
+      <div class="card as d2" style="text-align:center"><div class="s5n sm">14</div><p><span data-lang="pt">Casos no país em 2025 — mínimo da série 2015-2025 <span class="tag f">F</span></span><span data-lang="en">Cases nationwide in 2025 — lowest of the 2015-2025 series <span class="tag f">F</span></span><span data-lang="es">Casos en el país en 2025 — mínimo de la serie 2015-2025 <span class="tag f">F</span></span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">64%</div><p><span data-lang="pt">Ligados a crime organizado, não a executivos estrangeiros <span class="tag f">F</span></span><span data-lang="en">Linked to organized crime, not foreign executives <span class="tag f">F</span></span><span data-lang="es">Vinculados al crimen organizado, no a ejecutivos extranjeros <span class="tag f">F</span></span></p></div>
+      <div class="card as d4" style="text-align:center"><div class="s5n sm">12+2</div><p><span data-lang="pt">Casos em 2026: 12 até 31/08, +2 em setembro — 9 na Província de Buenos Aires <span class="tag f">F</span></span><span data-lang="en">2026 cases: 12 through Aug 31, +2 in September — 9 in Buenos Aires Province <span class="tag f">F</span></span><span data-lang="es">Casos en 2026: 12 hasta el 31/08, +2 en septiembre — 9 en la Provincia de Buenos Aires <span class="tag f">F</span></span></p></div>
+    </div>
+    <div class="grid2" style="margin-top:22px">
+      <div class="cp au d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11V7a3 3 0 116 0v4M5 11h14v10H5z"></path></svg></div>
+        <h3><span data-lang="pt">Dados verificados (UFECO)</span><span data-lang="en">Verified data (UFECO)</span><span data-lang="es">Datos verificados (UFECO)</span> <span class="tag f">F</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">2025: Buenos Aires 5, CABA 4, Córdoba 3, Salta 1, Misiones 1 — nenhum em Santa Cruz, San Juan, Catamarca ou Jujuy</span><span data-lang="en">2025: Buenos Aires 5, CABA 4, Córdoba 3, Salta 1, Misiones 1 — none in Santa Cruz, San Juan, Catamarca or Jujuy</span><span data-lang="es">2025: Buenos Aires 5, CABA 4, Córdoba 3, Salta 1, Misiones 1 — ninguno en Santa Cruz, San Juan, Catamarca o Jujuy</span></li>
+          <li><span data-lang="pt">Série completa: 294 (2015) → 14 (2025); média mensal de 2025 é a mais baixa desde a criação da unidade</span><span data-lang="en">Full series: 294 (2015) → 14 (2025); 2025 monthly average is the lowest since the unit was created</span><span data-lang="es">Serie completa: 294 (2015) → 14 (2025); el promedio mensual de 2025 es el más bajo desde la creación de la unidad</span></li>
+          <li><span data-lang="pt">2026 muda o mapa: maioria dos casos migrou para o conurbano bonaerense</span><span data-lang="en">2026 shifts the map: most cases moved to the Buenos Aires suburbs</span><span data-lang="es">2026 cambia el mapa: la mayoría de los casos migró al conurbano bonaerense</span></li>
+        </ul>
+      </div>
+      <div class="cp au d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+        <h3><span data-lang="pt">Juízo analítico</span><span data-lang="en">Analytical judgment</span><span data-lang="es">Juicio analítico</span> <span class="tag j">J</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">Sequestro físico continua Raro / Crítico / Médio para este perfil — mas família no conurbano norte não deve usar a taxa da Ciudad</span><span data-lang="en">Physical kidnapping remains Rare / Critical / Medium for this profile — but families in the north suburbs should not use the Ciudad's rate</span><span data-lang="es">El secuestro físico sigue siendo Raro / Crítico / Medio para este perfil — pero la familia en el conurbano norte no debe usar la tasa de la Ciudad</span></li>
+          <li><span data-lang="pt">O falso sequestro virtual (golpe por telefone) não entra nesta série e é o golpe mais frequente contra famílias — previne-se com palavra-código</span><span data-lang="en">Virtual kidnapping scams (phone fraud) are not in this series and are the most frequent scam against families — prevented with a safe word</span><span data-lang="es">El falso secuestro virtual (estafa telefónica) no entra en esta serie y es la estafa más frecuente contra familias — se previene con palabra clave</span></li>
+          <li><span data-lang="pt">Alerta de droga incapacitante (Embaixada dos EUA, 12/03/2025) não foi reconfirmado para 2026</span><span data-lang="en">Drug-facilitated robbery alert (US Embassy, Mar 12, 2025) has not been reconfirmed for 2026</span><span data-lang="es">La alerta de droga incapacitante (Embajada de EE.UU., 12/03/2025) no fue reconfirmada para 2026</span> <span class="tag p">P</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 - golpe droga -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Golpe com droga incapacitante: <span class="gt">bares e apps</span></span><span data-lang="en">Drug-facilitated robbery: <span class="gt">bars and apps</span></span><span data-lang="es">Estafa con droga incapacitante: <span class="gt">bares y apps</span></span></h2>
+    <p class="au d2" style="max-width:820px;margin-top:10px"><span data-lang="pt">Alerta oficial da Embaixada dos EUA (12 mar. 2025): roubos com substâncias que incapacitam a vítima em bares, casas noturnas e aplicativos de encontros, em Buenos Aires e províncias turísticas.</span><span data-lang="en">Official US Embassy alert (Mar 12, 2025): robberies using incapacitating substances in bars, nightclubs and dating apps, in Buenos Aires and tourist provinces.</span><span data-lang="es">Alerta oficial de la Embajada de EE.UU. (12 mar. 2025): robos con sustancias que incapacitan a la víctima en bares, discotecas y apps de citas, en Buenos Aires y provincias turísticas.</span></p>
+    <div class="grid4" style="margin-top:28px">
+      <div class="card au d3" style="text-align:center"><div class="ic" style="margin:0 auto 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4m8-4v4M3 10h18M5 6h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z"></path></svg></div><p><span data-lang="pt">Nunca deixe a bebida sem vigilância</span><span data-lang="en">Never leave your drink unattended</span><span data-lang="es">Nunca deje la bebida sin vigilancia</span></p></div>
+      <div class="card au d4" style="text-align:center"><div class="ic" style="margin:0 auto 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg></div><p><span data-lang="pt">Não aceite bebidas de desconhecidos</span><span data-lang="en">Don't accept drinks from strangers</span><span data-lang="es">No acepte bebidas de desconocidos</span></p></div>
+      <div class="card au d5" style="text-align:center"><div class="ic" style="margin:0 auto 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"></path></svg></div><p><span data-lang="pt">Nunca leve desconhecidos ao hotel</span><span data-lang="en">Never bring strangers to the hotel</span><span data-lang="es">Nunca lleve desconocidos al hotel</span></p></div>
+      <div class="card au d6" style="text-align:center"><div class="ic" style="margin:0 auto 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg></div><p><span data-lang="pt">Suspeita de drogagem: 911 e atendimento médico</span><span data-lang="en">Suspected drugging: call 911 and seek medical care</span><span data-lang="es">Sospecha de drogado: 911 y atención médica</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 - zonas de atenção -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Zonas e horários de <span class="gt">atenção redobrada</span></span><span data-lang="en">Zones and times of <span class="gt">heightened attention</span></span><span data-lang="es">Zonas y horarios de <span class="gt">atención redoblada</span></span></h2>
+    <div class="grid3" style="margin-top:28px">
+      <div class="bwc cg au d2"><h3 style="color:#FFB800"><span data-lang="pt">Controlado</span><span data-lang="en">Controlled</span><span data-lang="es">Controlado</span></h3><p style="margin-top:10px"><span class="bwd" style="background:#FFB800"></span><span data-lang="pt">Zona norte residencial com circulação disciplinada</span><span data-lang="en">North residential zone with disciplined circulation</span><span data-lang="es">Zona norte residencial con circulación disciplinada</span></p><p><span class="bwd" style="background:#FFB800"></span><span data-lang="pt">Caixas eletrônicos em agência ou shopping, de dia</span><span data-lang="en">ATMs inside branches or malls, during daytime</span><span data-lang="es">Cajeros dentro de sucursal o shopping, de día</span></p></div>
+      <div class="bwc cy au d3"><h3 style="color:#FFD600"><span data-lang="pt">Cautela</span><span data-lang="en">Caution</span><span data-lang="es">Cautela</span></h3><p style="margin-top:10px"><span class="bwd" style="background:#FFD600"></span><span data-lang="pt">Semáforos e portas de restaurante/shopping</span><span data-lang="en">Traffic lights and restaurant/mall entrances</span><span data-lang="es">Semáforos y puertas de restaurante/shopping</span></p><p><span class="bwd" style="background:#FFD600"></span><span data-lang="pt">Trajeto escolar em horário fixo</span><span data-lang="en">School route at fixed times</span><span data-lang="es">Trayecto escolar en horario fijo</span></p></div>
+      <div class="bwc cr au d4"><h3 style="color:#FF6B6B"><span data-lang="pt">Evitar</span><span data-lang="en">Avoid</span><span data-lang="es">Evitar</span></h3><p style="margin-top:10px"><span class="bwd" style="background:#FF6B6B"></span><span data-lang="pt">Microcentro, Constitución, Once e terminais após 22h</span><span data-lang="en">Microcentro, Constitución, Once and terminals after 10pm</span><span data-lang="es">Microcentro, Constitución, Once y terminales después de las 22h</span></p><p><span class="bwd" style="background:#FF6B6B"></span><span data-lang="pt">Norte de Retiro, sul da cidade, margens de autopistas</span><span data-lang="en">North of Retiro, south of the city, highway margins</span><span data-lang="es">Norte de Retiro, sur de la ciudad, márgenes de autopistas</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 - protestos -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Protestos: previsíveis e <span class="gt">evitáveis</span></span><span data-lang="en">Protests: predictable and <span class="gt">avoidable</span></span><span data-lang="es">Protestas: previsibles y <span class="gt">evitables</span></span></h2>
+    <div class="grid2" style="margin-top:28px">
+      <div class="mapbox au d3">
+        <div class="map-note"><span data-lang="pt">Mapa — Eixos de protesto, CABA</span><span data-lang="en">Map — Protest axes, CABA</span><span data-lang="es">Mapa — Ejes de protesta, CABA</span></div>
+        <iframe src="https://www.google.com/maps?q=Plaza+de+Mayo,Buenos+Aires&z=14&output=embed" width="100%" height="320" style="border:0;border-radius:14px;filter:grayscale(.3) contrast(1.1)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card s5c au d4"><h3><span data-lang="pt">Eixos conhecidos</span><span data-lang="en">Known axes</span><span data-lang="es">Ejes conocidos</span></h3><p><span data-lang="pt">Plaza de Mayo, Congresso, 9 de Julio, Obelisco e entorno do Ministério de Trabajo.</span><span data-lang="en">Plaza de Mayo, Congress, 9 de Julio, Obelisco and surroundings of the Labor Ministry.</span><span data-lang="es">Plaza de Mayo, Congreso, 9 de Julio, Obelisco y entorno del Ministerio de Trabajo.</span></p></div>
+        <div class="card s5c au d5"><h3><span data-lang="pt">Contexto</span><span data-lang="en">Context</span><span data-lang="es">Contexto</span> <span class="tag f">F</span></h3><p><span data-lang="pt">Pobreza em 32,3% e indigência de 7,5% no 1º sem. 2026 (INDEC) e marcha de setembro/2026 contra o "Súper RIGI" e investimentos estrangeiros ampliam a frequência de manifestações. RIGI concentra ~65% das aplicações do setor minério e dá estabilidade fiscal de longo prazo — benefício que gera contestação política <span class="tag j">J</span>.</span><span data-lang="en">32.3% poverty and 7.5% indigence in H1 2026 (INDEC) and the September 2026 march against the "Súper RIGI" and foreign investments increase protest frequency. RIGI concentrates ~65% of mining-sector applications and grants long-term fiscal stability — a benefit that generates political contestation <span class="tag j">J</span>.</span><span data-lang="es">Pobreza del 32,3% e indigencia del 7,5% en el 1er sem. 2026 (INDEC) y la marcha de septiembre de 2026 contra el "Súper RIGI" y las inversiones extranjeras amplían la frecuencia de manifestaciones. El RIGI concentra ~65% de las aplicaciones del sector minero y otorga estabilidad fiscal de largo plazo — beneficio que genera contestación política <span class="tag j">J</span>.</span></p></div>
+        <div class="card s5c au d6"><h3><span data-lang="pt">Regra de conduta</span><span data-lang="en">Conduct rule</span><span data-lang="es">Regla de conducta</span></h3><p><span data-lang="pt">Em dia de marcha, escritório funciona, a rua não. Desviar, nunca atravessar cordões, nunca filmar policiais ou manifestantes.</span><span data-lang="en">On march days, the office works, the street doesn't. Reroute, never cross lines, never film police or protesters.</span><span data-lang="es">En día de marcha, la oficina funciona, la calle no. Desviar, nunca cruzar cordones, nunca filmar policías o manifestantes.</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 - resposta rápida -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Roteiro de resposta <span class="gt">rápida</span></span><span data-lang="en">Quick response <span class="gt">roadmap</span></span><span data-lang="es">Guion de respuesta <span class="gt">rápida</span></span></h2>
+    <div class="flow3 au d2" style="margin-top:20px">
+      <div class="flowrow">
+        <div class="flowcell sit"><h4><span data-lang="pt">Roubo em andamento</span><span data-lang="en">Robbery in progress</span><span data-lang="es">Robo en curso</span></h4></div>
+        <div class="flowarrow">→</div>
+        <div class="flowcell"><p><span data-lang="pt">Entregar o bem, não correr atrás</span><span data-lang="en">Hand over the item, don't chase</span><span data-lang="es">Entregar el bien, no correr</span></p></div>
+        <div class="flowarrow">→</div>
+        <div class="flowcell"><p><span data-lang="pt">911 + bloqueio remoto do celular + aviso à segurança</span><span data-lang="en">911 + remote phone lock + notify security</span><span data-lang="es">911 + bloqueo remoto del celular + aviso a seguridad</span></p></div>
+      </div>
+      <div class="flowrow">
+        <div class="flowcell sit"><h4><span data-lang="pt">Suspeita de droga em bebida</span><span data-lang="en">Suspected drink spiking</span><span data-lang="es">Sospecha de droga en bebida</span> <span class="tag p">P</span></h4></div>
+        <div class="flowarrow">→</div>
+        <div class="flowcell"><p><span data-lang="pt">Não ficar sozinho; 911 e hospital</span><span data-lang="en">Don't stay alone; 911 and hospital</span><span data-lang="es">No quedarse solo; 911 y hospital</span></p></div>
+        <div class="flowarrow">→</div>
+        <div class="flowcell"><p><span data-lang="pt">Não assinar nada nem pagar "acerto"</span><span data-lang="en">Don't sign anything or pay a "settlement"</span><span data-lang="es">No firmar nada ni pagar un "arreglo"</span></p></div>
+      </div>
+      <div class="flowrow">
+        <div class="flowcell sit"><h4><span data-lang="pt">Protesto no trajeto</span><span data-lang="en">Protest on route</span><span data-lang="es">Protesta en el trayecto</span></h4></div>
+        <div class="flowarrow">→</div>
+        <div class="flowcell"><p><span data-lang="pt">Desviar, não atravessar cordão</span><span data-lang="en">Reroute, don't cross the line</span><span data-lang="es">Desviar, no cruzar el cordón</span></p></div>
+        <div class="flowarrow">→</div>
+        <div class="flowcell"><p><span data-lang="pt">Reagendar o compromisso</span><span data-lang="en">Reschedule the appointment</span><span data-lang="es">Reprogramar el compromiso</span></p></div>
+      </div>
+      <div class="flowrow">
+        <div class="flowcell sit"><h4><span data-lang="pt">Perda de documento</span><span data-lang="en">Document loss</span><span data-lang="es">Pérdida de documento</span></h4></div>
+        <div class="flowarrow">→</div>
+        <div class="flowcell"><p><span data-lang="pt">Comunicar o consulado do país de origem; registrar boletim</span><span data-lang="en">Notify the home country consulate; file a police report</span><span data-lang="es">Comunicar al consulado del país de origen; registrar denuncia</span></p></div>
+        <div class="flowarrow">→</div>
+        <div class="flowcell"><p><span data-lang="pt">Cópias digitais já separadas</span><span data-lang="en">Digital copies already set aside</span><span data-lang="es">Copias digitales ya separadas</span></p></div>
+      </div>
+      <div class="flowrow">
+        <div class="flowcell sit"><h4><span data-lang="pt">Menção hostil com nome de familiar</span><span data-lang="en">Hostile mention naming a family member</span><span data-lang="es">Mención hostil con nombre de un familiar</span></h4></div>
+        <div class="flowarrow">→</div>
+        <div class="flowcell"><p><span data-lang="pt">Não responder; capturar tela</span><span data-lang="en">Don't respond; take a screenshot</span><span data-lang="es">No responder; capturar pantalla</span></p></div>
+        <div class="flowarrow">→</div>
+        <div class="flowcell"><p><span data-lang="pt">Segurança, jurídico e comunicação; avaliar a escola no mesmo dia</span><span data-lang="en">Security, legal and communications; assess the school the same day</span><span data-lang="es">Seguridad, jurídico y comunicación; evaluar la escuela el mismo día</span></p></div>
+      </div>
+    </div>
+    <p class="au d4" style="margin-top:20px;max-width:800px"><span data-lang="pt">911 cobre emergências policiais, médicas e de bombeiros na AMBA <span class="tag p">P</span> confirmar operação fora da AMBA. Guarde também o contato do consulado do seu país de origem.</span><span data-lang="en">911 covers police, medical and fire emergencies in AMBA <span class="tag p">P</span> confirm service outside AMBA. Also keep your home country's consulate contact.</span><span data-lang="es">El 911 cubre emergencias policiales, médicas y de bomberos en AMBA <span class="tag p">P</span> confirmar operación fuera de AMBA. Guarde también el contacto del consulado de su país de origen.</span></p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <div class="wrap" style="text-align:center">
+    <div class="gl ce au d1"></div>
+    <p class="quote au d2">
+      <span data-lang="pt">"Buenos Aires não é um lugar perigoso — é um lugar que exige hábito, não medo."</span>
+      <span data-lang="en">"Buenos Aires is not a dangerous place — it's a place that demands habit, not fear."</span>
+      <span data-lang="es">"Buenos Aires no es un lugar peligroso — es un lugar que exige hábito, no miedo."</span>
+    </p>
+    <h2 class="au d3"><span data-lang="pt">Rotina disciplinada é a <span class="gt">melhor proteção</span></span><span data-lang="en">Disciplined routine is the <span class="gt">best protection</span></span><span data-lang="es">La rutina disciplinada es la <span class="gt">mejor protección</span></span></h2>
+    <p class="au d4" style="max-width:700px;margin:16px auto 0"><span data-lang="pt">O risco predominante na AMBA é o crime patrimonial oportunista — evitável com variação de rotas, discrição e atenção redobrada em horários críticos.</span><span data-lang="en">The predominant risk in AMBA is opportunistic property crime — avoidable with route variation, discretion and heightened attention during critical hours.</span><span data-lang="es">El riesgo predominante en AMBA es el delito patrimonial oportunista — evitable con variación de rutas, discreción y atención redoblada en horarios críticos.</span></p>
+    <a class="home-btn au d5" style="display:inline-flex;margin-top:20px" href="index.html">
+      <span data-lang="pt">Voltar ao Index</span><span data-lang="en">Back to Index</span><span data-lang="es">Volver al Index</span>
+    </a>
+  </div>
+</section>
+
+</div></div>
+
+<script>
+const T = 10; let C = 0;
+const W = document.getElementById('sw');
+const CN = document.getElementById('cn');
+const P = document.getElementById('prog');
+const I = document.getElementById('ind');
+for (let i = 0; i < T; i++) { const d = document.createElement('div'); d.classList.add('dot'); if (i === 0) d.classList.add('active'); d.onclick = () => go(i); I.appendChild(d); }
+function upd() { I.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === C)); CN.textContent = C + 1; P.style.width = ((C + 1) / T * 100) + '%'; document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === C)); }
+function go(i) { if (i < 0 || i >= T) return; C = i; W.style.transform = `translateX(-${C * 100}vw)`; upd(); }
+function next() { if (C < T - 1) go(C + 1); }
+function prev() { if (C > 0) go(C - 1); }
+document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); } if (e.key === 'f' || e.key === 'F') toggleFs(); });
+let tx = 0;
+document.addEventListener('touchstart', e => tx = e.changedTouches[0].screenX);
+document.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].screenX; if (Math.abs(d) > 50) { d > 0 ? next() : prev(); } });
+function toggleFs() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(() => {}); } else { document.exitFullscreen(); } }
+document.addEventListener('fullscreenchange', () => { document.getElementById('fsTxt').textContent = document.fullscreenElement ? 'Sair' : 'Tela cheia'; document.getElementById('fsTxtE').textContent = document.fullscreenElement ? 'Exit' : 'Fullscreen'; document.getElementById('fsTxtS').textContent = document.fullscreenElement ? 'Salir' : 'Pantalla'; });
+function setLang(l) { document.body.className = 'lang-' + l; document.querySelectorAll('.lang-sel button').forEach(b => b.classList.toggle('active', b.dataset.l === l)); }
+upd();
+</script>
+</body>
+</html>

@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard de Inteligência de Risco — Newmont Argentina</title>
+<style>
+  :root{
+    --bg:#0b0c0f; --bg2:#14161b; --card:#1a1d23; --border:#2a2e37;
+    --gold:#e8b23d; --gold2:#f5cc5c; --gold-dim:#8a6a1f;
+    --text:#e8e6e0; --muted:#9aa0ab; --red:#e05a4e; --green:#5bbf7a; --orange:#e89a3d;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;}
+  header{background:linear-gradient(135deg,#14161b,#0b0c0f);border-bottom:2px solid var(--gold);padding:18px 24px;position:sticky;top:0;z-index:50;}
+  header .top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  header h1{margin:0;font-size:1.3rem;color:var(--gold2);letter-spacing:.5px;}
+  header .sub{color:var(--muted);font-size:.8rem;margin-top:4px;}
+  .lang-switch{display:flex;gap:6px;}
+  .lang-switch button{background:var(--bg2);border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:6px;cursor:pointer;font-weight:600;font-size:.8rem;}
+  .lang-switch button.active{background:var(--gold);color:#0b0c0f;border-color:var(--gold);}
+  nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 24px;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:76px;z-index:49;}
+  nav button{background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:20px;font-size:.78rem;cursor:pointer;white-space:nowrap;}
+  nav button.active{background:var(--gold);color:#0b0c0f;border-color:var(--gold);font-weight:700;}
+  main{padding:24px;max-width:1300px;margin:0 auto;}
+  .page{display:none;animation:fade .25s;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;}to{opacity:1;}}
+  h2.section-title{color:var(--gold2);border-bottom:1px solid var(--border);padding-bottom:8px;margin-top:0;font-size:1.15rem;}
+  h3{color:var(--gold);font-size:.95rem;margin-bottom:6px;}
+  .grid{display:grid;gap:14px;}
+  .grid-2{grid-template-columns:repeat(2,1fr);}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-4{grid-template-columns:repeat(4,1fr);}
+  @media(max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;}
+  .card.gold-border{border-color:var(--gold-dim);}
+  .kpi{text-align:center;padding:18px 10px;}
+  .kpi .val{font-size:1.9rem;font-weight:800;color:var(--gold2);}
+  .kpi .lab{font-size:.72rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+  table{width:100%;border-collapse:collapse;font-size:.82rem;}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);}
+  th{color:var(--gold2);background:#101216;font-size:.72rem;text-transform:uppercase;letter-spacing:.4px;}
+  tr:hover td{background:#1f222a;}
+  .badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.68rem;font-weight:700;text-transform:uppercase;}
+  .b-high{background:rgba(224,90,78,.18);color:var(--red);border:1px solid var(--red);}
+  .b-med{background:rgba(232,154,61,.18);color:var(--orange);border:1px solid var(--orange);}
+  .b-low{background:rgba(91,191,122,.18);color:var(--green);border:1px solid var(--green);}
+  .bar-wrap{background:#101216;border-radius:6px;overflow:hidden;height:10px;margin-top:6px;}
+  .bar{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold2));}
+  ul{margin:8px 0;padding-left:18px;font-size:.85rem;line-height:1.5;}
+  li{margin-bottom:4px;}
+  .note{font-size:.76rem;color:var(--muted);font-style:italic;margin-top:8px;border-top:1px dashed var(--border);padding-top:8px;}
+  .tag{display:inline-block;background:#101216;border:1px solid var(--border);color:var(--muted);font-size:.68rem;padding:2px 8px;border-radius:10px;margin-right:4px;}
+  .divider{height:1px;background:var(--border);margin:18px 0;}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .flow .step{background:#101216;border:1px solid var(--gold-dim);border-radius:8px;padding:8px 12px;font-size:.78rem;}
+  .flow .arrow{color:var(--gold);font-weight:700;}
+  .zone-map{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;}
+  .zone-box{border:1px solid var(--border);border-radius:8px;padding:12px;background:#101216;}
+  .zone-box .zt{font-weight:700;color:var(--gold2);font-size:.82rem;}
+  .zone-box .zd{font-size:.72rem;color:var(--muted);margin-top:4px;}
+  footer{text-align:center;padding:20px;color:var(--muted);font-size:.72rem;border-top:1px solid var(--border);}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.72rem;color:var(--muted);margin-top:6px;}
+  .legend span{display:flex;align-items:center;gap:4px;}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top">
+    <div>
+      <h1 id="h-title">—</h1>
+      <div class="sub" id="h-sub">—</div>
+    </div>
+    <div class="lang-switch">
+      <button data-lang="pt" class="active">PT</button>
+      <button data-lang="es">ES</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<nav id="navTabs"></nav>
+<main id="mainContent"></main>
+<footer id="footerText">—</footer>
+
+<script>
+const L = {
+pt:{
+  title:"Dashboard de Inteligência de Risco — Newmont Argentina",
+  sub:"Análise em 13/11/2026 · Reavaliação programada até 11/02/2027 · Classificação: Confidencial",
+  tabs:["Visão Geral","Panorama de Risco (AMBA)","Cerro Negro","Mapa de Referência","Matriz de Riscos","Crimes Virtuais","Recomendações","Resposta a Incidentes","Fontes e Limitações"],
+  footer:"Documento de uso interno · Não substitui assessoria jurídica, médica ou orientação de autoridades competentes · Gerado a partir de relatório de inteligência de risco de 13/11/2026",
+  overview:{
+    h:"Resumo Executivo",
+    kpis:[
+      {v:"ALTO",l:"Risco prioritário — Cerro Negro"},
+      {v:"3,6/100k",l:"Taxa homicídios Argentina (2025)"},
+      {v:"32,3%",l:"Pobreza AMBA (INDEC 1º sem. 2026)"},
+      {v:"14",l:"Sequestros extorsivos UFECO (2025)"}
+    ],
+    text:[
+      "Fato observado: o relatório identifica como risco prioritário o conflito regulatório, trabalhista e reputacional em curso na operação Cerro Negro (Santa Cruz), decorrente do evento de 11–14/09/2026.",
+      "Fato observado: a reunião de 14/09/2026 entre o governador Claudio Vidal e representantes da Newmont (David Meador) estabeleceu uma agenda de diálogo, mas não encerrou os sumários administrativos abertos.",
+      "Interpretação analítica: a combinação de pressão regulatória, exposição sindical e holofote político sugere que o risco de Cerro Negro é estrutural, não pontual — tende a se manter ativo até a reavaliação de 11/02/2027.",
+      "Implicação estratégica: a liderança deve tratar Cerro Negro como item permanente de agenda de risco, com monitoramento contínuo, e não como incidente encerrado."
+    ],
+    secondary:[
+      "Fato observado: indicadores socioeconômicos de AMBA (pobreza 32,3%, indigência 7,5%, desemprego 7,9% — INDEC, 1º semestre de 2026) compõem o pano de fundo de risco de criminalidade comum na região metropolitana.",
+      "Fato observado: a taxa nacional de homicídios foi de 3,6 por 100 mil habitantes em 2025; CABA registrou 78 homicídios (taxa de 2,5/100 mil).",
+      "Limitação: a Zona Norte da Província de Buenos Aires não deve ser equiparada à taxa de homicídios da Ciudad — os dados de CABA não representam toda a região metropolitana."
+    ]
+  },
+  panorama:{
+    h:"Panorama de Risco — AMBA",
+    cards:[
+      {t:"Indicadores Socioeconômicos (INDEC, 1º sem. 2026)",items:["Pobreza: 32,3%","Indigência: 7,5%","Desemprego: 7,9%"]},
+      {t:"Criminalidade — CABA (dados oficiais)",items:["78 homicídios · taxa 2,5/100 mil","50.069 roubos totais","5.587 roubos com moto (motochorro)","5.566 roubos com arma de fogo","524 roubos de veículo","49.641 furtos"]},
+      {t:"Taxa Nacional",items:["Homicídios: 3,6 por 100 mil habitantes (2025)"]},
+      {t:"Sequestros Extorsivos (UFECO, 2025)",items:["14 casos registrados","9 vinculados a crime organizado","Dado pendente de confirmação no relatório original"]}
+    ],
+    note:"Limitação relevante: a Zona Norte da Província de Buenos Aires (área de residência habitual de expatriados) não deve ser equiparada à taxa de criminalidade da Ciudad Autónoma de Buenos Aires. Os dados de CABA refletem apenas a jurisdição da Ciudad.",
+    insight:"Interpretação analítica: o risco dominante em AMBA é de criminalidade oportunista contra a mobilidade (motochorro, roubo de veículo) e não violência letal direcionada — a taxa de homicídios é moderada em padrão regional. Implicação estratégica: a prioridade de mitigação deve recair sobre mobilidade segura e baixa exposição, não sobre proteção armada."
+  },
+  cerroNegro:{
+    h:"Cerro Negro (Santa Cruz)",
+    timelineTitle:"Linha do Tempo do Evento (11–14/09/2026)",
+    timeline:[
+      {d:"11/09/2026",e:"Início de inspeções regulatórias na operação."},
+      {d:"11–14/09/2026",e:"Seis cessações de tarefa; clausura preventiva de oito setores da operação."},
+      {d:"—",e:"Paralisação e desmobilização parcial da operação."},
+      {d:"—",e:"Ingresso de equipes/autoridades mediante ordem judicial."},
+      {d:"14/09/2026",e:"Reunião entre governador Claudio Vidal e Newmont (David Meador) — estabelece agenda de diálogo."}
+    ],
+    status:[
+      "Fato observado: os sumários administrativos abertos durante o evento não foram encerrados pela reunião de 14/09.",
+      "Interpretação analítica: a persistência dos sumários indica que o processo regulatório segue em curso e pode gerar novos desdobramentos até a reavaliação de 11/02/2027.",
+      "Implicação estratégica: viagens e permanência prolongada no site devem considerar o risco de novas interrupções operacionais, restrições de acesso ou reconfiguração de rotina decorrente de ação regulatória."
+    ],
+    geo:[
+      "Risco de evacuação médica e deslocamento por estradas na Patagônia: distâncias longas, condições climáticas severas, dependência de poucas rotas.",
+      "Recomendação direta do relatório: uso de kit de inverno e transporte com motorista da própria operação para deslocamentos ao site."
+    ]
+  },
+  matrix:{
+    h:"Matriz de Riscos",
+    physicalTitle:"Riscos Físicos (R1–R10)",
+    physical:[
+      {id:"R1",risco:"Conflito regulatório/trabalhista — Cerro Negro",prob:"Alta",imp:"Alto",nivel:"ALTO",detalhe:"Sumários em aberto; paralisação já ocorrida."},
+      {id:"R2",risco:"Roubo com moto (motochorro) — AMBA",prob:"Alta",imp:"Médio",nivel:"ALTO",detalhe:"5.587 casos registrados em CABA; alta frequência."},
+      {id:"R3",risco:"Acidente de trânsito — AMBA",prob:"Média",imp:"Médio",nivel:"MÉDIO",detalhe:"Volume de tráfego urbano e mobilidade intensa."},
+      {id:"R4",risco:"Roubo com arma de fogo — AMBA",prob:"Média",imp:"Alto",nivel:"ALTO",detalhe:"5.566 casos registrados em CABA."},
+      {id:"R5",risco:"Furto (sem violência) — AMBA",prob:"Alta",imp:"Baixo",nivel:"MÉDIO",detalhe:"49.641 casos registrados; alto volume, baixo impacto individual."},
+      {id:"R6",risco:"Roubo de veículo — AMBA",prob:"Baixa",imp:"Médio",nivel:"MÉDIO",detalhe:"524 casos registrados; menor frequência relativa."},
+      {id:"R7",risco:"Sequestro extorsivo",prob:"Baixa",imp:"Alto",nivel:"MÉDIO",detalhe:"14 casos em 2025 (UFECO); 9 ligados a crime organizado."},
+      {id:"R8",risco:"Evacuação médica — Patagônia/Cerro Negro",prob:"Média",imp:"Alto",nivel:"ALTO",detalhe:"Distâncias longas, clima severo, poucas rotas de estrada."},
+      {id:"R9",risco:"Exposição pública/mídia — liderança expatriada",prob:"Média",imp:"Médio",nivel:"MÉDIO",detalhe:"Contexto político sensível em Santa Cruz."},
+      {id:"R10",risco:"Interrupção de continuidade operacional",prob:"Média",imp:"Alto",nivel:"ALTO",detalhe:"Decorrente de nova ação regulatória ou sindical."}
+    ],
+    digitalTitle:"Riscos Digitais",
+    digital:[
+      {risco:"Exposição em redes sociais (geolocalização, rotina)",vuln:"Publicações com localização em tempo real; padrões de rotina identificáveis.",cons:"Facilita planejamento de abordagem física ou perseguição.",nivel:"ALTO"},
+      {risco:"Phishing/engenharia social direcionada",vuln:"Perfil público de executivo expatriado em contexto de conflito.",cons:"Comprometimento de credenciais corporativas ou pessoais.",nivel:"MÉDIO"},
+      {risco:"Dispositivos móveis sem gestão (MDM)",vuln:"Ausência de gestão centralizada de dispositivos.",cons:"Perda de dados sensíveis em caso de furto/roubo do aparelho.",nivel:"MÉDIO"},
+      {risco:"Exposição familiar (escola, residência) online",vuln:"Informações de endereço/rotina familiar disponíveis publicamente.",cons:"Aumenta superfície de risco para a família do expatriado.",nivel:"ALTO"}
+    ],
+    note:"Classificação de probabilidade e impacto segue leitura qualitativa do relatório original; não representa escala estatística validada externamente."
+  },
+  digitalCrimes:{
+    h:"Crimes Virtuais e Segurança Digital",
+    intro:"Esta seção consolida, de forma dedicada e aprofundada, todos os achados do relatório relacionados a exposição digital, crimes virtuais e vetores de ataque cibernético associados ao programa de expatriação.",
+    sections:[
+      {
+        t:"Vetores de Ataque Identificados",
+        items:[
+          "Exposição de geolocalização em tempo real via redes sociais — permite reconstrução de rotina e padrões de deslocamento.",
+          "Engenharia social direcionada (spear phishing) explorando o perfil público do executivo e o contexto de conflito em Cerro Negro.",
+          "Comprometimento de dispositivos móveis sem gestão corporativa (ausência de MDM — Mobile Device Management).",
+          "Exposição digital de membros da família (crianças/escola, residência) via redes sociais próprias ou de terceiros."
+        ]
+      },
+      {
+        t:"Consequências Potenciais",
+        items:[
+          "Facilitação de abordagem física a partir de dados de rotina expostos online.",
+          "Vazamento de dados corporativos sensíveis em caso de comprometimento de dispositivo pessoal não gerenciado.",
+          "Uso de informações públicas para construção de perfil (doxing) do expatriado ou de familiares.",
+          "Ampliação de exposição reputacional em meio ao conflito regulatório de Cerro Negro, caso haja vazamento de comunicações."
+        ]
+      },
+      {
+        t:"Medidas de Mitigação Recomendadas no Relatório",
+        items:[
+          "Baixa exposição digital: evitar publicação de geolocalização em tempo real e de rotinas reconhecíveis.",
+          "Adoção de MDM (Mobile Device Management) para dispositivos corporativos e, quando possível, pessoais usados em contexto profissional.",
+          "Dois meios de comunicação redundantes para contato em situação de emergência (reduz dependência de um único canal, inclusive digital).",
+          "Revisão de configurações de privacidade de perfis pessoais do expatriado e da família.",
+          "Orientação específica para não compartilhar informações de escola e residência em canais públicos."
+        ]
+      }
+    ],
+    gradeTitle:"Nível de Exposição por Vetor",
+    grade:[
+      {v:"Exposição de geolocalização",n:"ALTO"},
+      {v:"Phishing/engenharia social",n:"MÉDIO"},
+      {v:"Dispositivo sem MDM",n:"MÉDIO"},
+      {v:"Exposição familiar online",n:"ALTO"}
+    ],
+    limitation:"Limitação: o relatório original não fornece dados quantitativos (volume, frequência) específicos de incidentes de crime virtual contra o programa de expatriação; a leitura acima é qualitativa, baseada em vulnerabilidades identificadas e recomendações do próprio relatório, não em estatística de incidentes ocorridos."
+  },
+  recs:{
+    h:"Recomendações",
+    groups:[
+      {t:"Protocolo Operacional",items:["Protocolo de inspeção formalizado para visitas ao site.","Transporte ao site com motorista da própria operação (não transporte próprio ou de terceiros não vinculados).","Kit de inverno obrigatório para deslocamentos na Patagônia."]},
+      {t:"Comunicação e Continuidade",items:["Dois meios de comunicação redundantes em todas as deslocações.","Plano de continuidade de negócio documentado para cenários de interrupção operacional.","Seguro com cobertura de evacuação médica."]},
+      {t:"Mobilidade e Exposição",items:["Mobilidade segura em AMBA, com atenção a padrões de motochorro.","Baixa exposição digital (geolocalização, rotina, redes sociais).","Gestão de dispositivos móveis via MDM."]},
+      {t:"Residência, Escola e Prestadores",items:["Medidas de segurança específicas para residência do expatriado.","Avaliação de segurança da escola dos dependentes.","Due diligence de prestadores de serviço com acesso à família/residência."]}
+    ],
+    avoid:["Não recomendado: uso de comboio armado ou ostensivo.","Não recomendado: porte ou uso de armamento por parte do expatriado ou equipe.","Não recomendado: evasão ou confronto com autoridades em qualquer contexto de inspeção ou abordagem oficial."],
+    note:"Estas recomendações são de natureza tático-estratégica e não substituem avaliação jurídica, médica ou orientação direta de autoridades competentes no momento de um evento real."
+  },
+  incident:{
+    h:"Resposta a Incidentes — Contatos de Emergência",
+    contacts:[
+      {n:"911",d:"Emergência policial geral (nacional)."},
+      {n:"107",d:"SAME — Emergência médica. Confirmar número específico por região/província."},
+      {n:"100",d:"Bombeiros. Confirmar número específico por região/província."}
+    ],
+    flow:["Identificar natureza do evento","Contatar linha de emergência aplicável","Acionar plano de continuidade / contato corporativo","Ativar seguro de evacuação se aplicável","Registrar e reportar internamente"],
+    note:"Limitação: números de emergência médica (SAME) e bombeiros podem variar por região/província e devem ser confirmados localmente antes de uma situação real; o relatório original sinaliza essa necessidade de confirmação."
+  },
+  mapRef:{
+    h:"",
+    warn:"",
+    zones:[
+      {t:"CABA (Ciudad de Buenos Aires)",d:"Jurisdição com dados oficiais de criminalidade citados no relatório (homicídios, roubos, furtos)."},
+      {t:"Zona Norte — Província de Buenos Aires",d:"Área de residência habitual de expatriados; risco não equiparável ao de CABA."},
+      {t:"AMBA (área metropolitana ampla)",d:"Engloba CABA e conurbano; indicadores socioeconômicos do INDEC referem-se a essa região."},
+      {t:"Cerro Negro — Santa Cruz (Patagônia)",d:"Operação mineira; risco regulatório/trabalhista prioritário; acesso por estradas de longa distância."}
+    ],
+    note:"Recomendação: para um mapa georreferenciado real, é necessário um arquivo GeoJSON/shapefile que cubra especificamente os municípios de CABA, partidos da Zona Norte de Buenos Aires e o departamento de Deseado (Santa Cruz), onde se localiza Cerro Negro."
+  },
+  sources:{
+    h:"Fontes e Limitações",
+    sources:[
+      "Relatório de inteligência de risco interno, datado de 13/11/2026 (documento confidencial fornecido pelo usuário).",
+      "INDEC — indicadores de pobreza, indigência e desemprego, 1º semestre de 2026.",
+      "Dados oficiais de criminalidade de CABA citados no relatório (homicídios, roubos, furtos).",
+      "UFECO — dados sobre sequestros extorsivos, 2025 (citados no relatório; pendentes de confirmação na fonte primária)."
+    ],
+    limitations:[
+      "O relatório distingue fatos, estimativas e juízos analíticos; esta distinção foi preservada nesta leitura.",
+      "Seguro médico obrigatório para entrada no país: classificado como provável, mas não confirmado no relatório original.",
+      "OSAC (Overseas Security Advisory Council): mencionado como fonte existente, porém seu conteúdo não foi consultado para este relatório.",
+      "Anuário de segurança da CAEM (Cámara Argentina de Empresarios Mineros): não foi recuperado para esta análise.",
+      "Dados da UFECO sobre sequestros extorsivos (14 casos, 9 ligados a crime organizado) precisam ser confirmados no relatório original antes de uso em decisão formal.",
+      "Este dashboard não substitui assessoria jurídica, médica ou orientação direta de autoridades competentes.",
+      "O arquivo geográfico enviado pelo usuário não cobre AMBA nem Santa Cruz, impedindo a geração de mapa georreferenciado real para este relatório."
+    ]
+  }
+},
+
+es:{
+  title:"Panel de Inteligencia de Riesgo — Newmont Argentina",
+  sub:"Análisis al 13/11/2026 · Reevaluación programada hasta el 11/02/2027 · Clasificación: Confidencial",
+  tabs:["Resumen Ejecutivo","Panorama de Riesgo (AMBA)","Cerro Negro","Mapa de Referencia","Matriz de Riesgos","Delitos Virtuales","Recomendaciones","Respuesta a Incidentes","Fuentes y Limitaciones"],
+  footer:"Documento de uso interno · No sustituye asesoría legal, médica ni orientación de autoridades competentes · Generado a partir de informe de inteligencia de riesgo del 13/11/2026",
+  overview:{
+    h:"Resumen Ejecutivo",
+    kpis:[
+      {v:"ALTO",l:"Riesgo prioritario — Cerro Negro"},
+      {v:"3,6/100k",l:"Tasa de homicidios Argentina (2025)"},
+      {v:"32,3%",l:"Pobreza AMBA (INDEC 1er sem. 2026)"},
+      {v:"14",l:"Secuestros extorsivos UFECO (2025)"}
+    ],
+    text:[
+      "Hecho observado: el informe identifica como riesgo prioritario el conflicto regulatorio, laboral y reputacional en curso en la operación Cerro Negro (Santa Cruz), derivado del evento del 11–14/09/2026.",
+      "Hecho observado: la reunión del 14/09/2026 entre el gobernador Claudio Vidal y representantes de Newmont (David Meador) estableció una agenda de diálogo, pero no cerró los sumarios administrativos abiertos.",
+      "Interpretación analítica: la combinación de presión regulatoria, exposición sindical y foco político sugiere que el riesgo de Cerro Negro es estructural, no puntual — tiende a mantenerse activo hasta la reevaluación del 11/02/2027.",
+      "Implicación estratégica: el liderazgo debe tratar Cerro Negro como un ítem permanente en la agenda de riesgo, con monitoreo continuo, y no como un incidente cerrado."
+    ],
+    secondary:[
+      "Hecho observado: los indicadores socioeconómicos de AMBA (pobreza 32,3%, indigencia 7,5%, desempleo 7,9% — INDEC, 1er semestre de 2026) componen el trasfondo de riesgo de criminalidad común en la región metropolitana.",
+      "Hecho observado: la tasa nacional de homicidios fue de 3,6 por cada 100 mil habitantes en 2025; CABA registró 78 homicidios (tasa de 2,5/100 mil).",
+      "Limitación: la Zona Norte de la Provincia de Buenos Aires no debe equipararse a la tasa de homicidios de la Ciudad — los datos de CABA no representan a toda la región metropolitana."
+    ]
+  },
+  panorama:{
+    h:"Panorama de Riesgo — AMBA",
+    cards:[
+      {t:"Indicadores Socioeconómicos (INDEC, 1er sem. 2026)",items:["Pobreza: 32,3%","Indigencia: 7,5%","Desempleo: 7,9%"]},
+      {t:"Criminalidad — CABA (datos oficiales)",items:["78 homicidios · tasa 2,5/100 mil","50.069 robos totales","5.587 robos con moto (motochorro)","5.566 robos con arma de fuego","524 robos de vehículo","49.641 hurtos"]},
+      {t:"Tasa Nacional",items:["Homicidios: 3,6 por cada 100 mil habitantes (2025)"]},
+      {t:"Secuestros Extorsivos (UFECO, 2025)",items:["14 casos registrados","9 vinculados a crimen organizado","Dato pendiente de confirmación en el informe original"]}
+    ],
+    note:"Limitación relevante: la Zona Norte de la Provincia de Buenos Aires (área de residencia habitual de expatriados) no debe equipararse a la tasa de criminalidad de la Ciudad Autónoma de Buenos Aires. Los datos de CABA reflejan únicamente la jurisdicción de la Ciudad.",
+    insight:"Interpretación analítica: el riesgo dominante en AMBA es de criminalidad oportunista contra la movilidad (motochorro, robo de vehículo) y no violencia letal dirigida — la tasa de homicidios es moderada en patrón regional. Implicación estratégica: la prioridad de mitigación debe centrarse en movilidad segura y baja exposición, no en protección armada."
+  },
+  cerroNegro:{
+    h:"Cerro Negro (Santa Cruz)",
+    timelineTitle:"Línea de Tiempo del Evento (11–14/09/2026)",
+    timeline:[
+      {d:"11/09/2026",e:"Inicio de inspecciones regulatorias en la operación."},
+      {d:"11–14/09/2026",e:"Seis cesaciones de tarea; clausura preventiva de ocho sectores de la operación."},
+      {d:"—",e:"Paralización y desmovilización parcial de la operación."},
+      {d:"—",e:"Ingreso de equipos/autoridades mediante orden judicial."},
+      {d:"14/09/2026",e:"Reunión entre el gobernador Claudio Vidal y Newmont (David Meador) — establece agenda de diálogo."}
+    ],
+    status:[
+      "Hecho observado: los sumarios administrativos abiertos durante el evento no fueron cerrados por la reunión del 14/09.",
+      "Interpretación analítica: la persistencia de los sumarios indica que el proceso regulatorio sigue en curso y puede generar nuevos desarrollos hasta la reevaluación del 11/02/2027.",
+      "Implicación estratégica: los viajes y la permanencia prolongada en el sitio deben considerar el riesgo de nuevas interrupciones operativas, restricciones de acceso o reconfiguración de rutina derivada de acción regulatoria."
+    ],
+    geo:[
+      "Riesgo de evacuación médica y desplazamiento por rutas en la Patagonia: distancias largas, condiciones climáticas severas, dependencia de pocas rutas.",
+      "Recomendación directa del informe: uso de kit de invierno y transporte con conductor de la propia operación para desplazamientos al sitio."
+    ]
+  },
+  matrix:{
+    h:"Matriz de Riesgos",
+    physicalTitle:"Riesgos Físicos (R1–R10)",
+    physical:[
+      {id:"R1",risco:"Conflicto regulatorio/laboral — Cerro Negro",prob:"Alta",imp:"Alto",nivel:"ALTO",detalhe:"Sumarios abiertos; paralización ya ocurrida."},
+      {id:"R2",risco:"Robo con moto (motochorro) — AMBA",prob:"Alta",imp:"Medio",nivel:"ALTO",detalhe:"5.587 casos registrados en CABA; alta frecuencia."},
+      {id:"R3",risco:"Accidente de tránsito — AMBA",prob:"Media",imp:"Medio",nivel:"MEDIO",detalhe:"Volumen de tráfico urbano y movilidad intensa."},
+      {id:"R4",risco:"Robo con arma de fuego — AMBA",prob:"Media",imp:"Alto",nivel:"ALTO",detalhe:"5.566 casos registrados en CABA."},
+      {id:"R5",risco:"Hurto (sin violencia) — AMBA",prob:"Alta",imp:"Bajo",nivel:"MEDIO",detalhe:"49.641 casos registrados; alto volumen, bajo impacto individual."},
+      {id:"R6",risco:"Robo de vehículo — AMBA",prob:"Baja",imp:"Medio",nivel:"MEDIO",detalhe:"524 casos registrados; menor frecuencia relativa."},
+      {id:"R7",risco:"Secuestro extorsivo",prob:"Baja",imp:"Alto",nivel:"MEDIO",detalhe:"14 casos en 2025 (UFECO); 9 vinculados a crimen organizado."},
+      {id:"R8",risco:"Evacuación médica — Patagonia/Cerro Negro",prob:"Media",imp:"Alto",nivel:"ALTO",detalhe:"Distancias largas, clima severo, pocas rutas disponibles."},
+      {id:"R9",risco:"Exposición pública/mediática — liderazgo expatriado",prob:"Media",imp:"Medio",nivel:"MEDIO",detalhe:"Contexto político sensible en Santa Cruz."},
+      {id:"R10",risco:"Interrupción de continuidad operacional",prob:"Media",imp:"Alto",nivel:"ALTO",detalhe:"Derivada de nueva acción regulatoria o sindical."}
+    ],
+    digitalTitle:"Riesgos Digitales",
+    digital:[
+      {risco:"Exposición en redes sociales (geolocalización, rutina)",vuln:"Publicaciones con ubicación en tiempo real; patrones de rutina identificables.",cons:"Facilita la planificación de un abordaje físico o seguimiento.",nivel:"ALTO"},
+      {risco:"Phishing/ingeniería social dirigida",vuln:"Perfil público de ejecutivo expatriado en contexto de conflicto.",cons:"Compromiso de credenciales corporativas o personales.",nivel:"MEDIO"},
+      {risco:"Dispositivos móviles sin gestión (MDM)",vuln:"Ausencia de gestión centralizada de dispositivos.",cons:"Pérdida de datos sensibles en caso de robo/hurto del equipo.",nivel:"MEDIO"},
+      {risco:"Exposición familiar (escuela, residencia) en línea",vuln:"Información de dirección/rutina familiar disponible públicamente.",cons:"Aumenta la superficie de riesgo para la familia del expatriado.",nivel:"ALTO"}
+    ],
+    note:"La clasificación de probabilidad e impacto sigue la lectura cualitativa del informe original; no representa una escala estadística validada externamente."
+  },
+  digitalCrimes:{
+    h:"Delitos Virtuales y Seguridad Digital",
+    intro:"Esta sección consolida, de forma dedicada y profundizada, todos los hallazgos del informe relacionados con exposición digital, delitos virtuales y vectores de ataque cibernético asociados al programa de expatriación.",
+    sections:[
+      {
+        t:"Vectores de Ataque Identificados",
+        items:[
+          "Exposición de geolocalización en tiempo real vía redes sociales — permite reconstruir rutina y patrones de desplazamiento.",
+          "Ingeniería social dirigida (spear phishing) explotando el perfil público del ejecutivo y el contexto de conflicto en Cerro Negro.",
+          "Compromiso de dispositivos móviles sin gestión corporativa (ausencia de MDM — Mobile Device Management).",
+          "Exposición digital de miembros de la familia (hijos/escuela, residencia) vía redes sociales propias o de terceros."
+        ]
+      },
+      {
+        t:"Consecuencias Potenciales",
+        items:[
+          "Facilitación de un abordaje físico a partir de datos de rutina expuestos en línea.",
+          "Filtración de datos corporativos sensibles en caso de compromiso de dispositivo personal no gestionado.",
+          "Uso de información pública para la construcción de un perfil (doxing) del expatriado o de familiares.",
+          "Ampliación de la exposición reputacional en medio del conflicto regulatorio de Cerro Negro, en caso de filtración de comunicaciones."
+        ]
+      },
+      {
+        t:"Medidas de Mitigación Recomendadas en el Informe",
+        items:[
+          "Baja exposición digital: evitar la publicación de geolocalización en tiempo real y de rutinas reconocibles.",
+          "Adopción de MDM (Mobile Device Management) para dispositivos corporativos y, cuando sea posible, personales usados en contexto profesional.",
+          "Dos medios de comunicación redundantes para contacto en situación de emergencia (reduce la dependencia de un único canal, incluso digital).",
+          "Revisión de configuraciones de privacidad de los perfiles personales del expatriado y de la familia.",
+          "Orientación específica para no compartir información de escuela y residencia en canales públicos."
+        ]
+      }
+    ],
+    gradeTitle:"Nivel de Exposición por Vector",
+    grade:[
+      {v:"Exposición de geolocalización",n:"ALTO"},
+      {v:"Phishing/ingeniería social",n:"MEDIO"},
+      {v:"Dispositivo sin MDM",n:"MEDIO"},
+      {v:"Exposición familiar en línea",n:"ALTO"}
+    ],
+    limitation:"Limitación: el informe original no proporciona datos cuantitativos (volumen, frecuencia) específicos de incidentes de delito virtual contra el programa de expatriación; la lectura anterior es cualitativa, basada en vulnerabilidades identificadas y recomendaciones del propio informe, no en estadísticas de incidentes ocurridos."
+  },
+  recs:{
+    h:"Recomendaciones",
+    groups:[
+      {t:"Protocolo Operacional",items:["Protocolo de inspección formalizado para visitas al sitio.","Transporte al sitio con conductor de la propia operación (no transporte propio ni de terceros no vinculados).","Kit de invierno obligatorio para desplazamientos en la Patagonia."]},
+      {t:"Comunicación y Continuidad",items:["Dos medios de comunicación redundantes en todos los desplazamientos.","Plan de continuidad de negocio documentado para escenarios de interrupción operativa.","Seguro con cobertura de evacuación médica."]},
+      {t:"Movilidad y Exposición",items:["Movilidad segura en AMBA, con atención a patrones de motochorro.","Baja exposición digital (geolocalización, rutina, redes sociales).","Gestión de dispositivos móviles vía MDM."]},
+      {t:"Residencia, Escuela y Proveedores",items:["Medidas de seguridad específicas para la residencia del expatriado.","Evaluación de seguridad de la escuela de los dependientes.","Due diligence de proveedores de servicio con acceso a la familia/residencia."]}
+    ],
+    avoid:["No recomendado: uso de convoy armado u ostensivo.","No recomendado: porte o uso de armamento por parte del expatriado o el equipo.","No recomendado: evasión o confrontación con autoridades en cualquier contexto de inspección o abordaje oficial."],
+    note:"Estas recomendaciones son de naturaleza táctico-estratégica y no sustituyen la evaluación legal, médica ni la orientación directa de autoridades competentes en el momento de un evento real."
+  },
+  incident:{
+    h:"Respuesta a Incidentes — Contactos de Emergencia",
+    contacts:[
+      {n:"911",d:"Emergencia policial general (nacional)."},
+      {n:"107",d:"SAME — Emergencia médica. Confirmar número específico por región/provincia."},
+      {n:"100",d:"Bomberos. Confirmar número específico por región/provincia."}
+    ],
+    flow:["Identificar naturaleza del evento","Contactar línea de emergencia aplicable","Activar plan de continuidad / contacto corporativo","Activar seguro de evacuación si aplica","Registrar y reportar internamente"],
+    note:"Limitación: los números de emergencia médica (SAME) y bomberos pueden variar por región/provincia y deben confirmarse localmente antes de una situación real; el informe original señala esta necesidad de confirmación."
+  },
+  mapRef:{
+    h:"",
+    warn:"",
+    zones:[
+      {t:"CABA (Ciudad de Buenos Aires)",d:"Jurisdicción con datos oficiales de criminalidad citados en el informe (homicidios, robos, hurtos)."},
+      {t:"Zona Norte — Provincia de Buenos Aires",d:"Área de residencia habitual de expatriados; riesgo no equiparable al de CABA."},
+      {t:"AMBA (área metropolitana ampliada)",d:"Engloba CABA y el conurbano; los indicadores socioeconómicos del INDEC se refieren a esta región."},
+      {t:"Cerro Negro — Santa Cruz (Patagonia)",d:"Operación minera; riesgo regulatorio/laboral prioritario; acceso por rutas de larga distancia."}
+    ],
+    note:"Recomendación: para un mapa georreferenciado real, se necesita un archivo GeoJSON/shapefile que cubra específicamente los municipios de CABA, los partidos de la Zona Norte de Buenos Aires y el departamento de Deseado (Santa Cruz), donde se ubica Cerro Negro."
+  },
+  sources:{
+    h:"Fuentes y Limitaciones",
+    sources:[
+      "Informe de inteligencia de riesgo interno, fechado el 13/11/2026 (documento confidencial proporcionado por el usuario).",
+      "INDEC — indicadores de pobreza, indigencia y desempleo, 1er semestre de 2026.",
+      "Datos oficiales de criminalidad de CABA citados en el informe (homicidios, robos, hurtos).",
+      "UFECO — datos sobre secuestros extorsivos, 2025 (citados en el informe; pendientes de confirmación en la fuente primaria)."
+    ],
+    limitations:[
+      "El informe distingue hechos, estimaciones y juicios analíticos; esta distinción fue preservada en esta lectura.",
+      "Seguro médico obligatorio para el ingreso al país: clasificado como probable, pero no confirmado en el informe original.",
+      "OSAC (Overseas Security Advisory Council): mencionado como fuente existente, pero su contenido no fue consultado para este informe.",
+      "Anuario de seguridad de la CAEM (Cámara Argentina de Empresarios Mineros): no fue recuperado para este análisis.",
+      "Los datos de UFECO sobre secuestros extorsivos (14 casos, 9 vinculados a crimen organizado) deben confirmarse en el informe original antes de usarse en una decisión formal.",
+      "Este panel no sustituye la asesoría legal, médica ni la orientación directa de autoridades competentes.",
+      "El archivo geográfico enviado por el usuario no cubre AMBA ni Santa Cruz, lo que impide generar un mapa georreferenciado real para este informe."
+    ]
+  }
+},
+
+en:{
+  title:"Risk Intelligence Dashboard — Newmont Argentina",
+  sub:"Analysis as of 11/13/2026 · Reassessment scheduled by 02/11/2027 · Classification: Confidential",
+  tabs:["Executive Summary","Risk Panorama (AMBA)","Cerro Negro","Reference Map","Risk Matrix","Virtual Crimes","Recommendations","Incident Response","Sources & Limitations"],
+  footer:"Internal use document · Does not replace legal, medical advice or guidance from competent authorities · Generated from risk intelligence report dated 11/13/2026",
+  overview:{
+    h:"Executive Summary",
+    kpis:[
+      {v:"HIGH",l:"Priority risk — Cerro Negro"},
+      {v:"3.6/100k",l:"Argentina homicide rate (2025)"},
+      {v:"32.3%",l:"AMBA poverty (INDEC H1 2026)"},
+      {v:"14",l:"Extortive kidnappings UFECO (2025)"}
+    ],
+    text:[
+      "Observed fact: the report identifies the ongoing regulatory, labor and reputational conflict at the Cerro Negro operation (Santa Cruz) as the priority risk, stemming from the 09/11–14/2026 event.",
+      "Observed fact: the 09/14/2026 meeting between Governor Claudio Vidal and Newmont representatives (David Meador) established a dialogue agenda but did not close the open administrative proceedings.",
+      "Analytical interpretation: the combination of regulatory pressure, union exposure and political spotlight suggests the Cerro Negro risk is structural, not isolated — it is likely to remain active until the 02/11/2027 reassessment.",
+      "Strategic implication: leadership should treat Cerro Negro as a permanent item on the risk agenda, with continuous monitoring, rather than a closed incident."
+    ],
+    secondary:[
+      "Observed fact: AMBA socioeconomic indicators (poverty 32.3%, extreme poverty 7.5%, unemployment 7.9% — INDEC, H1 2026) form the backdrop for common-crime risk in the metropolitan region.",
+      "Observed fact: the national homicide rate was 3.6 per 100,000 inhabitants in 2025; CABA recorded 78 homicides (rate of 2.5/100,000).",
+      "Limitation: the Northern Zone of Buenos Aires Province should not be equated with the City's homicide rate — CABA data does not represent the entire metropolitan region."
+    ]
+  },
+  panorama:{
+    h:"Risk Panorama — AMBA",
+    cards:[
+      {t:"Socioeconomic Indicators (INDEC, H1 2026)",items:["Poverty: 32.3%","Extreme poverty: 7.5%","Unemployment: 7.9%"]},
+      {t:"Crime — CABA (official data)",items:["78 homicides · rate 2.5/100k","50,069 total robberies","5,587 motorcycle-based robberies","5,566 armed robberies","524 vehicle thefts","49,641 thefts"]},
+      {t:"National Rate",items:["Homicides: 3.6 per 100,000 inhabitants (2025)"]},
+      {t:"Extortive Kidnappings (UFECO, 2025)",items:["14 cases recorded","9 linked to organized crime","Figure pending confirmation in the original report"]}
+    ],
+    note:"Relevant limitation: the Northern Zone of Buenos Aires Province (typical expatriate residence area) should not be equated with the crime rate of the Autonomous City of Buenos Aires. CABA data reflects only the City's jurisdiction.",
+    insight:"Analytical interpretation: the dominant risk in AMBA is opportunistic crime against mobility (motorcycle-based robbery, vehicle theft) rather than targeted lethal violence — the homicide rate is moderate by regional standards. Strategic implication: mitigation priority should focus on secure mobility and low exposure, not armed protection."
+  },
+  cerroNegro:{
+    h:"Cerro Negro (Santa Cruz)",
+    timelineTitle:"Event Timeline (09/11–14/2026)",
+    timeline:[
+      {d:"09/11/2026",e:"Start of regulatory inspections at the operation."},
+      {d:"09/11–14/2026",e:"Six work stoppages; preventive closure of eight operational sectors."},
+      {d:"—",e:"Partial shutdown and demobilization of the operation."},
+      {d:"—",e:"Entry of teams/authorities under court order."},
+      {d:"09/14/2026",e:"Meeting between Governor Claudio Vidal and Newmont (David Meador) — establishes dialogue agenda."}
+    ],
+    status:[
+      "Observed fact: the administrative proceedings opened during the event were not closed by the 09/14 meeting.",
+      "Analytical interpretation: the persistence of these proceedings indicates the regulatory process remains ongoing and may generate further developments before the 02/11/2027 reassessment.",
+      "Strategic implication: travel and extended stays on site should account for the risk of further operational interruptions, access restrictions, or routine reconfiguration stemming from regulatory action."
+    ],
+    geo:[
+      "Medical evacuation and road travel risk in Patagonia: long distances, severe weather conditions, dependence on few routes.",
+      "Direct report recommendation: use of winter kit and transport with an operation-provided driver for site travel."
+    ]
+  },
+  matrix:{
+    h:"Risk Matrix",
+    physicalTitle:"Physical Risks (R1–R10)",
+    physical:[
+      {id:"R1",risco:"Regulatory/labor conflict — Cerro Negro",prob:"High",imp:"High",nivel:"HIGH",detalhe:"Open proceedings; shutdown already occurred."},
+      {id:"R2",risco:"Motorcycle-based robbery — AMBA",prob:"High",imp:"Medium",nivel:"HIGH",detalhe:"5,587 cases recorded in CABA; high frequency."},
+      {id:"R3",risco:"Traffic accident — AMBA",prob:"Medium",imp:"Medium",nivel:"MEDIUM",detalhe:"High urban traffic volume and intense mobility."},
+      {id:"R4",risco:"Armed robbery — AMBA",prob:"Medium",imp:"High",nivel:"HIGH",detalhe:"5,566 cases recorded in CABA."},
+      {id:"R5",risco:"Theft (non-violent) — AMBA",prob:"High",imp:"Low",nivel:"MEDIUM",detalhe:"49,641 cases recorded; high volume, low individual impact."},
+      {id:"R6",risco:"Vehicle theft — AMBA",prob:"Low",imp:"Medium",nivel:"MEDIUM",detalhe:"524 cases recorded; lower relative frequency."},
+      {id:"R7",risco:"Extortive kidnapping",prob:"Low",imp:"High",nivel:"MEDIUM",detalhe:"14 cases in 2025 (UFECO); 9 linked to organized crime."},
+      {id:"R8",risco:"Medical evacuation — Patagonia/Cerro Negro",prob:"Medium",imp:"High",nivel:"HIGH",detalhe:"Long distances, severe weather, few available routes."},
+      {id:"R9",risco:"Public/media exposure — expatriate leadership",prob:"Medium",imp:"Medium",nivel:"MEDIUM",detalhe:"Sensitive political context in Santa Cruz."},
+      {id:"R10",risco:"Operational continuity interruption",prob:"Medium",imp:"High",nivel:"HIGH",detalhe:"Resulting from new regulatory or union action."}
+    ],
+    digitalTitle:"Digital Risks",
+    digital:[
+      {risco:"Social media exposure (geolocation, routine)",vuln:"Real-time location posts; identifiable routine patterns.",cons:"Facilitates planning of physical approach or stalking.",nivel:"HIGH"},
+      {risco:"Targeted phishing/social engineering",vuln:"Public profile of an expatriate executive amid conflict context.",cons:"Compromise of corporate or personal credentials.",nivel:"MEDIUM"},
+      {risco:"Unmanaged mobile devices (no MDM)",vuln:"Absence of centralized device management.",cons:"Loss of sensitive data if device is stolen/lost.",nivel:"MEDIUM"},
+      {risco:"Family exposure (school, residence) online",vuln:"Family address/routine information publicly available.",cons:"Increases risk surface for the expatriate's family.",nivel:"HIGH"}
+    ],
+    note:"Probability and impact classification follows the qualitative reading of the original report; it does not represent an externally validated statistical scale."
+  },
+  digitalCrimes:{
+    h:"Virtual Crimes and Digital Security",
+    intro:"This section consolidates, in a dedicated and in-depth manner, all report findings related to digital exposure, virtual crimes and cyberattack vectors associated with the expatriation program.",
+    sections:[
+      {
+        t:"Identified Attack Vectors",
+        items:[
+          "Real-time geolocation exposure via social media — enables reconstruction of routine and movement patterns.",
+          "Targeted social engineering (spear phishing) exploiting the executive's public profile and the Cerro Negro conflict context.",
+          "Compromise of mobile devices without corporate management (absence of MDM — Mobile Device Management).",
+          "Digital exposure of family members (children/school, residence) via personal or third-party social media."
+        ]
+      },
+      {
+        t:"Potential Consequences",
+        items:[
+          "Facilitation of a physical approach based on routine data exposed online.",
+          "Leakage of sensitive corporate data if an unmanaged personal device is compromised.",
+          "Use of public information to build a profile (doxing) of the expatriate or family members.",
+          "Expansion of reputational exposure amid the Cerro Negro regulatory conflict, should communications be leaked."
+        ]
+      },
+      {
+        t:"Mitigation Measures Recommended in the Report",
+        items:[
+          "Low digital exposure: avoid posting real-time geolocation and recognizable routines.",
+          "Adoption of MDM (Mobile Device Management) for corporate devices and, where possible, personal devices used in a professional context.",
+          "Two redundant communication channels for emergency contact (reduces dependence on a single channel, including digital).",
+          "Review of privacy settings for the expatriate's and family's personal profiles.",
+          "Specific guidance not to share school and residence information on public channels."
+        ]
+      }
+    ],
+    gradeTitle:"Exposure Level by Vector",
+    grade:[
+      {v:"Geolocation exposure",n:"HIGH"},
+      {v:"Phishing/social engineering",n:"MEDIUM"},
+      {v:"Device without MDM",n:"MEDIUM"},
+      {v:"Online family exposure",n:"HIGH"}
+    ],
+    limitation:"Limitation: the original report does not provide specific quantitative data (volume, frequency) on virtual crime incidents against the expatriation program; the above reading is qualitative, based on identified vulnerabilities and the report's own recommendations, not on statistics of incidents that occurred."
+  },
+  recs:{
+    h:"Recommendations",
+    groups:[
+      {t:"Operational Protocol",items:["Formalized inspection protocol for site visits.","Site transport with an operation-provided driver (not personal or unaffiliated third-party transport).","Mandatory winter kit for travel in Patagonia."]},
+      {t:"Communication & Continuity",items:["Two redundant communication channels on all trips.","Documented business continuity plan for operational interruption scenarios.","Insurance with medical evacuation coverage."]},
+      {t:"Mobility & Exposure",items:["Secure mobility in AMBA, with attention to motorcycle-based robbery patterns.","Low digital exposure (geolocation, routine, social media).","Mobile device management via MDM."]},
+      {t:"Residence, School & Service Providers",items:["Specific security measures for the expatriate's residence.","Security assessment of dependents' school.","Due diligence on service providers with access to family/residence."]}
+    ],
+    avoid:["Not recommended: use of armed or ostentatious convoy.","Not recommended: carrying or use of weapons by the expatriate or team.","Not recommended: evasion or confrontation with authorities in any inspection or official approach context."],
+    note:"These recommendations are tactical-strategic in nature and do not replace legal, medical evaluation or direct guidance from competent authorities at the time of an actual event."
+  },
+  incident:{
+    h:"Incident Response — Emergency Contacts",
+    contacts:[
+      {n:"911",d:"General police emergency (national)."},
+      {n:"107",d:"SAME — Medical emergency. Confirm specific number by region/province."},
+      {n:"100",d:"Fire department. Confirm specific number by region/province."}
+    ],
+    flow:["Identify nature of the event","Contact applicable emergency line","Activate continuity plan / corporate contact","Activate evacuation insurance if applicable","Record and report internally"],
+    note:"Limitation: medical emergency (SAME) and fire department numbers may vary by region/province and should be confirmed locally before an actual situation; the original report flags this need for confirmation."
+  },
+  mapRef:{
+    h:"",
+    warn:"",
+    zones:[
+      {t:"CABA (City of Buenos Aires)",d:"Jurisdiction with official crime data cited in the report (homicides, robberies, thefts)."},
+      {t:"Northern Zone — Buenos Aires Province",d:"Typical expatriate residence area; risk not equivalent to CABA's."},
+      {t:"AMBA (broader metropolitan area)",d:"Encompasses CABA and the conurbano; INDEC socioeconomic indicators refer to this region."},
+      {t:"Cerro Negro — Santa Cruz (Patagonia)",d:"Mining operation; priority regulatory/labor risk; access via long-distance roads."}
+    ],
+    note:"Recommendation: an actual georeferenced map would require a GeoJSON/shapefile specifically covering CABA municipalities, Northern Zone districts of Buenos Aires, and the Deseado department (Santa Cruz), where Cerro Negro is located."
+  },
+  sources:{
+    h:"Sources & Limitations",
+    sources:[
+      "Internal risk intelligence report, dated 11/13/2026 (confidential document provided by the user).",
+      "INDEC — poverty, extreme poverty and unemployment indicators, H1 2026.",
+      "Official CABA crime data cited in the report (homicides, robberies, thefts).",
+      "UFECO — extortive kidnapping data, 2025 (cited in the report; pending confirmation at the primary source)."
+    ],
+    limitations:[
+      "The report distinguishes facts, estimates and analytical judgments; this distinction has been preserved in this reading.",
+      "Mandatory medical insurance for country entry: classified as likely, but not confirmed in the original report.",
+      "OSAC (Overseas Security Advisory Council): mentioned as an existing source, but its content was not consulted for this report.",
+      "CAEM (Cámara Argentina de Empresarios Mineros) security yearbook: not retrieved for this analysis.",
+      "UFECO extortive kidnapping data (14 cases, 9 linked to organized crime) must be confirmed in the original report before use in a formal decision.",
+      "This dashboard does not replace legal, medical advice or direct guidance from competent authorities.",
+      "The geographic file sent by the user does not cover AMBA or Santa Cruz, preventing generation of an actual georeferenced map for this report."
+    ]
+  }
+}
+};
+
+let currentLang = 'pt';
+const tabKeys = ['overview','panorama','cerroNegro','mapRef','matrix','digitalCrimes','recs','incident','sources'];
+
+function levelClass(n){
+  if(!n) return 'b-med';
+  const s=n.toUpperCase();
+  if(s.includes('ALT')||s.includes('HIGH')) return 'b-high';
+  if(s.includes('BAJ')||s.includes('BAIX')||s.includes('LOW')) return 'b-low';
+  return 'b-med';
+}
+
+function renderOverview(d){
+  return `<h2 class="section-title">${d.h}</h2>
+  <div class="grid grid-4">${d.kpis.map(k=>`<div class="card kpi"><div class="val">${k.v}</div><div class="lab">${k.l}</div></div>`).join('')}</div>
+  <div class="divider"></div>
+  <div class="grid grid-2">
+    <div class="card gold-border"><h3>Cerro Negro</h3><ul>${d.text.map(t=>`<li>${t}</li>`).join('')}</ul></div>
+    <div class="card gold-border"><h3>AMBA</h3><ul>${d.secondary.map(t=>`<li>${t}</li>`).join('')}</ul></div>
+  </div>`;
+}
+
+function renderPanorama(d){
+  return `<h2 class="section-title">${d.h}</h2>
+  <div class="grid grid-4">${d.cards.map(c=>`<div class="card"><h3>${c.t}</h3><ul>${c.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('')}</div>
+  <div class="card gold-border" style="margin-top:14px;">${d.insight}</div>
+  <div class="note">${d.note}</div>`;
+}
+
+function renderCerroNegro(d){
+  return `<h2 class="section-title">${d.h}</h2>
+  <div class="card"><h3>${d.timelineTitle}</h3>
+  <div class="flow">${d.timeline.map((t,i)=>`<div class="step"><b>${t.d}</b> — ${t.e}</div>${i<d.timeline.length-1?'<span class="arrow">→</span>':''}`).join('')}</div></div>
+  <div class="divider"></div>
+  <div class="grid grid-2">
+    <div class="card gold-border"><h3>Status</h3><ul>${d.status.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+    <div class="card gold-border"><h3>Geografia/Logística</h3><ul>${d.geo.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+  </div>`;
+}
+
+function renderMatrix(d){
+  const rows = d.physical.map(r=>`<tr><td>${r.id}</td><td>${r.risco}</td><td>${r.prob}</td><td>${r.imp}</td><td><span class="badge ${levelClass(r.nivel)}">${r.nivel}</span></td><td>${r.detalhe}</td></tr>`).join('');
+  const drows = d.digital.map(r=>`<tr><td>${r.risco}</td><td>${r.vuln}</td><td>${r.cons}</td><td><span class="badge ${levelClass(r.nivel)}">${r.nivel}</span></td></tr>`).join('');
+  return `<h2 class="section-title">${d.h}</h2>
+  <h3>${d.physicalTitle}</h3>
+  <div class="card"><table><thead><tr><th>ID</th><th>Risco</th><th>Prob.</th><th>Imp.</th><th>Nível</th><th>Detalhe</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <div class="divider"></div>
+  <h3>${d.digitalTitle}</h3>
+  <div class="card"><table><thead><tr><th>Risco</th><th>Vulnerabilidade</th><th>Consequência</th><th>Nível</th></tr></thead><tbody>${drows}</tbody></table></div>
+  <div class="note">${d.note}</div>`;
+}
+
+function renderDigitalCrimes(d){
+  return `<h2 class="section-title">${d.h}</h2>
+  <div class="card gold-border">${d.intro}</div>
+  <div class="divider"></div>
+  <div class="grid grid-3">${d.sections.map(s=>`<div class="card"><h3>${s.t}</h3><ul>${s.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('')}</div>
+  <div class="divider"></div>
+  <h3>${d.gradeTitle}</h3>
+  <div class="grid grid-4">${d.grade.map(g=>`<div class="card"><div style="font-size:.82rem;margin-bottom:8px;">${g.v}</div><span class="badge ${levelClass(g.n)}">${g.n}</span></div>`).join('')}</div>
+  <div class="note">${d.limitation}</div>`;
+}
+
+function renderRecs(d){
+  return `<h2 class="section-title">${d.h}</h2>
+  <div class="grid grid-2">${d.groups.map(g=>`<div class="card"><h3>${g.t}</h3><ul>${g.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('')}</div>
+  <div class="divider"></div>
+  <div class="card" style="border-color:var(--red);"><h3 style="color:var(--red);">⚠</h3><ul>${d.avoid.map(a=>`<li>${a}</li>`).join('')}</ul></div>
+  <div class="note">${d.note}</div>`;
+}
+
+function renderIncident(d){
+  return `<h2 class="section-title">${d.h}</h2>
+  <div class="grid grid-3">${d.contacts.map(c=>`<div class="card kpi"><div class="val">${c.n}</div><div class="lab">${c.d}</div></div>`).join('')}</div>
+  <div class="divider"></div>
+  <div class="card"><div class="flow">${d.flow.map((f,i)=>`<div class="step">${i+1}. ${f}</div>${i<d.flow.length-1?'<span class="arrow">→</span>':''}`).join('')}</div></div>
+  <div class="note">${d.note}</div>`;
+}
+
+function renderMapRef(d){
+  const maps = [
+    {q:"Greater+Buenos+Aires,+Argentina", t:"AMBA — Área Metropolitana de Buenos Aires"},
+    {q:"Palermo,+Recoleta,+Belgrano,+Puerto+Madero,+Buenos+Aires", t:"CABA — Palermo, Recoleta, Belgrano, Puerto Madero"},
+    {q:"Vicente+Lopez+and+San+Isidro,+Buenos+Aires,+Argentina", t:"Zona Norte GBA — Vicente López e San Isidro"},
+    {q:"Tigre+and+Pilar,+Buenos+Aires,+Argentina", t:"Zona Norte GBA — Tigre e Pilar"},
+    {q:"Ministro+Pistarini+International+Airport,+Ezeiza,+Argentina", t:"Aeroporto Internacional de Ezeiza"},
+    {q:"Aeroparque+Jorge+Newbery,+Buenos+Aires", t:"Aeroparque Jorge Newbery"},
+    {q:"Perito+Moreno,+Santa+Cruz,+Argentina", t:"Perito Moreno — Santa Cruz"},
+    {q:"Ruta+Nacional+40,+Santa+Cruz,+Argentina", t:"RN 40 — acesso à área de Cerro Negro"},
+    {q:"Cerro+Negro+Mine,+Santa+Cruz,+Argentina", t:"Mina Cerro Negro — Santa Cruz"}
+  ];
+  return `<div class="grid grid-2" style="margin-bottom:14px;">
+  ${maps.map(m=>`<div class="card" style="padding:0;overflow:hidden;">
+    <div style="padding:10px 12px;font-size:.74rem;color:var(--gold2);font-weight:700;background:#101216;border-bottom:1px solid var(--border);">${m.t}</div>
+    <iframe title="${m.t}" src="https://www.google.com/maps?q=${m.q}&output=embed" width="100%" height="420" style="border:0;display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>`).join('')}
+  </div>
+  <div class="zone-map">${d.zones.map(z=>`<div class="zone-box"><div class="zt">${z.t}</div><div class="zd">${z.d}</div></div>`).join('')}</div>
+  <div class="note">${d.note}</div>`;
+}
+
+function renderSources(d){
+  return `<h2 class="section-title">${d.h}</h2>
+  <div class="grid grid-2">
+    <div class="card"><h3>Fontes</h3><ul>${d.sources.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+    <div class="card gold-border"><h3>Limitações</h3><ul>${d.limitations.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+  </div>`;
+}
+
+const renderers = [renderOverview,renderPanorama,renderCerroNegro,renderMapRef,renderMatrix,renderDigitalCrimes,renderRecs,renderIncident,renderSources];
+
+function render(){
+  const data = L[currentLang];
+  document.getElementById('h-title').textContent = data.title;
+  document.getElementById('h-sub').textContent = data.sub;
+  document.getElementById('footerText').textContent = data.footer;
+  document.documentElement.lang = currentLang==='pt'?'pt-BR':currentLang;
+
+  const nav = document.getElementById('navTabs');
+  nav.innerHTML = data.tabs.map((t,i)=>`<button data-idx="${i}" class="${i===activeTab?'active':''}">${t}</button>`).join('');
+
+  const main = document.getElementById('mainContent');
+  main.innerHTML = tabKeys.map((k,i)=>`<div class="page ${i===activeTab?'active':''}" id="page-${i}">${renderers[i](data[k])}</div>`).join('');
+
+  nav.querySelectorAll('button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      activeTab = parseInt(b.dataset.idx);
+      render();
+    });
+  });
+}
+
+let activeTab = 0;
+
+document.querySelectorAll('.lang-switch button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    currentLang = b.dataset.lang;
+    document.querySelectorAll('.lang-switch button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>

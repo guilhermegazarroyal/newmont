@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório de Inteligência de Risco — Newmont Argentina</title>
+<style>
+  :root{
+    --bg0:#000000; --bg1:#0a0a0a; --bg2:#141414; --bg3:#1d1d1d;
+    --yellow1:#FFD400; --yellow2:#E6B800; --yellow3:#8f7200; --yellow-dim:#3a3000;
+    --white:#FFFFFF; --gray:#b9b9b9;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:linear-gradient(180deg,var(--bg0),var(--bg1) 40%,var(--bg0));
+    color:var(--white); font-family:'Segoe UI',Arial,sans-serif; line-height:1.5;
+  }
+  #container{max-width:1180px;margin:0 auto;padding:0 20px 60px;}
+  .lang-bar{
+    display:flex; justify-content:flex-end; gap:8px; padding:14px 20px;
+    background:var(--bg0); border-bottom:2px solid var(--yellow1);
+    position:sticky; top:0; z-index:50;
+  }
+  .lang-bar button{
+    background:var(--bg2); color:var(--white); border:1px solid var(--yellow3);
+    padding:6px 14px; border-radius:20px; cursor:pointer; font-weight:600; font-size:13px;
+  }
+  .lang-bar button.active{background:var(--yellow1); color:#000; border-color:var(--yellow1);}
+  .top-bar{
+    background:var(--yellow1); color:#000; text-align:center; padding:6px;
+    font-weight:800; letter-spacing:1px; font-size:12px; margin:0 -20px;
+  }
+  header{padding:30px 0 10px;}
+  h1{
+    font-size:38px; font-weight:800; margin:0 0 6px;
+    background:linear-gradient(90deg,var(--yellow1),var(--yellow2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .subtitle{color:var(--gray); font-size:15px; margin:0 0 4px;}
+  .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;}
+  .meta span{
+    background:var(--bg2); border:1px solid var(--yellow3); border-radius:8px;
+    padding:6px 12px; font-size:12.5px; color:var(--gray);
+  }
+  .meta b{color:var(--yellow1);}
+  section{margin-top:46px;}
+  .section-head{display:flex; gap:16px; align-items:flex-start; margin-bottom:18px;}
+  .section-num{
+    font-size:44px; font-weight:800; color:var(--yellow-dim);
+    -webkit-text-stroke:1px var(--yellow2); line-height:1;
+  }
+  .section-head h2{margin:0 0 4px; font-size:26px; color:var(--yellow1);}
+  .section-head p{margin:0; color:var(--gray); font-size:14px;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .grid3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px;}
+  .card{
+    background:var(--bg2); border:1px solid var(--yellow3); border-radius:12px;
+    padding:20px; box-shadow:0 4px 14px rgba(0,0,0,.5);
+  }
+  .card h3{color:var(--yellow1); margin:0 0 12px; font-size:16px; border-bottom:1px solid var(--yellow-dim); padding-bottom:8px;}
+  .card ul{margin:0; padding-left:18px; font-size:13.5px; color:var(--white);}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--yellow1);}
+  .pill{
+    display:inline-block; background:var(--yellow-dim); color:var(--yellow1);
+    border:1px solid var(--yellow3); border-radius:6px; padding:2px 8px;
+    font-size:11px; font-weight:700; margin-right:6px;
+  }
+  .callout{
+    border-left:4px solid var(--yellow1); background:var(--bg3);
+    padding:14px 18px; border-radius:8px; font-size:13.5px; margin-top:14px;
+  }
+  table{width:100%; border-collapse:collapse; font-size:12.8px; margin-top:10px;}
+  th{background:var(--yellow-dim); color:var(--yellow1); text-align:left; padding:8px; border:1px solid var(--yellow3);}
+  td{padding:8px; border:1px solid #2a2a2a; color:var(--white);}
+  tr:nth-child(even) td{background:#111;}
+  .badge-alto{color:#000; background:var(--yellow1); font-weight:700; padding:2px 8px; border-radius:6px; font-size:11px;}
+  .badge-medio{color:var(--yellow1); background:#2a2300; font-weight:700; padding:2px 8px; border-radius:6px; font-size:11px; border:1px solid var(--yellow3);}
+  .confianca{font-size:11px; color:#888;}
+  .flow{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+  .flow div{
+    flex:1; min-width:140px; background:var(--bg3); border:1px solid var(--yellow3);
+    border-radius:10px; padding:12px; text-align:center; font-size:12.5px;
+  }
+  .flow .n{color:var(--yellow1); font-weight:800; display:block; font-size:18px;}
+  footer{margin-top:50px; border-top:1px solid var(--yellow-dim); padding-top:16px; color:#888; font-size:12px;}
+  @media(max-width:768px){
+    .grid2,.grid3{grid-template-columns:1fr;}
+    h1{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+<div class="lang-bar">
+  <button class="active" onclick="setLang('pt')">PT-BR</button>
+  <button onclick="setLang('en')">EN</button>
+  <button onclick="setLang('es')">ES</button>
+</div>
+
+<div id="container">
+  <div class="top-bar" data-i18n="tag">RELATÓRIO DE INTELIGÊNCIA DE RISCO · USO INTERNO CORPORATIVO</div>
+  <header>
+    <h1 data-i18n="title">Programa de Expatriação — Newmont na Argentina</h1>
+    <p class="subtitle" data-i18n="subtitle">Setor de mineração de ouro e prata — AMBA e Cerro Negro (Santa Cruz)</p>
+    <div class="meta">
+      <span data-i18n="meta1"><b>Data da análise:</b> 13 de novembro de 2026</span>
+      <span data-i18n="meta2"><b>Validade:</b> Reavaliar em 90 dias (até 11/02/2027)</span>
+      <span data-i18n="meta3"><b>Elaboração:</b> Security Specialist — Royal American Group</span>
+    </div>
+  </header>
+
+  <!-- SEÇÃO 1 -->
+  <section id="s1">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <div>
+        <h2 data-i18n="s1_title">Premissas, Escopo e Enquadramento</h2>
+        <p data-i18n="s1_sub">O que este relatório assume, o que não faz e quais instituições regem o caso</p>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3 data-i18n="s1_c1_h">Premissas de Trabalho</h3>
+        <ul id="s1_c1_list"></ul>
+      </div>
+      <div class="card">
+        <h3 data-i18n="s1_c2_h">O que este relatório NÃO faz</h3>
+        <ul id="s1_c2_list"></ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3 data-i18n="s1_c3_h">Enquadramento Institucional e Normativo Argentino</h3>
+      <ul id="s1_c3_list" style="column-count:2;column-gap:30px;"></ul>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 2 -->
+  <section id="s2">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <div>
+        <h2 data-i18n="s2_title">Panorama do Contexto</h2>
+        <p data-i18n="s2_sub">Onde o risco realmente está: crime, economia e o conflito setorial em Cerro Negro</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 data-i18n="s2_a_h">2.1 — As quatro camadas de risco</h3>
+      <div class="grid2" style="margin-top:4px;">
+        <div class="callout" id="s2_a1"></div>
+        <div class="callout" id="s2_a2"></div>
+      </div>
+      <div class="grid2" style="margin-top:14px;">
+        <div class="callout" id="s2_a3"></div>
+        <div class="callout" id="s2_a4"></div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:18px;">
+      <div class="card">
+        <h3 data-i18n="s2_b_h">2.2 — Criminalidade nacional (SNIC, 2025)</h3>
+        <p id="s2_b_p" style="font-size:13.5px;"></p>
+        <div class="flow">
+          <div><span class="n">3,6</span><span data-i18n="s2_b_f1">por 100 mil hab. (homicídios, nacional)</span></div>
+          <div><span class="n">-7,3%</span><span data-i18n="s2_b_f2">vs 2024</span></div>
+          <div><span class="n">-18,5%</span><span data-i18n="s2_b_f3">vs 2023</span></div>
+          <div><span class="n">-14,8%</span><span data-i18n="s2_b_f4">vs 2022</span></div>
+        </div>
+        <p class="confianca" data-i18n="s2_b_conf">Confiança: alta (órgão produtor do dado — Ministerio de Seguridad de la Nación).</p>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="s2_c_h">2.2 — CABA: Mapa del Delito 2025</h3>
+        <table>
+          <tr><th data-i18n="th_ind">Indicador</th><th data-i18n="th_val">2025</th><th data-i18n="th_var">Variação</th></tr>
+          <tr><td data-i18n="r1_a">Homicídios dolosos</td><td>78</td><td>-3% vs 2024</td></tr>
+          <tr><td data-i18n="r2_a">Taxa por 100 mil</td><td>2,5</td><td>—</td></tr>
+          <tr><td data-i18n="r3_a">Roubos totais</td><td>50.069</td><td>-27%</td></tr>
+          <tr><td data-i18n="r4_a">Roubos com moto</td><td>5.587</td><td>-3%</td></tr>
+          <tr><td data-i18n="r5_a">Roubos com arma</td><td>5.566</td><td>-34%</td></tr>
+          <tr><td data-i18n="r6_a">Roubo de veículo</td><td>524</td><td>-54%</td></tr>
+          <tr><td data-i18n="r7_a">Furtos</td><td>49.641</td><td>-21%</td></tr>
+        </table>
+        <p class="confianca" data-i18n="s2_c_conf">Fontes cruzadas: Infobae, Clarín, Buenos Aires Times, Radio Fueguina (fev–mai 2026). Confiança alta nos totais.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px;">
+      <h3 data-i18n="s2_d_h">2.2 — Causas dos 78 homicídios (CABA 2025)</h3>
+      <div class="flow">
+        <div><span class="n">27%</span><span data-i18n="s2_d1">Rixa ou vingança (21 casos)</span></div>
+        <div><span class="n">18%</span><span data-i18n="s2_d2">Ligados a roubo (14 casos)</span></div>
+        <div><span class="n">13%</span><span data-i18n="s2_d3">Conflito intrafamiliar (10 casos)</span></div>
+        <div><span class="n">10%</span><span data-i18n="s2_d4">Feminicídios (8 casos)</span></div>
+      </div>
+      <div class="callout" style="margin-top:12px;" data-i18n="s2_d_note">A maioria dos homicídios não é "assalto a estrangeiro"; apenas 18% decorrem de roubo. 24 ocorreram em áreas vulneráveis e 54 no restante da cidade — o risco não se limita às villas, mas elas concentram risco desproporcional.</div>
+    </div>
+
+    <div class="grid2" style="margin-top:18px;">
+      <div class="card">
+        <h3 data-i18n="s2_e_h">Sequestro extorsivo (UFECO, 2025)</h3>
+        <div class="flow">
+          <div><span class="n">14</span><span data-i18n="s2_e1">casos no país — menor número da década</span></div>
+          <div><span class="n">64%</span><span data-i18n="s2_e2">(9 de 14) vinculados a crime organizado</span></div>
+        </div>
+        <p style="font-size:13px;margin-top:10px;" data-i18n="s2_e3">Distribuição: 5 Província de Buenos Aires, 4 Ciudad, 3 Córdoba, 1 Salta, 1 Misiones. Série histórica: 294 (2015) → 14 (2025), queda constante.</p>
+        <p class="confianca" data-i18n="s2_e_conf">Confiança média-alta — cobertura jornalística do relatório UFECO, não leitura integral do documento.</p>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="s2_f_h">Golpe com droga incapacitante</h3>
+        <p style="font-size:13.5px;" data-i18n="s2_f1">Embaixada dos EUA (12/mar/2025) alertou para aumento de roubos com substâncias incapacitantes em bares, casas noturnas e aplicativos de encontros.</p>
+        <ul style="font-size:13px;">
+          <li data-i18n="s2_f2">Não deixar a bebida sem vigilância</li>
+          <li data-i18n="s2_f3">Não aceitar bebidas de desconhecidos</li>
+          <li data-i18n="s2_f4">Não levar desconhecidos ao hotel</li>
+          <li data-i18n="s2_f5">Ligar para o 911 em caso de suspeita</li>
+        </ul>
+        <p class="confianca" data-i18n="s2_f_conf">Alerta com ~20 meses; sem boletim de 2026 que reconfirme volume.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px;">
+      <h3 data-i18n="s2_g_h">2.3 — Economia e clima político (INDEC, 1º semestre 2026)</h3>
+      <div class="flow">
+        <div><span class="n">32,3%</span><span data-i18n="s2_g1">Pobreza (~15 milhões) — alta de 4,1 p.p.</span></div>
+        <div><span class="n">7,5%</span><span data-i18n="s2_g2">Indigência (~3,5 milhões)</span></div>
+        <div><span class="n">7,9%</span><span data-i18n="s2_g3">Desemprego 2º trim. — maior desde 2021</span></div>
+        <div><span class="n">+11,5%</span><span data-i18n="s2_g4">Renda per capita vs. +20% na cesta básica</span></div>
+      </div>
+      <div class="callout" style="margin-top:12px;" data-i18n="s2_g_note">A alta da pobreza reabre espaço para crime oportunista no conurbano e para pressão política por emprego local — o "Súper RIGI" já é alvo de protesto em Buenos Aires (YAC News, 8/set/2026, confiança baixa-média).</div>
+    </div>
+
+    <div class="card" style="margin-top:18px;border:1px solid var(--yellow1);">
+      <h3 data-i18n="s2_h_h">2.4 — Cerro Negro: o fato setorial que altera o relatório (11–14/set/2026)</h3>
+      <p style="font-size:13.5px;" data-i18n="s2_h1">Inspeções de Trabajo y Seguridad do Governo de Santa Cruz constataram infrações graves: veículos sem habilitação, falhas em equipamentos de acesso à mina subterrânea e caminhão de combustível a ~300m de profundidade sem revisão obrigatória.</p>
+      <div class="flow">
+        <div><span class="n">6</span><span data-i18n="s2_h2">cessações de tarefa</span></div>
+        <div><span class="n">8</span><span data-i18n="s2_h3">setores com clausura preventiva (Clarín)</span></div>
+        <div><span class="n">14–16</span><span data-i18n="s2_h4">sumários administrativos (declaração oficial)</span></div>
+        <div><span class="n">~50</span><span data-i18n="s2_h5">ônibus de pessoal desmobilizados</span></div>
+        <div><span class="n">2.000+</span><span data-i18n="s2_h6">empregados em situação de alerta</span></div>
+      </div>
+      <p style="font-size:13.5px;margin-top:10px;" data-i18n="s2_h7">O ingresso ao predio exigiu ordem judicial do Juzgado de Instrucción de Las Heras, com presença policial solicitada ao ministro Pedro Prodromos. O secretário de Trabajo, Javier Aravena, afirmou que portões foram fechados com cadeado e veículos escondidos para evitar controle.</p>
+      <p style="font-size:13.5px;" data-i18n="s2_h8">Em 14/set, reunião em Río Gallegos entre governador Claudio Vidal e Newmont (David Meador): acordo de agenda sobre segurança, ambiente, emprego local, provedores, mesa sindical e aplicação da Lei 90/10. A ASIJEMIN pediu paz social e diálogo.</p>
+      <div class="callout" data-i18n="s2_h_note">Não há relato de agressão a expatriados ou atentado. Mas a empresa tornou-se parte de um conflito público com governador, secretário e sindicatos — e um executivo percebido como "o que travou a inspeção" vira peça de comunicação política. O acordo de 14/set é um armistício de agenda, não o fim do contencioso.</div>
+      <p class="confianca" data-i18n="s2_h_conf">Fontes: Prensa Santa Cruz, Clarín, El Patagónico, DataGremial/ASIJEMIN (set/2026). Números de sumários/ônibus/empregados são declarações oficiais reproduzidas pela imprensa — confiança média.</p>
+    </div>
+
+    <div class="card" style="margin-top:18px;">
+      <h3 data-i18n="s2_i_h">2.5 — Geografia operacional do programa</h3>
+      <table>
+        <tr><th data-i18n="th_praca">Praça</th><th data-i18n="th_funcao">Função</th><th data-i18n="th_ambiente">Ambiente de risco dominante</th></tr>
+        <tr><td data-i18n="g1_a">CABA (Palermo, Recoleta, Belgrano, Puerto Madero)</td><td data-i18n="g1_b">Escritório, moradia, vida social</td><td data-i18n="g1_c">Furto, motochorro, golpe em bebida, protesto</td></tr>
+        <tr><td data-i18n="g2_a">Zona norte da Província (San Isidro, Vicente López, Pilar, Tigre)</td><td data-i18n="g2_b">Moradia familiar e escolas</td><td data-i18n="g2_c">Assalto em semáforo/acesso; criminalidade acima da Ciudad</td></tr>
+        <tr><td data-i18n="g3_a">Aeroparque / Ezeiza</td><td data-i18n="g3_b">Rotação</td><td data-i18n="g3_c">Furto de bagagem, abordagem, motorista não credenciado</td></tr>
+        <tr><td data-i18n="g4_a">Perito Moreno, RN 40, acessos a Cerro Negro</td><td data-i18n="g4_b">Ponto de entrada ao site</td><td data-i18n="g4_c">Distância, clima, fauna, comunicação precária, exposição política</td></tr>
+        <tr><td data-i18n="g5_a">Acampamento Cerro Negro</td><td data-i18n="g5_b">Rotação de residentes/visitantes</td><td data-i18n="g5_c">Segurança industrial, controle de acesso, isolamento</td></tr>
+        <tr><td data-i18n="g6_a">San Juan (Veladero e outros)</td><td data-i18n="g6_b">Terceiros — não ativo Newmont</td><td data-i18n="g6_c">Altitude, estrada de montanha, licença social</td></tr>
+        <tr><td data-i18n="g7_a">Rosario</td><td data-i18n="g7_b">Fora do escopo, salvo trânsito</td><td data-i18n="g7_c">Não usar como escala — homicídio 2024 ~2x a média nacional</td></tr>
+      </table>
+    </div>
+
+    <div class="grid2" style="margin-top:18px;">
+      <div class="card">
+        <h3>Mapa — CABA / AMBA</h3>
+        <div style="border-radius:10px;overflow:hidden;border:1px solid var(--yellow3);">
+          <iframe
+            src="https://www.google.com/maps?q=CABA,Buenos+Aires,Argentina&output=embed"
+            width="100%" height="280" style="border:0;display:block;" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Mapa — Cerro Negro / Perito Moreno</h3>
+        <div style="border-radius:10px;overflow:hidden;border:1px solid var(--yellow3);">
+          <iframe
+            src="https://www.google.com/maps?q=Cerro+Negro+Mine,Santa+Cruz,Argentina&output=embed"
+            width="100%" height="280" style="border:0;display:block;" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 3 -->
+  <section id="s3">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <div>
+        <h2 data-i18n="s3_title">Matriz de Riscos (IRAM-ISO 31000)</h2>
+        <p data-i18n="s3_sub">Probabilidade × impacto qualitativos — classificação para priorização de decisão</p>
+      </div>
+    </div>
+    <div class="card">
+      <table>
+        <tr><th data-i18n="th_cod">Risco</th><th data-i18n="th_desc">Descrição</th><th data-i18n="th_prob">Probabilidade</th><th data-i18n="th_imp">Impacto</th><th data-i18n="th_class">Classificação</th></tr>
+        <tr><td>R1</td><td data-i18n="r1_d">Roubo/assalto em trânsito e moto (AMBA)</td><td data-i18n="p_alta">Alta</td><td data-i18n="i_media">Médio</td><td><span class="badge-alto" data-i18n="cl_alto">Alto</span></td></tr>
+        <tr><td>R2</td><td data-i18n="r2_d">Golpe com droga incapacitante</td><td data-i18n="p_media">Média</td><td data-i18n="i_media">Médio</td><td><span class="badge-medio" data-i18n="cl_medio">Médio (pode subir)</span></td></tr>
+        <tr><td>R3</td><td data-i18n="r3_d">Sequestro extorsivo</td><td data-i18n="p_baixa">Baixa</td><td data-i18n="i_critico">Crítico</td><td><span class="badge-medio" data-i18n="cl_medio2">Médio (raro × impacto crítico)</span></td></tr>
+        <tr><td>R4</td><td data-i18n="r4_d">Conflito trabalhista/regulatório/licença social — Cerro Negro</td><td data-i18n="p_alta">Alta</td><td data-i18n="i_alto">Alto</td><td><span class="badge-alto" data-i18n="cl_alto1">Alto — risco nº 1</span></td></tr>
+        <tr><td>R5</td><td data-i18n="r5_d">Exposição digital/imprensa de executivos e famílias</td><td data-i18n="p_media">Média</td><td data-i18n="i_alto">Alto</td><td><span class="badge-alto" data-i18n="cl_alto">Alto</span></td></tr>
+        <tr><td>R6</td><td data-i18n="r6_d">Isolamento, clima e resposta médica em Santa Cruz</td><td data-i18n="p_media">Média</td><td data-i18n="i_alto">Alto</td><td><span class="badge-alto" data-i18n="cl_alto">Alto</span></td></tr>
+        <tr><td>R7</td><td data-i18n="r7_d">Protestos em Buenos Aires</td><td data-i18n="p_media">Média</td><td data-i18n="i_media">Médio</td><td><span class="badge-medio" data-i18n="cl_medio3">Médio</span></td></tr>
+        <tr><td>R8</td><td data-i18n="r8_d">Residência, prestadores e rotina familiar</td><td data-i18n="p_media">Média</td><td data-i18n="i_media">Médio</td><td><span class="badge-medio" data-i18n="cl_medio4">Médio (pode subir)</span></td></tr>
+        <tr><td>R9</td><td data-i18n="r9_d">Risco digital corporativo em viagem</td><td data-i18n="p_media">Média</td><td data-i18n="i_media">Médio</td><td><span class="badge-medio" data-i18n="cl_medio3">Médio</span></td></tr>
+        <tr><td>R10</td><td data-i18n="r10_d">Saúde pública e acesso a cuidado médico</td><td data-i18n="p_baixa">Baixa</td><td data-i18n="i_media">Médio</td><td><span class="badge-medio" data-i18n="cl_medio3">Médio</span></td></tr>
+      </table>
+      <div class="callout" data-i18n="s3_note">Prioridade de decisão: Cerro Negro (R4), roubo/trânsito na AMBA (R1), exposição pública de executivos (R5), evacuação médica em estradas patagônicas (R6), golpes de aproximação (R2), protestos (R7), residência/prestadores (R8) e sequestro extorsivo (R3).</div>
+
+      <h3 style="margin-top:20px;" data-i18n="chart_h">Distribuição de classificação de risco</h3>
+      <svg viewBox="0 0 400 150" style="width:100%;max-width:420px;margin-top:10px;">
+        <text x="0" y="14" fill="#b9b9b9" font-size="11">10</text>
+        <line x1="25" y1="10" x2="25" y2="120" stroke="#3a3000"/>
+        <line x1="25" y1="120" x2="380" y2="120" stroke="#3a3000"/>
+        <rect x="60" y="20" width="60" height="100" fill="#FFD400"/>
+        <text x="70" y="135" fill="#fff" font-size="11" data-i18n="chart_alto">Alto (5)</text>
+        <text x="80" y="15" fill="#FFD400" font-size="12" font-weight="700">5</text>
+        <rect x="200" y="60" width="60" height="60" fill="#8f7200"/>
+        <text x="195" y="135" fill="#fff" font-size="11" data-i18n="chart_medio">Médio (5)</text>
+        <text x="220" y="55" fill="#8f7200" font-size="12" font-weight="700">5</text>
+      </svg>
+
+      <h3 style="margin-top:20px;" data-i18n="chart_h">Distribuição de classificação de risco (pizza)</h3>
+      <svg viewBox="0 0 200 200" style="width:100%;max-width:220px;margin-top:10px;">
+        <circle r="80" cx="100" cy="100" fill="transparent"
+          stroke="#FFD400" stroke-width="40"
+          stroke-dasharray="188.4 376.8" transform="rotate(-90 100 100)"></circle>
+        <circle r="80" cx="100" cy="100" fill="transparent"
+          stroke="#8f7200" stroke-width="40"
+          stroke-dasharray="188.4 376.8" stroke-dashoffset="-188.4" transform="rotate(-90 100 100)"></circle>
+        <text x="100" y="105" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">10</text>
+      </svg>
+      <div style="display:flex;gap:16px;margin-top:8px;font-size:12.5px;">
+        <span><span style="display:inline-block;width:10px;height:10px;background:#FFD400;border-radius:2px;margin-right:4px;"></span>Alto (5)</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#8f7200;border-radius:2px;margin-right:4px;"></span>Médio (5)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 4 -->
+  <section id="s4">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <div>
+        <h2 data-i18n="s4_title">Recomendações</h2>
+        <p data-i18n="s4_sub">Prioridades de 30 dias, ações complementares de 90 dias e condutas a evitar</p>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3 data-i18n="s4_a_h">Prioridades — 30 dias</h3>
+        <ul id="s4_a_list"></ul>
+      </div>
+      <div class="card">
+        <h3 data-i18n="s4_b_h">Ações complementares — 90 dias</h3>
+        <ul id="s4_b_list"></ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px;border:1px solid var(--yellow1);">
+      <h3 data-i18n="s4_c_h">O que evitar</h3>
+      <ul id="s4_c_list"></ul>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 5 -->
+  <section id="s5">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <div>
+        <h2 data-i18n="s5_title">Preparação e Resposta</h2>
+        <p data-i18n="s5_sub">Antes da viagem, durante a estadia, playbook de incidentes e contatos de emergência</p>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3 data-i18n="s5_a_h">Antes da viagem</h3>
+        <ul id="s5_a_list"></ul>
+      </div>
+      <div class="card">
+        <h3 data-i18n="s5_b_h">Durante a estadia</h3>
+        <ul id="s5_b_list"></ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px;">
+      <h3 data-i18n="s5_c_h">Playbook de incidentes</h3>
+      <table>
+        <tr><th data-i18n="th_sit">Situação</th><th data-i18n="th_acao">Ação imediata</th></tr>
+        <tr><td data-i18n="pb1_a">Roubo/assalto</td><td data-i18n="pb1_b">Não resistir; entregar bens; afastar-se; ligar 911; reportar ao programa</td></tr>
+        <tr><td data-i18n="pb2_a">Suspeita de droga em bebida</td><td data-i18n="pb2_b">Buscar ajuda imediata; não ficar sozinho; ir a hospital; ligar 911/107</td></tr>
+        <tr><td data-i18n="pb3_a">Acidente na RN 40/site</td><td data-i18n="pb3_b">Acionar protocolo de evacuação médica; comunicar via rádio/satélite; aguardar resgate</td></tr>
+        <tr><td data-i18n="pb4_a">Inspeção/conflito no portão</td><td data-i18n="pb4_b">Não confrontar; registrar; notificar jurídico e comunicação corporativa</td></tr>
+        <tr><td data-i18n="pb5_a">Protesto nas proximidades</td><td data-i18n="pb5_b">Evitar a área; não fotografar; buscar rota alternativa</td></tr>
+        <tr><td data-i18n="pb6_a">Perda de documento</td><td data-i18n="pb6_b">Notificar consulado e Migraciones; registrar denúncia policial</td></tr>
+        <tr><td data-i18n="pb7_a">Menção hostil online</td><td data-i18n="pb7_b">Não responder; capturar evidência; notificar segurança digital e jurídico</td></tr>
+      </table>
+    </div>
+    <div class="card" style="margin-top:18px;">
+      <h3 data-i18n="s5_d_h">Contatos de emergência</h3>
+      <div class="flow">
+        <div><span class="n">911</span><span data-i18n="s5_d1">Polícia (confirmar cobertura em Santa Cruz)</span></div>
+        <div><span class="n">107</span><span data-i18n="s5_d2">SAME — emergência médica (confirmar por região)</span></div>
+        <div><span class="n">100</span><span data-i18n="s5_d3">Bombeiros (confirmar por região)</span></div>
+        <div><span class="n" style="font-size:14px;">☎</span><span data-i18n="s5_d4">Consulado do país de origem</span></div>
+      </div>
+      <p class="confianca" data-i18n="s5_d_conf">Números nacionais de referência; confirmar cobertura efetiva em Santa Cruz antes da viagem.</p>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 6 -->
+  <section id="s6">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <div>
+        <h2 data-i18n="s6_title">Segurança Digital</h2>
+        <p data-i18n="s6_sub">Cadeia de exposição, riscos digitais e protocolo de proteção</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3 data-i18n="s6_a_h">Cadeia de exposição digital</h3>
+      <div class="flow">
+        <div><span class="n">1</span><span data-i18n="s6_a1">Coleta de informação pública</span></div>
+        <div><span class="n">2</span><span data-i18n="s6_a2">Mapeamento de rotina e contatos</span></div>
+        <div><span class="n">3</span><span data-i18n="s6_a3">Abordagem (física ou digital)</span></div>
+        <div><span class="n">4</span><span data-i18n="s6_a4">Pressão / engano</span></div>
+        <div><span class="n">5</span><span data-i18n="s6_a5">Execução do golpe/incidente</span></div>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:18px;">
+      <div class="card">
+        <h3 data-i18n="s6_b_h">Vetores de risco digital</h3>
+        <ul id="s6_b_list"></ul>
+      </div>
+      <div class="card">
+        <h3 data-i18n="s6_c_h">Medidas de proteção</h3>
+        <ul id="s6_c_list"></ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px;">
+      <h3 data-i18n="s6_d_h">Protocolo de resposta e checklist por perfil</h3>
+      <ul id="s6_d_list"></ul>
+      <p class="confianca" data-i18n="s6_d_conf">Este eixo não envolveu pesquisa web em tempo real; confirmar canais, contatos e procedimentos antes de operacionalizar.</p>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 7 -->
+  <section id="s7">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <div>
+        <h2 data-i18n="s7_title">Fontes, Confiança e Limitações</h2>
+        <p data-i18n="s7_sub">Base documental do relatório e grau de confiança por fonte</p>
+      </div>
+    </div>
+    <div class="card">
+      <table>
+        <tr><th data-i18n="th_fonte">Fonte</th><th data-i18n="th_uso">Uso no relatório</th><th data-i18n="th_conf">Confiança</th></tr>
+        <tr><td data-i18n="f1_a">SNIC — Ministerio de Seguridad de la Nación</td><td data-i18n="f1_b">Taxa nacional de homicídios 2025</td><td data-i18n="c_alta">Alta</td></tr>
+        <tr><td data-i18n="f2_a">Mapa del Delito 2025 (CABA)</td><td data-i18n="f2_b">Estatísticas de homicídio e roubo na Ciudad</td><td data-i18n="c_alta">Alta</td></tr>
+        <tr><td data-i18n="f3_a">UFECO / Mirador Provincial</td><td data-i18n="f3_b">Série histórica de sequestros extorsivos</td><td data-i18n="c_media_alta">Média-alta</td></tr>
+        <tr><td data-i18n="f4_a">Embaixada dos EUA em Buenos Aires</td><td data-i18n="f4_b">Alerta sobre droga incapacitante</td><td data-i18n="c_media">Média (desatualizado)</td></tr>
+        <tr><td data-i18n="f5_a">INDEC</td><td data-i18n="f5_b">Pobreza, indigência e desemprego 2026</td><td data-i18n="c_alta">Alta</td></tr>
+        <tr><td data-i18n="f6_a">Imprensa de Santa Cruz, Clarín, El Patagónico, DataGremial/ASIJEMIN</td><td data-i18n="f6_b">Conflito trabalhista em Cerro Negro</td><td data-i18n="c_media">Média</td></tr>
+        <tr><td data-i18n="f7_a">CERT.ar / Ministerio Público Fiscal</td><td data-i18n="f7_b">Referência em segurança digital</td><td data-i18n="c_media">Média</td></tr>
+        <tr><td data-i18n="f8_a">OSAC (10/out/2026)</td><td data-i18n="f8_b">Citado apenas por título — corpo do documento não lido</td><td data-i18n="c_baixa">Baixa / não atribuível</td></tr>
+      </table>
+      <div class="callout" data-i18n="s7_note">Este relatório não substitui assessoria jurídica argentina, avaliação médica por profissional habilitado, empresa de segurança privada licenciada na província nem orientação das autoridades competentes. Validade: reavaliar em 90 dias (até 11/02/2027) ou antes, diante de mudança relevante em Cerro Negro.</div>
+    </div>
+  </section>
+
+  <footer>
+    <p data-i18n="footer_note">Documento de uso interno corporativo — confidencial.</p>
+  </footer>
+</div>
+
+<script>
+const I = {
+pt:{
+  tag:"RELATÓRIO DE INTELIGÊNCIA DE RISCO · USO INTERNO CORPORATIVO",
+  title:"Programa de Expatriação — Newmont na Argentina",
+  subtitle:"Setor de mineração de ouro e prata — AMBA e Cerro Negro (Santa Cruz)",
+  meta1:"<b>Data da análise:</b> 13 de novembro de 2026",
+  meta2:"<b>Validade:</b> Reavaliar em 90 dias (até 11/02/2027)",
+  meta3:"<b>Elaboração:</b> Security Specialist — Royal American Group",
+  s1_title:"Premissas, Escopo e Enquadramento",
+  s1_sub:"O que este relatório assume, o que não faz e quais instituições regem o caso",
+  s1_c1_h:"Premissas de Trabalho",
+  s1_c1:[
+    "O pedido não detalhou lotação, escolas, bairros nem calendário de rotação — as premissas abaixo foram adotadas.",
+    "O programa cobre expatriados, executivos e familiares da Newmont, com residência predominante na AMBA e presença operacional/visitas a Cerro Negro (ouro e prata, Santa Cruz, ~60 km de Perito Moreno).",
+    "Visitas a outras províncias auríferas (San Juan, Catamarca, Salta, Jujuy) são cenário secundário; minas de terceiros não são tratadas como ativos da companhia.",
+    "Perfil de exposição: empresa listada, marca global, relação tensa com o Governo de Santa Cruz, sindicatos (AOMA, ASIJEMIN) e Lei 90/10 — risco político/trabalhista/reputacional acima do risco de homicídio urbano.",
+    "Tolerância ao risco: baixa para pessoas e famílias; média para interrupção operacional de curto prazo, se houver plano de continuidade."
+  ],
+  s1_c2_h:"O que este relatório NÃO faz",
+  s1_c2:[
+    "Não quantifica probabilidade em percentual.",
+    "Não recomenda vigilância de pessoas, evasão de autoridade nem conduta ilegal.",
+    "Não reproduz dados de versões anteriores sem fonte identificável."
+  ],
+  s1_c3_h:"Enquadramento Institucional e Normativo Argentino",
+  s1_c3:[
+    "Ministerio de Seguridad de la Nación / Policía Federal — estatísticas criminais e policiamento na AMBA",
+    "Policía de la Provincia de Santa Cruz — competência sobre Cerro Negro e Perito Moreno",
+    "Ministerio Público Fiscal / UFECO — investigação de sequestros e crime organizado",
+    "Ministerio de Trabajo (Nación e Santa Cruz) — inspeções laborais, sumários de set/2026",
+    "Juzgado de Instrucción de Las Heras — ordenou o ingresso ao site",
+    "Dirección Nacional de Migraciones — regras de ingresso de estrangeiros",
+    "Lei 90/10 (Santa Cruz) — exigência de contratação local",
+    "Lei 27.401 — responsabilidade penal empresarial (anticorrupção)",
+    "IRAM-ISO 31000 — norma de gestão de riscos adotada na matriz",
+    "INDEC — dados econômicos, sociais e de pobreza oficiais"
+  ],
+  s2_title:"Panorama do Contexto",
+  s2_sub:"Onde o risco realmente está: crime, economia e o conflito setorial em Cerro Negro",
+  s2_a_h:"2.1 — As quatro camadas de risco",
+  s2_a1:"<b>1. Crime patrimonial oportunista na AMBA</b> — moto, celular, carteira ('motochorro'), volume diário ainda alto apesar da queda.",
+  s2_a2:"<b>2. Golpes de aproximação</b> — bar, aplicativo de encontros, bebida adulterada; alertados pela Embaixada dos EUA.",
+  s2_a3:"<b>3. Isolamento, clima e distância em Santa Cruz</b> — risco à vida no site é mais logístico e médico do que criminal.",
+  s2_a4:"<b>4. Conflito sociopolítico na Newmont em Cerro Negro</b> — paralisação, ordem judicial de ingresso, exposição pública de executivos (set/2026).",
+  s2_b_h:"2.2 — Criminalidade nacional (SNIC, 2025)",
+  s2_b_p:"Taxa de homicídios dolosos de 2025 registrada pelo Sistema Nacional de Información Criminal, metodologia de registros policiais (não pesquisa de vitimização).",
+  s2_b_f1:"por 100 mil hab. (homicídios, nacional)",
+  s2_b_f2:"vs 2024", s2_b_f3:"vs 2023", s2_b_f4:"vs 2022",
+  s2_b_conf:"Confiança: alta (órgão produtor do dado — Ministerio de Seguridad de la Nación).",
+  s2_c_h:"2.2 — CABA: Mapa del Delito 2025",
+  th_ind:"Indicador", th_val:"2025", th_var:"Variação",
+  r1_a:"Homicídios dolosos", r2_a:"Taxa por 100 mil", r3_a:"Roubos totais",
+  r4_a:"Roubos com moto", r5_a:"Roubos com arma", r6_a:"Roubo de veículo", r7_a:"Furtos",
+  s2_c_conf:"Fontes cruzadas: Infobae, Clarín, Buenos Aires Times, Radio Fueguina (fev–mai 2026). Confiança alta nos totais.",
+  s2_d_h:"2.2 — Causas dos 78 homicídios (CABA 2025)",
+  s2_d1:"Rixa ou vingança (21 casos)", s2_d2:"Ligados a roubo (14 casos)",
+  s2_d3:"Conflito intrafamiliar (10 casos)", s2_d4:"Feminicídios (8 casos)",
+  s2_d_note:"A maioria dos homicídios não é 'assalto a estrangeiro'; apenas 18% decorrem de roubo. 24 ocorreram em áreas vulneráveis e 54 no restante da cidade — o risco não se limita às villas, mas elas concentram risco desproporcional.",
+  s2_e_h:"Sequestro extorsivo (UFECO, 2025)",
+  s2_e1:"casos no país — menor número da década",
+  s2_e2:"(9 de 14) vinculados a crime organizado",
+  s2_e3:"Distribuição: 5 Província de Buenos Aires, 4 Ciudad, 3 Córdoba, 1 Salta, 1 Misiones. Série histórica: 294 (2015) → 14 (2025), queda constante.",
+  s2_e_conf:"Confiança média-alta — cobertura jornalística do relatório UFECO, não leitura integral do documento.",
+  s2_f_h:"Golpe com droga incapacitante",
+  s2_f1:"Embaixada dos EUA (12/mar/2025) alertou para aumento de roubos com substâncias incapacitantes em bares, casas noturnas e aplicativos de encontros.",
+  s2_f2:"Não deixar a bebida sem vigilância", s2_f3:"Não aceitar bebidas de desconhecidos",
+  s2_f4:"Não levar desconhecidos ao hotel", s2_f5:"Ligar para o 911 em caso de suspeita",
+  s2_f_conf:"Alerta com ~20 meses; sem boletim de 2026 que reconfirme volume.",
+  s2_g_h:"2.3 — Economia e clima político (INDEC, 1º semestre 2026)",
+  s2_g1:"Pobreza (~15 milhões) — alta de 4,1 p.p.", s2_g2:"Indigência (~3,5 milhões)",
+  s2_g3:"Desemprego 2º trim. — maior desde 2021", s2_g4:"Renda per capita vs. +20% na cesta básica",
+  s2_g_note:"A alta da pobreza reabre espaço para crime oportunista no conurbano e para pressão política por emprego local — o 'Súper RIGI' já é alvo de protesto em Buenos Aires (YAC News, 8/set/2026, confiança baixa-média).",
+  s2_h_h:"2.4 — Cerro Negro: o fato setorial que altera o relatório (11–14/set/2026)",
+  s2_h1:"Inspeções de Trabajo y Seguridad do Governo de Santa Cruz constataram infrações graves: veículos sem habilitação, falhas em equipamentos de acesso à mina subterrânea e caminhão de combustível a ~300m de profundidade sem revisão obrigatória.",
+  s2_h2:"cessações de tarefa", s2_h3:"setores com clausura preventiva (Clarín)",
+  s2_h4:"sumários administrativos (declaração oficial)", s2_h5:"ônibus de pessoal desmobilizados",
+  s2_h6:"empregados em situação de alerta",
+  s2_h7:"O ingresso ao predio exigiu ordem judicial do Juzgado de Instrucción de Las Heras, com presença policial solicitada ao ministro Pedro Prodromos. O secretário de Trabajo, Javier Aravena, afirmou que portões foram fechados com cadeado e veículos escondidos para evitar controle.",
+  s2_h8:"Em 14/set, reunião em Río Gallegos entre governador Claudio Vidal e Newmont (David Meador): acordo de agenda sobre segurança, ambiente, emprego local, provedores, mesa sindical e aplicação da Lei 90/10. A ASIJEMIN pediu paz social e diálogo.",
+  s2_h_note:"Não há relato de agressão a expatriados ou atentado. Mas a empresa tornou-se parte de um conflito público com governador, secretário e sindicatos — e um executivo percebido como 'o que travou a inspeção' vira peça de comunicação política. O acordo de 14/set é um armistício de agenda, não o fim do contencioso.",
+  s2_h_conf:"Fontes: Prensa Santa Cruz, Clarín, El Patagónico, DataGremial/ASIJEMIN (set/2026). Números de sumários/ônibus/empregados são declarações oficiais reproduzidas pela imprensa — confiança média.",
+  s2_i_h:"2.5 — Geografia operacional do programa",
+  th_praca:"Praça", th_funcao:"Função", th_ambiente:"Ambiente de risco dominante",
+  g1_a:"CABA (Palermo, Recoleta, Belgrano, Puerto Madero)", g1_b:"Escritório, moradia, vida social", g1_c:"Furto, motochorro, golpe em bebida, protesto",
+  g2_a:"Zona norte da Província (San Isidro, Vicente López, Pilar, Tigre)", g2_b:"Moradia familiar e escolas", g2_c:"Assalto em semáforo/acesso; criminalidade acima da Ciudad",
+  g3_a:"Aeroparque / Ezeiza", g3_b:"Rotação", g3_c:"Furto de bagagem, abordagem, motorista não credenciado",
+  g4_a:"Perito Moreno, RN 40, acessos a Cerro Negro", g4_b:"Ponto de entrada ao site", g4_c:"Distância, clima, fauna, comunicação precária, exposição política",
+  g5_a:"Acampamento Cerro Negro", g5_b:"Rotação de residentes/visitantes", g5_c:"Segurança industrial, controle de acesso, isolamento",
+  g6_a:"San Juan (Veladero e outros)", g6_b:"Terceiros — não ativo Newmont", g6_c:"Altitude, estrada de montanha, licença social",
+  g7_a:"Rosario", g7_b:"Fora do escopo, salvo trânsito", g7_c:"Não usar como escala — homicídio 2024 ~2x a média nacional",
+  footer_note:"Documento de uso interno corporativo — confidencial.",
+  s3_title:"Matriz de Riscos (IRAM-ISO 31000)", s3_sub:"Probabilidade × impacto qualitativos — classificação para priorização de decisão",
+  th_cod:"Risco", th_desc:"Descrição", th_prob:"Probabilidade", th_imp:"Impacto", th_class:"Classificação",
+  r1_d:"Roubo/assalto em trânsito e moto (AMBA)", r2_d:"Golpe com droga incapacitante", r3_d:"Sequestro extorsivo",
+  r4_d:"Conflito trabalhista/regulatório/licença social — Cerro Negro", r5_d:"Exposição digital/imprensa de executivos e famílias",
+  r6_d:"Isolamento, clima e resposta médica em Santa Cruz", r7_d:"Protestos em Buenos Aires",
+  r8_d:"Residência, prestadores e rotina familiar", r9_d:"Risco digital corporativo em viagem", r10_d:"Saúde pública e acesso a cuidado médico",
+  p_alta:"Alta", p_media:"Média", p_baixa:"Baixa", i_media:"Médio", i_alto:"Alto", i_critico:"Crítico",
+  cl_alto:"Alto", cl_alto1:"Alto — risco nº 1", cl_medio:"Médio (pode subir)", cl_medio2:"Médio (raro × impacto crítico)",
+  cl_medio3:"Médio", cl_medio4:"Médio (pode subir)",
+  s3_note:"Prioridade de decisão: Cerro Negro (R4), roubo/trânsito na AMBA (R1), exposição pública de executivos (R5), evacuação médica em estradas patagônicas (R6), golpes de aproximação (R2), protestos (R7), residência/prestadores (R8) e sequestro extorsivo (R3).",
+  s4_title:"Recomendações", s4_sub:"Prioridades de 30 dias, ações complementares de 90 dias e condutas a evitar",
+  s4_a_h:"Prioridades — 30 dias",
+  s4_a:[
+    "Designar responsável único pela interface com Cerro Negro (segurança, jurídico, comunicação).",
+    "Elaborar protocolo escrito de inspeção/fiscalização em espanhol, alinhado à Lei 90/10.",
+    "Reduzir exposição pública de executivos e familiares (imprensa, redes sociais, agenda).",
+    "Padronizar mobilidade segura na AMBA (transporte credenciado, rotas e horários).",
+    "Viagens ao site: motorista operacional, veículo revisado, kit de inverno, dois meios de comunicação, rastreamento e plano de evacuação.",
+    "Revisar seguro de viagem/saúde e documentação de todos os expatriados."
+  ],
+  s4_b_h:"Ações complementares — 90 dias",
+  s4_b:[
+    "Due diligence legal de residência e de prestadores de serviço locais.",
+    "Protocolo escolar para dependentes (rotas, horários, contatos de emergência).",
+    "Orientação de cautela na vida social (bares, apps de encontro, bebidas).",
+    "Mapa dinâmico de protestos e áreas sensíveis em Buenos Aires.",
+    "Plano de desmobilização ordenada do site em caso de nova paralisação.",
+    "Implementar MDM e política de segurança digital corporativa."
+  ],
+  s4_c_h:"O que evitar",
+  s4_c:[
+    "Inteligência informal sobre sindicatos, funcionários ou autoridades locais.",
+    "Contratação de segurança armada não licenciada na província.",
+    "Qualquer tentativa de evasão de controles policiais ou judiciais.",
+    "Declarações públicas provocativas sobre o conflito em Cerro Negro."
+  ],
+  s5_title:"Preparação e Resposta", s5_sub:"Antes da viagem, durante a estadia, playbook de incidentes e contatos de emergência",
+  s5_a_h:"Antes da viagem",
+  s5_a:[
+    "Verificar validade de passaporte e visto, se aplicável.",
+    "Seguro de viagem com cobertura de evacuação médica patagônica.",
+    "Atualizar vacinas e levar medicações de uso contínuo.",
+    "Briefing de 60 minutos focado nos riscos R4, R1, R5 e R6.",
+    "Check-in familiar: compartilhar itinerário e contatos de emergência."
+  ],
+  s5_b_h:"Durante a estadia",
+  s5_b:[
+    "Priorizar bairros com infraestrutura de segurança reconhecida.",
+    "Evitar caixas eletrônicos isolados; preferir agências e horários diurnos.",
+    "Cautela em saídas noturnas e consumo de bebidas em locais desconhecidos.",
+    "Seguir as regras de segurança do acampamento em Cerro Negro."
+  ],
+  s5_c_h:"Playbook de incidentes",
+  th_sit:"Situação", th_acao:"Ação imediata",
+  pb1_a:"Roubo/assalto", pb1_b:"Não resistir; entregar bens; afastar-se; ligar 911; reportar ao programa",
+  pb2_a:"Suspeita de droga em bebida", pb2_b:"Buscar ajuda imediata; não ficar sozinho; ir a hospital; ligar 911/107",
+  pb3_a:"Acidente na RN 40/site", pb3_b:"Acionar protocolo de evacuação médica; comunicar via rádio/satélite; aguardar resgate",
+  pb4_a:"Inspeção/conflito no portão", pb4_b:"Não confrontar; registrar; notificar jurídico e comunicação corporativa",
+  pb5_a:"Protesto nas proximidades", pb5_b:"Evitar a área; não fotografar; buscar rota alternativa",
+  pb6_a:"Perda de documento", pb6_b:"Notificar consulado e Migraciones; registrar denúncia policial",
+  pb7_a:"Menção hostil online", pb7_b:"Não responder; capturar evidência; notificar segurança digital e jurídico",
+  s5_d_h:"Contatos de emergência",
+  s5_d1:"Polícia (confirmar cobertura em Santa Cruz)", s5_d2:"SAME — emergência médica (confirmar por região)",
+  s5_d3:"Bombeiros (confirmar por região)", s5_d4:"Consulado do país de origem",
+  s5_d_conf:"Números nacionais de referência; confirmar cobertura efetiva em Santa Cruz antes da viagem.",
+  s6_title:"Segurança Digital", s6_sub:"Cadeia de exposição, riscos digitais e protocolo de proteção",
+  s6_a_h:"Cadeia de exposição digital",
+  s6_a1:"Coleta de informação pública", s6_a2:"Mapeamento de rotina e contatos", s6_a3:"Abordagem (física ou digital)",
+  s6_a4:"Pressão / engano", s6_a5:"Execução do golpe/incidente",
+  s6_b_h:"Vetores de risco digital",
+  s6_b:[
+    "Falso familiar / 'sequestro virtual' por telefone ou vídeo.",
+    "Engenharia social e fraude por e-mail corporativo (BEC).",
+    "Phishing direcionado a executivos e familiares.",
+    "SIM swap e sequestro de número de telefone.",
+    "Exposição de metadados e localização em fotos/redes sociais.",
+    "Aplicativos comprometidos ou sem atualização.",
+    "Vetores humanos (prestadores, motoristas, funcionários terceirizados).",
+    "Sextorsão e extorsão digital."
+  ],
+  s6_c_h:"Medidas de proteção",
+  s6_c:[
+    "Perfis de redes sociais privados, sem localização em tempo real.",
+    "Remover metadados EXIF antes de publicar fotos.",
+    "Autenticação multifator (MFA) e senhas exclusivas por serviço.",
+    "Uso de passkeys quando disponível.",
+    "PIN de proteção junto à operadora contra SIM swap.",
+    "MDM corporativo e atualizações de sistema em dia.",
+    "VPN e evitar Wi-Fi público para operações sensíveis.",
+    "Backups regulares de dados críticos."
+  ],
+  s6_d_h:"Protocolo de resposta e checklist por perfil",
+  s6_d:[
+    "Protocolo digital para as primeiras 2 horas e 24 horas após incidente.",
+    "Checklist específico por perfil: executivo, cônjuge, filhos e pessoal de apoio.",
+    "Treinamento inicial e reforço semestral de segurança digital.",
+    "Teste trimestral da lista de contatos de emergência."
+  ],
+  s6_d_conf:"Este eixo não envolveu pesquisa web em tempo real; confirmar canais, contatos e procedimentos antes de operacionalizar.",
+  s7_title:"Fontes, Confiança e Limitações", s7_sub:"Base documental do relatório e grau de confiança por fonte",
+  th_fonte:"Fonte", th_uso:"Uso no relatório", th_conf:"Confiança",
+  f1_a:"SNIC — Ministerio de Seguridad de la Nación", f1_b:"Taxa nacional de homicídios 2025",
+  f2_a:"Mapa del Delito 2025 (CABA)", f2_b:"Estatísticas de homicídio e roubo na Ciudad",
+  f3_a:"UFECO / Mirador Provincial", f3_b:"Série histórica de sequestros extorsivos",
+  f4_a:"Embaixada dos EUA em Buenos Aires", f4_b:"Alerta sobre droga incapacitante",
+  f5_a:"INDEC", f5_b:"Pobreza, indigência e desemprego 2026",
+  f6_a:"Imprensa de Santa Cruz, Clarín, El Patagónico, DataGremial/ASIJEMIN", f6_b:"Conflito trabalhista em Cerro Negro",
+  f7_a:"CERT.ar / Ministerio Público Fiscal", f7_b:"Referência em segurança digital",
+  f8_a:"OSAC (10/out/2026)", f8_b:"Citado apenas por título — corpo do documento não lido",
+  c_alta:"Alta", c_media_alta:"Média-alta", c_media:"Média", c_baixa:"Baixa / não atribuível",
+  s7_note:"Este relatório não substitui assessoria jurídica argentina, avaliação médica por profissional habilitado, empresa de segurança privada licenciada na província nem orientação das autoridades competentes. Validade: reavaliar em 90 dias (até 11/02/2027) ou antes, diante de mudança relevante em Cerro Negro."
+},
+en:{
+  tag:"RISK INTELLIGENCE REPORT · CORPORATE INTERNAL USE",
+  title:"Expatriation Program — Newmont in Argentina",
+  subtitle:"Gold and silver mining sector — AMBA and Cerro Negro (Santa Cruz)",
+  meta1:"<b>Analysis date:</b> November 13, 2026",
+  meta2:"<b>Validity:</b> Reassess within 90 days (by 02/11/2027)",
+  meta3:"<b>Prepared by:</b> Security Specialist — Royal American Group",
+  s1_title:"Premises, Scope and Framework",
+  s1_sub:"What this report assumes, what it does not do, and which institutions govern the case",
+  s1_c1_h:"Working Premises",
+  s1_c1:[
+    "The request did not detail staffing, schools, neighborhoods or rotation calendar — the premises below were adopted.",
+    "The program covers Newmont expatriates, executives and family members, residing mainly in AMBA with operational presence/visits to Cerro Negro (gold and silver, Santa Cruz, ~60 km from Perito Moreno).",
+    "Visits to other gold provinces (San Juan, Catamarca, Salta, Jujuy) are a secondary scenario; third-party mines are not treated as company assets.",
+    "Exposure profile: listed company, global brand, tense relationship with the Santa Cruz Provincial Government, unions (AOMA, ASIJEMIN) and Law 90/10 — political/labor/reputational risk above urban homicide risk.",
+    "Risk tolerance: low for people and families; medium for short-term operational disruption, provided a continuity plan exists."
+  ],
+  s1_c2_h:"What this report does NOT do",
+  s1_c2:[
+    "Does not quantify probability in percentages.",
+    "Does not recommend surveillance of persons, evasion of authority, or illegal conduct.",
+    "Does not reproduce data from prior versions without an identifiable source."
+  ],
+  s1_c3_h:"Argentine Institutional and Regulatory Framework",
+  s1_c3:[
+    "Ministerio de Seguridad de la Nación / Federal Police — national crime statistics and AMBA policing",
+    "Policía de la Provincia de Santa Cruz — jurisdiction over Cerro Negro and Perito Moreno",
+    "Ministerio Público Fiscal / UFECO — kidnapping and organized crime investigation",
+    "Ministerio de Trabajo (Nation and Santa Cruz) — labor inspections, Sept/2026 sanctions",
+    "Juzgado de Instrucción de Las Heras — ordered site access",
+    "Dirección Nacional de Migraciones — foreigner entry rules",
+    "Law 90/10 (Santa Cruz) — local hiring requirement",
+    "Law 27.401 — corporate criminal liability (anti-corruption)",
+    "IRAM-ISO 31000 — risk management standard used in the matrix",
+    "INDEC — official economic, social and poverty data"
+  ],
+  s2_title:"Context Overview",
+  s2_sub:"Where the risk really lies: crime, economy and the sector-specific conflict at Cerro Negro",
+  s2_a_h:"2.1 — The four layers of risk",
+  s2_a1:"<b>1. Opportunistic property crime in AMBA</b> — motorbike, phone, wallet ('motochorro'), still high daily volume despite the drop.",
+  s2_a2:"<b>2. Approach scams</b> — bar, dating app, spiked drink; flagged by the US Embassy.",
+  s2_a3:"<b>3. Isolation, weather and distance in Santa Cruz</b> — life risk at the site is more logistical/medical than criminal.",
+  s2_a4:"<b>4. Socio-political conflict at Newmont's Cerro Negro</b> — shutdown, judicial access order, public exposure of executives (Sept/2026).",
+  s2_b_h:"2.2 — National crime (SNIC, 2025)",
+  s2_b_p:"2025 intentional homicide rate from the National Crime Information System, based on police records (not victimization surveys).",
+  s2_b_f1:"per 100k inhabitants (national homicides)",
+  s2_b_f2:"vs 2024", s2_b_f3:"vs 2023", s2_b_f4:"vs 2022",
+  s2_b_conf:"Confidence: high (source agency — Ministerio de Seguridad de la Nación).",
+  s2_c_h:"2.2 — CABA: Crime Map 2025",
+  th_ind:"Indicator", th_val:"2025", th_var:"Change",
+  r1_a:"Intentional homicides", r2_a:"Rate per 100k", r3_a:"Total robberies",
+  r4_a:"Motorbike robberies", r5_a:"Armed robberies", r6_a:"Vehicle theft", r7_a:"Thefts",
+  s2_c_conf:"Cross-referenced sources: Infobae, Clarín, Buenos Aires Times, Radio Fueguina (Feb–May 2026). High confidence on totals.",
+  s2_d_h:"2.2 — Causes of 78 homicides (CABA 2025)",
+  s2_d1:"Feud or revenge (21 cases)", s2_d2:"Robbery-related (14 cases)",
+  s2_d3:"Domestic conflict (10 cases)", s2_d4:"Femicides (8 cases)",
+  s2_d_note:"Most homicides are not 'attacks on foreigners'; only 18% stem from robbery. 24 occurred in vulnerable areas and 54 in the rest of the city — risk is not confined to slums, but they carry disproportionate risk.",
+  s2_e_h:"Extortive kidnapping (UFECO, 2025)",
+  s2_e1:"cases nationwide — lowest of the decade",
+  s2_e2:"(9 of 14) linked to organized crime",
+  s2_e3:"Distribution: 5 Buenos Aires Province, 4 City, 3 Córdoba, 1 Salta, 1 Misiones. Historical series: 294 (2015) → 14 (2025), steady decline.",
+  s2_e_conf:"Medium-high confidence — journalistic coverage of the UFECO report, not the full document.",
+  s2_f_h:"Incapacitating-drug scam",
+  s2_f1:"US Embassy (Mar 12, 2025) warned of rising robberies using incapacitating substances in bars, clubs, and dating apps.",
+  s2_f2:"Never leave your drink unattended", s2_f3:"Never accept drinks from strangers",
+  s2_f4:"Never bring strangers to your hotel", s2_f5:"Call 911 if drugging is suspected",
+  s2_f_conf:"Alert is ~20 months old; no 2026 bulletin confirming current volume.",
+  s2_g_h:"2.3 — Economy and political climate (INDEC, H1 2026)",
+  s2_g1:"Poverty (~15 million) — up 4.1 p.p.", s2_g2:"Extreme poverty (~3.5 million)",
+  s2_g3:"Q2 unemployment — highest since 2021", s2_g4:"Per-capita income vs. +20% basic basket",
+  s2_g_note:"Rising poverty reopens room for opportunistic crime in Greater Buenos Aires and political pressure for local jobs — the 'Súper RIGI' is already a protest target in Buenos Aires (YAC News, Sept 8, 2026, low-medium confidence).",
+  s2_h_h:"2.4 — Cerro Negro: the sector-specific event reshaping this report (Sept 11–14, 2026)",
+  s2_h1:"Santa Cruz provincial labor/safety inspections found serious violations: unlicensed vehicles, access-equipment failures at the underground mine, and a fuel truck ~300m deep without mandatory inspection.",
+  s2_h2:"work stoppages", s2_h3:"sections under preventive closure (Clarín)",
+  s2_h4:"administrative sanctions (official statement)", s2_h5:"staff buses demobilized",
+  s2_h6:"employees on alert status",
+  s2_h7:"Site access required a judicial order from the Juzgado de Instrucción de Las Heras, with police presence requested from Minister Pedro Prodromos. Labor Secretary Javier Aravena said gates were padlocked and vehicles hidden to avoid inspection.",
+  s2_h8:"On Sept 14, a meeting in Río Gallegos between Governor Claudio Vidal and Newmont (David Meador) produced an agenda agreement on safety, environment, local employment, local suppliers, union talks, and Law 90/10 enforcement. ASIJEMIN called for social peace and dialogue.",
+  s2_h_note:"No source reports aggression against expatriates or an attack. But the company became part of a public conflict with a governor, a secretary, and unions — an executive perceived as 'the one blocking inspection' becomes a political-communication target. The Sept 14 agreement is an agenda truce, not an end to the dispute.",
+  s2_h_conf:"Sources: Prensa Santa Cruz, Clarín, El Patagónico, DataGremial/ASIJEMIN (Sept 2026). Sanctions/buses/employees figures are official statements reported by the press — medium confidence.",
+  s2_i_h:"2.5 — Program operational geography",
+  th_praca:"Location", th_funcao:"Program role", th_ambiente:"Dominant risk environment",
+  g1_a:"CABA (Palermo, Recoleta, Belgrano, Puerto Madero)", g1_b:"Office, housing, social life", g1_c:"Theft, motorbike robbery, drink scam, protest",
+  g2_a:"Northern Buenos Aires Province (San Isidro, Vicente López, Pilar, Tigre)", g2_b:"Family housing and schools", g2_c:"Robbery at traffic lights/access points; crime rate above the City",
+  g3_a:"Aeroparque / Ezeiza", g3_b:"Rotation", g3_c:"Baggage theft, arrival approach scams, uncredentialed drivers",
+  g4_a:"Perito Moreno, RN 40, access roads to Cerro Negro", g4_b:"Site entry point", g4_c:"Distance, weather, wildlife, poor communications, local political exposure",
+  g5_a:"Cerro Negro camp", g5_b:"Resident/visitor rotation", g5_c:"Industrial safety, access control, isolation",
+  g6_a:"San Juan (Veladero and others)", g6_b:"Third-party — not a Newmont asset", g6_c:"Altitude, mountain roads, social license",
+  g7_a:"Rosario", g7_b:"Out of scope, except transit", g7_c:"Not a reference point — 2024 homicide rate ~2x national average",
+  footer_note:"Internal corporate use — confidential.",
+  s3_title:"Risk Matrix (IRAM-ISO 31000)", s3_sub:"Qualitative probability × impact — classification for decision prioritization",
+  th_cod:"Risk", th_desc:"Description", th_prob:"Probability", th_imp:"Impact", th_class:"Classification",
+  r1_d:"Robbery/mugging in traffic and by motorbike (AMBA)", r2_d:"Incapacitating-drug scam", r3_d:"Extortive kidnapping",
+  r4_d:"Labor/regulatory conflict and social license — Cerro Negro", r5_d:"Digital/press exposure of executives and families",
+  r6_d:"Isolation, weather and medical response in Santa Cruz", r7_d:"Protests in Buenos Aires",
+  r8_d:"Housing, service providers and family routine", r9_d:"Corporate digital risk while traveling", r10_d:"Public health and access to care",
+  p_alta:"High", p_media:"Medium", p_baixa:"Low", i_media:"Medium", i_alto:"High", i_critico:"Critical",
+  cl_alto:"High", cl_alto1:"High — risk #1", cl_medio:"Medium (may escalate)", cl_medio2:"Medium (rare × critical impact)",
+  cl_medio3:"Medium", cl_medio4:"Medium (may escalate)",
+  s3_note:"Decision priority: Cerro Negro (R4), robbery/traffic in AMBA (R1), executive public exposure (R5), medical evacuation on Patagonian roads (R6), approach scams (R2), protests (R7), housing/providers (R8), and extortive kidnapping (R3).",
+  s4_title:"Recommendations", s4_sub:"30-day priorities, 90-day complementary actions and conduct to avoid",
+  s4_a_h:"Priorities — 30 days",
+  s4_a:[
+    "Appoint a single point of contact for the Cerro Negro interface (security, legal, communications).",
+    "Draft a written inspection/oversight protocol in Spanish, aligned with Law 90/10.",
+    "Reduce public exposure of executives and family members (press, social media, agenda).",
+    "Standardize safe mobility in AMBA (vetted transport, routes and schedules).",
+    "Site trips: operational driver, inspected vehicle, winter kit, two communication means, tracking and evacuation plan.",
+    "Review travel/health insurance and documentation for all expatriates."
+  ],
+  s4_b_h:"Complementary actions — 90 days",
+  s4_b:[
+    "Legal due diligence on housing and local service providers.",
+    "School protocol for dependents (routes, schedules, emergency contacts).",
+    "Guidance on caution in social life (bars, dating apps, drinks).",
+    "Dynamic map of protests and sensitive areas in Buenos Aires.",
+    "Orderly demobilization plan for the site in case of a new shutdown.",
+    "Implement MDM and corporate digital security policy."
+  ],
+  s4_c_h:"What to avoid",
+  s4_c:[
+    "Informal intelligence gathering on unions, employees or local authorities.",
+    "Hiring unlicensed armed security in the province.",
+    "Any attempt to evade police or judicial controls.",
+    "Provocative public statements about the Cerro Negro conflict."
+  ],
+  s5_title:"Preparation and Response", s5_sub:"Before travel, during the stay, incident playbook and emergency contacts",
+  s5_a_h:"Before travel",
+  s5_a:[
+    "Check passport and visa validity, if applicable.",
+    "Travel insurance covering Patagonian medical evacuation.",
+    "Update vaccinations and carry continuous-use medications.",
+    "60-minute briefing focused on risks R4, R1, R5 and R6.",
+    "Family check-in: share itinerary and emergency contacts."
+  ],
+  s5_b_h:"During the stay",
+  s5_b:[
+    "Prioritize neighborhoods with recognized security infrastructure.",
+    "Avoid isolated ATMs; prefer bank branches during daytime hours.",
+    "Caution on night outings and drinking at unfamiliar venues.",
+    "Follow the Cerro Negro camp's safety rules."
+  ],
+  s5_c_h:"Incident playbook",
+  th_sit:"Situation", th_acao:"Immediate action",
+  pb1_a:"Robbery/mugging", pb1_b:"Do not resist; hand over belongings; move away; call 911; report to the program",
+  pb2_a:"Suspected drugged drink", pb2_b:"Seek help immediately; do not stay alone; go to a hospital; call 911/107",
+  pb3_a:"Accident on RN 40/site", pb3_b:"Activate medical evacuation protocol; communicate via radio/satellite; await rescue",
+  pb4_a:"Inspection/gate conflict", pb4_b:"Do not confront; document; notify legal and corporate communications",
+  pb5_a:"Nearby protest", pb5_b:"Avoid the area; do not photograph; seek an alternate route",
+  pb6_a:"Lost document", pb6_b:"Notify the consulate and Migraciones; file a police report",
+  pb7_a:"Hostile online mention", pb7_b:"Do not respond; capture evidence; notify digital security and legal",
+  s5_d_h:"Emergency contacts",
+  s5_d1:"Police (confirm coverage in Santa Cruz)", s5_d2:"SAME — medical emergency (confirm by region)",
+  s5_d3:"Fire department (confirm by region)", s5_d4:"Home-country consulate",
+  s5_d_conf:"National reference numbers; confirm actual coverage in Santa Cruz before traveling.",
+  s6_title:"Digital Security", s6_sub:"Exposure chain, digital risks and protection protocol",
+  s6_a_h:"Digital exposure chain",
+  s6_a1:"Public information gathering", s6_a2:"Mapping of routine and contacts", s6_a3:"Approach (physical or digital)",
+  s6_a4:"Pressure / deception", s6_a5:"Execution of the scam/incident",
+  s6_b_h:"Digital risk vectors",
+  s6_b:[
+    "Fake relative / 'virtual kidnapping' calls or video.",
+    "Social engineering and business email compromise (BEC).",
+    "Targeted phishing against executives and family members.",
+    "SIM swap and phone number hijacking.",
+    "Metadata and location exposure in photos/social media.",
+    "Compromised or outdated apps.",
+    "Human vectors (providers, drivers, outsourced staff).",
+    "Sextortion and digital extortion."
+  ],
+  s6_c_h:"Protection measures",
+  s6_c:[
+    "Private social media profiles, no real-time location.",
+    "Remove EXIF metadata before posting photos.",
+    "Multi-factor authentication (MFA) and unique passwords per service.",
+    "Use passkeys where available.",
+    "Carrier PIN protection against SIM swap.",
+    "Corporate MDM and up-to-date system patches.",
+    "VPN and avoid public Wi-Fi for sensitive operations.",
+    "Regular backups of critical data."
+  ],
+  s6_d_h:"Response protocol and profile checklist",
+  s6_d:[
+    "Digital protocol for the first 2 hours and 24 hours after an incident.",
+    "Profile-specific checklist: executive, spouse, children and support staff.",
+    "Initial training and semiannual digital security refresher.",
+    "Quarterly test of the emergency contact list."
+  ],
+  s6_d_conf:"This axis did not involve real-time web research; confirm channels, contacts and procedures before operationalizing.",
+  s7_title:"Sources, Confidence and Limitations", s7_sub:"Documentary basis of the report and confidence level per source",
+  th_fonte:"Source", th_uso:"Use in the report", th_conf:"Confidence",
+  f1_a:"SNIC — Ministerio de Seguridad de la Nación", f1_b:"2025 national homicide rate",
+  f2_a:"Crime Map 2025 (CABA)", f2_b:"City homicide and robbery statistics",
+  f3_a:"UFECO / Provincial Monitor", f3_b:"Historical series of extortive kidnappings",
+  f4_a:"US Embassy in Buenos Aires", f4_b:"Incapacitating-drug alert",
+  f5_a:"INDEC", f5_b:"2026 poverty, extreme poverty and unemployment",
+  f6_a:"Santa Cruz press, Clarín, El Patagónico, DataGremial/ASIJEMIN", f6_b:"Labor conflict at Cerro Negro",
+  f7_a:"CERT.ar / Ministerio Público Fiscal", f7_b:"Digital security reference",
+  f8_a:"OSAC (Oct 10, 2026)", f8_b:"Cited by title only — document body not read",
+  c_alta:"High", c_media_alta:"Medium-high", c_media:"Medium", c_baixa:"Low / not attributable",
+  s7_note:"This report does not replace Argentine legal counsel, licensed medical evaluation, a provincially licensed private security firm, or guidance from competent authorities. Validity: reassess within 90 days (by 02/11/2027) or earlier if there is a significant change at Cerro Negro."
+},
+es:{
+  tag:"INFORME DE INTELIGENCIA DE RIESGO · USO INTERNO CORPORATIVO",
+  title:"Programa de Expatriación — Newmont en Argentina",
+  subtitle:"Sector de minería de oro y plata — AMBA y Cerro Negro (Santa Cruz)",
+  meta1:"<b>Fecha del análisis:</b> 13 de noviembre de 2026",
+  meta2:"<b>Vigencia:</b> Reevaluar dentro de 90 días (hasta 11/02/2027)",
+  meta3:"<b>Elaboración:</b> Security Specialist — Royal American Group",
+  s1_title:"Premisas, Alcance y Marco",
+  s1_sub:"Qué asume este informe, qué no hace y qué instituciones rigen el caso",
+  s1_c1_h:"Premisas de Trabajo",
+  s1_c1:[
+    "La solicitud no detalló dotación, escuelas, barrios ni calendario de rotación — se adoptaron las premisas siguientes.",
+    "El programa cubre expatriados, ejecutivos y familiares de Newmont, con residencia predominante en el AMBA y presencia operativa/visitas a Cerro Negro (oro y plata, Santa Cruz, ~60 km de Perito Moreno).",
+    "Las visitas a otras provincias auríferas (San Juan, Catamarca, Salta, Jujuy) son un escenario secundario; las minas de terceros no se tratan como activos de la empresa.",
+    "Perfil de exposición: empresa cotizante, marca global, relación tensa con el Gobierno de Santa Cruz, sindicatos (AOMA, ASIJEMIN) y Ley 90/10 — riesgo político/laboral/reputacional por encima del riesgo de homicidio urbano.",
+    "Tolerancia al riesgo: baja para personas y familias; media para interrupciones operativas de corto plazo, si existe un plan de continuidad."
+  ],
+  s1_c2_h:"Lo que este informe NO hace",
+  s1_c2:[
+    "No cuantifica probabilidades en porcentajes.",
+    "No recomienda vigilancia de personas, evasión de autoridades ni conductas ilegales.",
+    "No reproduce datos de versiones anteriores sin una fuente identificable."
+  ],
+  s1_c3_h:"Marco Institucional y Normativo Argentino",
+  s1_c3:[
+    "Ministerio de Seguridad de la Nación / Policía Federal — estadísticas criminales y policiamiento en el AMBA",
+    "Policía de la Provincia de Santa Cruz — competencia sobre Cerro Negro y Perito Moreno",
+    "Ministerio Público Fiscal / UFECO — investigación de secuestros y crimen organizado",
+    "Ministerio de Trabajo (Nación y Santa Cruz) — inspecciones laborales, sumarios de sept/2026",
+    "Juzgado de Instrucción de Las Heras — ordenó el ingreso al predio",
+    "Dirección Nacional de Migraciones — reglas de ingreso de extranjeros",
+    "Ley 90/10 (Santa Cruz) — exigencia de contratación local",
+    "Ley 27.401 — responsabilidad penal empresarial (anticorrupción)",
+    "IRAM-ISO 31000 — norma de gestión de riesgos utilizada en la matriz",
+    "INDEC — datos económicos, sociales y oficiales de pobreza"
+  ],
+  s2_title:"Panorama del Contexto",
+  s2_sub:"Dónde está realmente el riesgo: crimen, economía y el conflicto sectorial en Cerro Negro",
+  s2_a_h:"2.1 — Las cuatro capas de riesgo",
+  s2_a1:"<b>1. Delito patrimonial oportunista en el AMBA</b> — moto, celular, billetera ('motochorro'), volumen diario aún alto a pesar de la baja.",
+  s2_a2:"<b>2. Estafas de acercamiento</b> — bar, app de citas, bebida adulterada; alertado por la Embajada de EE.UU.",
+  s2_a3:"<b>3. Aislamiento, clima y distancia en Santa Cruz</b> — el riesgo vital en el sitio es más logístico y médico que criminal.",
+  s2_a4:"<b>4. Conflicto sociopolítico de Newmont en Cerro Negro</b> — paralización, orden judicial de ingreso, exposición pública de ejecutivos (sept/2026).",
+  s2_b_h:"2.2 — Criminalidad nacional (SNIC, 2025)",
+  s2_b_p:"Tasa de homicidios dolosos de 2025 del Sistema Nacional de Información Criminal, metodología de registros policiales (no encuesta de victimización).",
+  s2_b_f1:"por 100 mil hab. (homicidios, nacional)",
+  s2_b_f2:"vs 2024", s2_b_f3:"vs 2023", s2_b_f4:"vs 2022",
+  s2_b_conf:"Confianza: alta (organismo productor del dato — Ministerio de Seguridad de la Nación).",
+  s2_c_h:"2.2 — CABA: Mapa del Delito 2025",
+  th_ind:"Indicador", th_val:"2025", th_var:"Variación",
+  r1_a:"Homicidios dolosos", r2_a:"Tasa por 100 mil", r3_a:"Robos totales",
+  r4_a:"Robos con moto", r5_a:"Robos con arma", r6_a:"Robo de vehículo", r7_a:"Hurtos",
+  s2_c_conf:"Fuentes cruzadas: Infobae, Clarín, Buenos Aires Times, Radio Fueguina (feb–may 2026). Confianza alta en los totales.",
+  s2_d_h:"2.2 — Causas de los 78 homicidios (CABA 2025)",
+  s2_d1:"Riña o venganza (21 casos)", s2_d2:"Vinculados a robo (14 casos)",
+  s2_d3:"Conflicto intrafamiliar (10 casos)", s2_d4:"Feminicidios (8 casos)",
+  s2_d_note:"La mayoría de los homicidios no es 'asalto a extranjero'; solo el 18% deriva de robo. 24 ocurrieron en áreas vulnerables y 54 en el resto de la ciudad — el riesgo no se limita a las villas, pero concentran riesgo desproporcionado.",
+  s2_e_h:"Secuestro extorsivo (UFECO, 2025)",
+  s2_e1:"casos en el país — menor número de la década",
+  s2_e2:"(9 de 14) vinculados al crimen organizado",
+  s2_e3:"Distribución: 5 Provincia de Buenos Aires, 4 Ciudad, 3 Córdoba, 1 Salta, 1 Misiones. Serie histórica: 294 (2015) → 14 (2025), caída constante.",
+  s2_e_conf:"Confianza media-alta — cobertura periodística del informe UFECO, no lectura íntegra del documento.",
+  s2_f_h:"Estafa con droga incapacitante",
+  s2_f1:"La Embajada de EE.UU. (12/mar/2025) alertó sobre el aumento de robos con sustancias incapacitantes en bares, boliches y apps de citas.",
+  s2_f2:"No dejar la bebida sin vigilancia", s2_f3:"No aceptar bebidas de desconocidos",
+  s2_f4:"No llevar desconocidos al hotel", s2_f5:"Llamar al 911 ante sospecha",
+  s2_f_conf:"Alerta con ~20 meses; sin boletín de 2026 que reconfirme el volumen.",
+  s2_g_h:"2.3 — Economía y clima político (INDEC, 1er semestre 2026)",
+  s2_g1:"Pobreza (~15 millones) — sube 4,1 p.p.", s2_g2:"Indigencia (~3,5 millones)",
+  s2_g3:"Desempleo 2º trim. — el mayor desde 2021", s2_g4:"Ingreso per cápita vs. +20% canasta básica",
+  s2_g_note:"El alza de la pobreza reabre espacio para el delito oportunista en el conurbano y la presión política por empleo local — el 'Súper RIGI' ya es blanco de protestas en Buenos Aires (YAC News, 8/sept/2026, confianza baja-media).",
+  s2_h_h:"2.4 — Cerro Negro: el hecho sectorial que altera el informe (11–14/sept/2026)",
+  s2_h1:"Inspecciones de Trabajo y Seguridad del Gobierno de Santa Cruz constataron infracciones graves: vehículos sin habilitación, fallas en equipos de acceso a la mina subterránea y camión de combustible a ~300m de profundidad sin revisión obligatoria.",
+  s2_h2:"cesaciones de tarea", s2_h3:"sectores con clausura preventiva (Clarín)",
+  s2_h4:"sumarios administrativos (declaración oficial)", s2_h5:"ómnibus de personal desmovilizados",
+  s2_h6:"empleados en situación de alerta",
+  s2_h7:"El ingreso al predio exigió una orden judicial del Juzgado de Instrucción de Las Heras, con presencia policial solicitada al ministro Pedro Prodromos. El secretario de Trabajo, Javier Aravena, afirmó que los portones fueron cerrados con candado y vehículos escondidos para evitar el control.",
+  s2_h8:"El 14 de sept, reunión en Río Gallegos entre el gobernador Claudio Vidal y Newmont (David Meador): acuerdo de agenda sobre seguridad, ambiente, empleo local, proveedores, mesa sindical y aplicación de la Ley 90/10. ASIJEMIN pidió paz social y diálogo.",
+  s2_h_note:"No hay relato de agresión a expatriados ni atentado. Pero la empresa se volvió parte de un conflicto público con el gobernador, el secretario y los sindicatos — un ejecutivo percibido como 'el que trabó la inspección' se convierte en blanco de comunicación política. El acuerdo del 14/sept es una tregua de agenda, no el fin del litigio.",
+  s2_h_conf:"Fuentes: Prensa Santa Cruz, Clarín, El Patagónico, DataGremial/ASIJEMIN (sept 2026). Cifras de sumarios/ómnibus/empleados son declaraciones oficiales reproducidas por la prensa — confianza media.",
+  s2_i_h:"2.5 — Geografía operativa del programa",
+  th_praca:"Plaza", th_funcao:"Función", th_ambiente:"Ambiente de riesgo dominante",
+  g1_a:"CABA (Palermo, Recoleta, Belgrano, Puerto Madero)", g1_b:"Oficina, vivienda, vida social", g1_c:"Hurto, motochorro, estafa con bebida, protesta",
+  g2_a:"Zona norte de la Provincia (San Isidro, Vicente López, Pilar, Tigre)", g2_b:"Vivienda familiar y escuelas", g2_c:"Asalto en semáforo/acceso; criminalidad superior a la Ciudad",
+  g3_a:"Aeroparque / Ezeiza", g3_b:"Rotación", g3_c:"Hurto de equipaje, abordaje al llegar, conductor no acreditado",
+  g4_a:"Perito Moreno, RN 40, accesos a Cerro Negro", g4_b:"Punto de entrada al sitio", g4_c:"Distancia, clima, fauna, comunicación precaria, exposición política local",
+  g5_a:"Campamento Cerro Negro", g5_b:"Rotación de residentes/visitantes", g5_c:"Seguridad industrial, control de acceso, aislamiento",
+  g6_a:"San Juan (Veladero y otros)", g6_b:"Terceros — no es activo de Newmont", g6_c:"Altitud, ruta de montaña, licencia social",
+  g7_a:"Rosario", g7_b:"Fuera de alcance, salvo tránsito", g7_c:"No usar como escala — homicidio 2024 ~2x la media nacional",
+  footer_note:"Uso interno corporativo — confidencial.",
+  s3_title:"Matriz de Riesgos (IRAM-ISO 31000)", s3_sub:"Probabilidad × impacto cualitativos — clasificación para priorizar decisiones",
+  th_cod:"Riesgo", th_desc:"Descripción", th_prob:"Probabilidad", th_imp:"Impacto", th_class:"Clasificación",
+  r1_d:"Robo/asalto en tránsito y moto (AMBA)", r2_d:"Estafa con droga incapacitante", r3_d:"Secuestro extorsivo",
+  r4_d:"Conflicto laboral/regulatorio/licencia social — Cerro Negro", r5_d:"Exposición digital/prensa de ejecutivos y familias",
+  r6_d:"Aislamiento, clima y respuesta médica en Santa Cruz", r7_d:"Protestas en Buenos Aires",
+  r8_d:"Vivienda, proveedores y rutina familiar", r9_d:"Riesgo digital corporativo en viaje", r10_d:"Salud pública y acceso a atención médica",
+  p_alta:"Alta", p_media:"Media", p_baixa:"Baja", i_media:"Medio", i_alto:"Alto", i_critico:"Crítico",
+  cl_alto:"Alto", cl_alto1:"Alto — riesgo nº 1", cl_medio:"Medio (puede subir)", cl_medio2:"Medio (raro × impacto crítico)",
+  cl_medio3:"Medio", cl_medio4:"Medio (puede subir)",
+  s3_note:"Prioridad de decisión: Cerro Negro (R4), robo/tránsito en el AMBA (R1), exposición pública de ejecutivos (R5), evacuación médica en rutas patagónicas (R6), estafas de acercamiento (R2), protestas (R7), vivienda/proveedores (R8) y secuestro extorsivo (R3).",
+  s4_title:"Recomendaciones", s4_sub:"Prioridades de 30 días, acciones complementarias de 90 días y conductas a evitar",
+  s4_a_h:"Prioridades — 30 días",
+  s4_a:[
+    "Designar un responsable único para la interfaz con Cerro Negro (seguridad, legal, comunicación).",
+    "Elaborar un protocolo escrito de inspección/fiscalización en español, alineado con la Ley 90/10.",
+    "Reducir la exposición pública de ejecutivos y familiares (prensa, redes sociales, agenda).",
+    "Estandarizar la movilidad segura en el AMBA (transporte acreditado, rutas y horarios).",
+    "Viajes al sitio: conductor operativo, vehículo revisado, kit de invierno, dos medios de comunicación, rastreo y plan de evacuación.",
+    "Revisar el seguro de viaje/salud y la documentación de todos los expatriados."
+  ],
+  s4_b_h:"Acciones complementarias — 90 días",
+  s4_b:[
+    "Due diligence legal de vivienda y de proveedores de servicios locales.",
+    "Protocolo escolar para dependientes (rutas, horarios, contactos de emergencia).",
+    "Orientación de cautela en la vida social (bares, apps de citas, bebidas).",
+    "Mapa dinámico de protestas y áreas sensibles en Buenos Aires.",
+    "Plan de desmovilización ordenada del sitio ante una nueva paralización.",
+    "Implementar MDM y política de seguridad digital corporativa."
+  ],
+  s4_c_h:"Qué evitar",
+  s4_c:[
+    "Inteligencia informal sobre sindicatos, empleados o autoridades locales.",
+    "Contratación de seguridad armada no licenciada en la provincia.",
+    "Cualquier intento de evasión de controles policiales o judiciales.",
+    "Declaraciones públicas provocativas sobre el conflicto en Cerro Negro."
+  ],
+  s5_title:"Preparación y Respuesta", s5_sub:"Antes del viaje, durante la estadía, playbook de incidentes y contactos de emergencia",
+  s5_a_h:"Antes del viaje",
+  s5_a:[
+    "Verificar vigencia de pasaporte y visa, si corresponde.",
+    "Seguro de viaje con cobertura de evacuación médica patagónica.",
+    "Actualizar vacunas y llevar medicamentos de uso continuo.",
+    "Briefing de 60 minutos enfocado en los riesgos R4, R1, R5 y R6.",
+    "Check-in familiar: compartir itinerario y contactos de emergencia."
+  ],
+  s5_b_h:"Durante la estadía",
+  s5_b:[
+    "Priorizar barrios con infraestructura de seguridad reconocida.",
+    "Evitar cajeros automáticos aislados; preferir sucursales en horario diurno.",
+    "Cautela en salidas nocturnas y consumo de bebidas en lugares desconocidos.",
+    "Seguir las reglas de seguridad del campamento en Cerro Negro."
+  ],
+  s5_c_h:"Playbook de incidentes",
+  th_sit:"Situación", th_acao:"Acción inmediata",
+  pb1_a:"Robo/asalto", pb1_b:"No resistir; entregar los bienes; alejarse; llamar al 911; informar al programa",
+  pb2_a:"Sospecha de droga en la bebida", pb2_b:"Buscar ayuda de inmediato; no quedarse solo; ir al hospital; llamar al 911/107",
+  pb3_a:"Accidente en la RN 40/sitio", pb3_b:"Activar protocolo de evacuación médica; comunicar vía radio/satélite; esperar rescate",
+  pb4_a:"Inspección/conflicto en el portón", pb4_b:"No confrontar; registrar; notificar a legal y comunicación corporativa",
+  pb5_a:"Protesta cercana", pb5_b:"Evitar la zona; no fotografiar; buscar ruta alternativa",
+  pb6_a:"Pérdida de documento", pb6_b:"Notificar al consulado y a Migraciones; hacer la denuncia policial",
+  pb7_a:"Mención hostil en línea", pb7_b:"No responder; capturar evidencia; notificar a seguridad digital y legal",
+  s5_d_h:"Contactos de emergencia",
+  s5_d1:"Policía (confirmar cobertura en Santa Cruz)", s5_d2:"SAME — emergencia médica (confirmar por región)",
+  s5_d3:"Bomberos (confirmar por región)", s5_d4:"Consulado del país de origen",
+  s5_d_conf:"Números nacionales de referencia; confirmar la cobertura efectiva en Santa Cruz antes del viaje.",
+  s6_title:"Seguridad Digital", s6_sub:"Cadena de exposición, riesgos digitales y protocolo de protección",
+  s6_a_h:"Cadena de exposición digital",
+  s6_a1:"Recolección de información pública", s6_a2:"Mapeo de rutina y contactos", s6_a3:"Acercamiento (físico o digital)",
+  s6_a4:"Presión / engaño", s6_a5:"Ejecución de la estafa/incidente",
+  s6_b_h:"Vectores de riesgo digital",
+  s6_b:[
+    "Falso familiar / 'secuestro virtual' por teléfono o video.",
+    "Ingeniería social y fraude de correo corporativo (BEC).",
+    "Phishing dirigido a ejecutivos y familiares.",
+    "SIM swap y secuestro del número de teléfono.",
+    "Exposición de metadatos y ubicación en fotos/redes sociales.",
+    "Aplicaciones comprometidas o sin actualizar.",
+    "Vectores humanos (proveedores, conductores, personal terciarizado).",
+    "Sextorsión y extorsión digital."
+  ],
+  s6_c_h:"Medidas de protección",
+  s6_c:[
+    "Perfiles de redes sociales privados, sin ubicación en tiempo real.",
+    "Eliminar metadatos EXIF antes de publicar fotos.",
+    "Autenticación multifactor (MFA) y contraseñas exclusivas por servicio.",
+    "Uso de passkeys cuando estén disponibles.",
+    "PIN de protección con el operador contra SIM swap.",
+    "MDM corporativo y actualizaciones de sistema al día.",
+    "VPN y evitar Wi-Fi público para operaciones sensibles.",
+    "Copias de seguridad regulares de datos críticos."
+  ],
+  s6_d_h:"Protocolo de respuesta y checklist por perfil",
+  s6_d:[
+    "Protocolo digital para las primeras 2 horas y 24 horas tras un incidente.",
+    "Checklist específico por perfil: ejecutivo, cónyuge, hijos y personal de apoyo.",
+    "Capacitación inicial y refuerzo semestral de seguridad digital.",
+    "Prueba trimestral de la lista de contactos de emergencia."
+  ],
+  s6_d_conf:"Este eje no incluyó investigación web en tiempo real; confirmar canales, contactos y procedimientos antes de operacionalizar.",
+  s7_title:"Fuentes, Confianza y Limitaciones", s7_sub:"Base documental del informe y grado de confianza por fuente",
+  th_fonte:"Fuente", th_uso:"Uso en el informe", th_conf:"Confianza",
+  f1_a:"SNIC — Ministerio de Seguridad de la Nación", f1_b:"Tasa nacional de homicidios 2025",
+  f2_a:"Mapa del Delito 2025 (CABA)", f2_b:"Estadísticas de homicidio y robo en la Ciudad",
+  f3_a:"UFECO / Mirador Provincial", f3_b:"Serie histórica de secuestros extorsivos",
+  f4_a:"Embajada de EE.UU. en Buenos Aires", f4_b:"Alerta sobre droga incapacitante",
+  f5_a:"INDEC", f5_b:"Pobreza, indigencia y desempleo 2026",
+  f6_a:"Prensa de Santa Cruz, Clarín, El Patagónico, DataGremial/ASIJEMIN", f6_b:"Conflicto laboral en Cerro Negro",
+  f7_a:"CERT.ar / Ministerio Público Fiscal", f7_b:"Referencia en seguridad digital",
+  f8_a:"OSAC (10/oct/2026)", f8_b:"Citado solo por título — cuerpo del documento no leído",
+  c_alta:"Alta", c_media_alta:"Media-alta", c_media:"Media", c_baixa:"Baja / no atribuible",
+  s7_note:"Este informe no sustituye asesoría legal argentina, evaluación médica por profesional habilitado, empresa de seguridad privada licenciada en la provincia ni orientación de las autoridades competentes. Vigencia: reevaluar dentro de 90 días (hasta 11/02/2027) o antes, ante un cambio relevante en Cerro Negro."
+}
+};
+
+function renderList(id, lang, key){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.innerHTML = I[lang][key].map(t=>`<li>${t}</li>`).join('');
+}
+
+function setLang(lang){
+  document.querySelectorAll('.lang-bar button').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lang-bar button[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(I[lang][key] !== undefined && typeof I[lang][key]==='string'){
+      el.innerHTML = I[lang][key];
+    }
+  });
+  renderList('s1_c1_list', lang, 's1_c1');
+  renderList('s1_c2_list', lang, 's1_c2');
+  renderList('s1_c3_list', lang, 's1_c3');
+  renderList('s4_a_list', lang, 's4_a');
+  renderList('s4_b_list', lang, 's4_b');
+  renderList('s4_c_list', lang, 's4_c');
+  renderList('s5_a_list', lang, 's5_a');
+  renderList('s5_b_list', lang, 's5_b');
+  renderList('s6_b_list', lang, 's6_b');
+  renderList('s6_c_list', lang, 's6_c');
+  renderList('s6_d_list', lang, 's6_d');
+}
+setLang('pt');
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Index — Risk Intelligence Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:'Inter',sans-serif;color:#E8E8E8;min-height:100vh;overflow-x:hidden}
+body{position:relative}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(900px 500px at 75% 10%, rgba(255,214,0,.1) 0%, transparent 45%),
+  radial-gradient(800px 420px at 20% 30%, rgba(255,184,0,.07) 0%, transparent 45%),
+  linear-gradient(180deg,#000 0%,#060606 50%,#000 100%)}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.25;
+  background-image:radial-gradient(rgba(255,255,255,.05) .8px, transparent .8px);background-size:24px 24px}
+.wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:70px 40px 100px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:60px;flex-wrap:wrap;gap:20px}
+.lang-switch{display:flex;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:6px}
+.lang-switch button{background:transparent;border:none;color:#999;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;padding:9px 16px;border-radius:10px;cursor:pointer;letter-spacing:.04em;transition:all .3s ease}
+.lang-switch button.active{background:linear-gradient(145deg,#FFD600,#E6B800);color:#000}
+.lang-switch button:hover:not(.active){color:#FFD600}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:9px 22px;border-radius:999px;background:rgba(255,214,0,.1);border:1px solid rgba(255,214,0,.3);font-size:13px;font-weight:600;color:#FFD600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:26px;animation:fadeUp .7s ease both}
+h1{font-size:clamp(38px,5vw,58px);font-weight:900;letter-spacing:-.03em;line-height:1.1;color:#fff;margin-bottom:18px;animation:fadeUp .7s ease .1s both}
+.gt{background:linear-gradient(135deg,#FFD600 0%,#FFB800 50%,#FFD600 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.sub{font-size:17px;color:#AAA;max-width:700px;line-height:1.6;margin-bottom:50px;animation:fadeUp .7s ease .2s both}
+.meta-bar{display:flex;gap:30px;flex-wrap:wrap;margin-bottom:60px;animation:fadeUp .7s ease .3s both}
+.meta-item{display:flex;flex-direction:column;gap:4px}
+.meta-item .k{font-size:11px;color:#777;letter-spacing:.08em;text-transform:uppercase}
+.meta-item .v{font-size:15px;color:#FFD600;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.card{background:linear-gradient(145deg, rgba(20,20,20,.9) 0%, rgba(8,8,8,.98) 100%);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:30px 28px;text-decoration:none;display:block;position:relative;overflow:hidden;transition:all .4s ease;backdrop-filter:blur(8px);animation:fadeUp .7s ease both;cursor:pointer}
+.card:hover{border-color:rgba(255,214,0,.4);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 40px rgba(255,214,0,.12)}
+.card .num{font-size:13px;font-weight:900;color:#FFD600;letter-spacing:.1em;margin-bottom:14px;display:block}
+.card h3{font-size:21px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.01em}
+.card p{font-size:13.5px;color:#999;line-height:1.55;margin-bottom:18px}
+.card .go{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#FFD600;letter-spacing:.05em;text-transform:uppercase}
+.card .go svg{width:14px;height:14px;transition:transform .3s ease}
+.card:hover .go svg{transform:translateX(4px)}
+.card .ic{width:46px;height:46px;border-radius:13px;background:rgba(255,214,0,.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.card .ic svg{width:22px;height:22px;color:#FFD600}
+@keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+footer{text-align:center;padding:30px 0 10px;color:#555;font-size:12px;position:relative;z-index:1;letter-spacing:.03em}
+.d1{animation-delay:.34s!important}.d2{animation-delay:.4s!important}.d3{animation-delay:.46s!important}
+.d4{animation-delay:.52s!important}.d5{animation-delay:.58s!important}.d6{animation-delay:.64s!important}
+@media(max-width:600px){.wrap{padding:50px 20px 80px}.meta-bar{gap:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="badge" data-i18n="badge"></div>
+    <div class="lang-switch">
+      <button data-lang="pt" class="active">🇧🇷 PT</button>
+      <button data-lang="en">🇺🇸 EN</button>
+      <button data-lang="es">🇦🇷 ES</button>
+    </div>
+  </div>
+
+  <h1 data-i18n="title"></h1>
+  <p class="sub" data-i18n="sub"></p>
+
+  <div class="meta-bar">
+    <div class="meta-item"><span class="k" data-i18n="m3k"></span><span class="v" data-i18n="m3v"></span></div>
+    <div class="meta-item"><span class="k" data-i18n="m4k"></span><span class="v" data-i18n="m4v"></span></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+<footer data-i18n="footer"></footer>
+
+<script>
+const LANGS = {
+  pt: {
+    badge: "Royal American Group · Uso Interno Confidencial",
+    title: 'Programa de Expatriação <span class="gt">Newmont</span> — Argentina',
+    sub: "Relatório de inteligência de risco para executivos, famílias e equipes de apoio em deslocamento para a Área Metropolitana de Buenos Aires e Cerro Negro, Santa Cruz.",
+    m3k: "Classificação", m3v: "Confidencial — uso interno",
+    m4k: "Decks", m4v: "9 módulos",
+    footer: "© Royal American Group — Security Specialist. Não substitui assessoria jurídica, médica ou de segurança licenciada.",
+    decks: [
+      { n: "DECK 01", t: "Visão Geral & Chegada", d: "Enquadramento do programa, premissas, perfil de exposição e panorama institucional argentino." },
+      { n: "DECK 02", t: "AMBA, Criminalidade e Protestos", d: "Crime patrimonial, sequestro extorsivo, golpe com droga e eixos de manifestação em Buenos Aires." },
+      { n: "DECK 03", t: "Cerro Negro: Conflito Trabalhista", d: "Inspeções, clausuras, Lei 90/10, sindicatos e a crise de setembro de 2026 na mina." },
+      { n: "DECK 04", t: "Matriz de Riscos & Prioridades", d: "Os 10 riscos analisados, probabilidade × impacto e a síntese para decisão do comitê." },
+      { n: "DECK 05", t: "Segurança Digital & Família", d: "Golpes articulados, falso sequestro virtual, phishing, exposição em redes e vetores humanos." },
+      { n: "DECK 06", t: "Protocolos de Resposta & Preparação", d: "Checklists, contatos de emergência, roteiro de incidentes e linguagem para a família." },
+      { n: "DECK 07", t: "Mercado de Ouro e Prata", d: "Peso econômico, preços, volumes e distribuição provincial do setor minerário argentino." },
+      { n: "DECK 08", t: "Panorama Político, Social e Eleitoral", d: "Deterioração social, calendário eleitoral 2027, RIGI e protestos — o terreno político do programa." },
+      { n: "DECK 09", t: "Governança, Fontes & Gatilhos", d: "Metodologia, pendências, dados descartados e gatilhos de revisão antecipada do relatório." },
+      { n: "EXTRA", t: "Infográfico", d: "Resumo visual único com os principais dados e riscos do programa." },
+      { n: "EXTRA", t: "Dashboard", d: "Painel interativo de indicadores e acompanhamento do programa." }
+    ]
+  },
+  en: {
+    badge: "Royal American Group · Internal Confidential Use",
+    title: 'Newmont <span class="gt">Expatriation</span> Program — Argentina',
+    sub: "Risk intelligence briefing for executives, families and support staff relocating to the Buenos Aires Metropolitan Area and Cerro Negro, Santa Cruz.",
+    m3k: "Classification", m3v: "Confidential — internal use",
+    m4k: "Decks", m4v: "9 modules",
+    footer: "© Royal American Group — Security Specialist. Does not replace licensed legal, medical or security advice.",
+    decks: [
+      { n: "DECK 01", t: "Overview & Arrival", d: "Program framing, assumptions, exposure profile and Argentine institutional landscape." },
+      { n: "DECK 02", t: "AMBA, Crime and Protests", d: "Petty crime, extortive kidnapping, drug-facilitated robbery and protest corridors in Buenos Aires." },
+      { n: "DECK 03", t: "Cerro Negro: Labor Conflict", d: "Inspections, closures, Law 90/10, unions and the September 2026 mine crisis." },
+      { n: "DECK 04", t: "Risk Matrix & Priorities", d: "The 10 analyzed risks, probability × impact, and the committee decision summary." },
+      { n: "DECK 05", t: "Digital Security & Family", d: "Coordinated scams, virtual kidnapping, phishing, social exposure and human vectors." },
+      { n: "DECK 06", t: "Response Protocols & Prep", d: "Checklists, emergency contacts, incident playbook and family-facing messaging." },
+      { n: "DECK 07", t: "Gold & Silver Market", d: "Economic weight, prices, volumes and provincial distribution of Argentina's mining sector." },
+      { n: "DECK 08", t: "Political, Social and Electoral Landscape", d: "Social deterioration, the 2027 electoral calendar, RIGI and protests — the program's political ground." },
+      { n: "DECK 09", t: "Governance, Sources & Review Triggers", d: "Methodology, pending items, discarded data and early-review triggers for the report." },
+      { n: "EXTRA", t: "Infographic", d: "Single visual summary with the program's key data and risks." },
+      { n: "EXTRA", t: "Dashboard", d: "Interactive panel of indicators and program tracking." }
+    ]
+  },
+  es: {
+    badge: "Royal American Group · Uso Interno Confidencial",
+    title: 'Programa de Expatriación <span class="gt">Newmont</span> — Argentina',
+    sub: "Informe de inteligencia de riesgo para ejecutivos, familias y personal de apoyo en traslado al Área Metropolitana de Buenos Aires y Cerro Negro, Santa Cruz.",
+    m3k: "Clasificación", m3v: "Confidencial — uso interno",
+    m4k: "Decks", m4v: "9 módulos",
+    footer: "© Royal American Group — Security Specialist. No sustituye asesoría legal, médica o de seguridad licenciada.",
+    decks: [
+      { n: "DECK 01", t: "Visión General y Llegada", d: "Encuadre del programa, premisas, perfil de exposición y panorama institucional argentino." },
+      { n: "DECK 02", t: "AMBA, Delito y Protestas", d: "Delito patrimonial, secuestro extorsivo, droga incapacitante y ejes de manifestación en Buenos Aires." },
+      { n: "DECK 03", t: "Cerro Negro: Conflicto Laboral", d: "Inspecciones, clausuras, Ley 90/10, sindicatos y la crisis de septiembre de 2026 en la mina." },
+      { n: "DECK 04", t: "Matriz de Riesgos y Prioridades", d: "Los 10 riesgos analizados, probabilidad × impacto y la síntesis para el comité." },
+      { n: "DECK 05", t: "Seguridad Digital y Familia", d: "Estafas articuladas, secuestro virtual, phishing, exposición en redes y vectores humanos." },
+      { n: "DECK 06", t: "Protocolos de Respuesta y Preparación", d: "Checklists, contactos de emergencia, guion de incidentes y mensajes para la familia." },
+      { n: "DECK 07", t: "Mercado de Oro y Plata", d: "Peso económico, precios, volúmenes y distribución provincial del sector minero argentino." },
+      { n: "DECK 08", t: "Panorama Político, Social y Electoral", d: "Deterioro social, calendario electoral 2027, RIGI y protestas — el terreno político del programa." },
+      { n: "DECK 09", t: "Gobernanza, Fuentes y Gatillos", d: "Metodología, pendientes, datos descartados y gatillos de revisión anticipada del informe." },
+      { n: "EXTRA", t: "Infografía", d: "Resumen visual único con los principales datos y riesgos del programa." },
+      { n: "EXTRA", t: "Dashboard", d: "Panel interactivo de indicadores y seguimiento del programa." }
+    ]
+  }
+};
+
+const ICONS = [
+  '<path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>',
+  '<path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>',
+  '<path d="M3 21h18M5 21V7l8-4v18M13 21V11l6 4v6"></path>',
+  '<path d="M9 11H3v10h6V11zm12-4h-6v14h6V7zm-6-4h-6v18h6V3z"></path>',
+  '<path d="M12 1a4 4 0 00-4 4v6a4 4 0 008 0V5a4 4 0 00-4-4z"></path><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4"></path>',
+  '<path d="M9 11V7a3 3 0 116 0v4M5 11h14v10H5z"></path>',
+  '<path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path>',
+  '<path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path>',
+  '<path d="M9 11V7a3 3 0 116 0v4M5 11h14v10H5z"></path><path d="M12 15v2"></path>',
+  '<path d="M3 3v18h18M7 16l4-6 4 3 5-8"></path>',
+  '<rect x="3" y="3" width="8" height="8" rx="1"></rect><rect x="13" y="3" width="8" height="5" rx="1"></rect><rect x="13" y="10" width="8" height="11" rx="1"></rect><rect x="3" y="13" width="8" height="8" rx="1"></rect>'
+];
+
+const DECK_FILES = ["deck1.html","deck2.html","deck3.html","deck4.html","deck5.html","deck6.html","deck7.html","deck8.html","deck9-governanca.html","Infographic.html","Dashboard.html"];
+let currentLang = "pt";
+
+function render(lang) {
+  const L = LANGS[lang];
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (L[key]) el.innerHTML = L[key];
+  });
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+  L.decks.forEach((d, i) => {
+    const a = document.createElement("a");
+    a.href = DECK_FILES[i];
+    a.className = "card d" + (i+1);
+    a.innerHTML = `
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${ICONS[i]}</svg></div>
+      <span class="num">${d.n}</span>
+      <h3>${d.t}</h3>
+      <p>${d.d}</p>
+      <span class="go">${lang === 'pt' ? 'Abrir deck' : lang === 'en' ? 'Open deck' : 'Abrir deck'}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </span>`;
+    grid.appendChild(a);
+  });
+}
+
+document.querySelectorAll(".lang-switch button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".lang-switch button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentLang = btn.getAttribute("data-lang");
+    document.documentElement.lang = currentLang === "pt" ? "pt-BR" : currentLang === "en" ? "en" : "es";
+    render(currentLang);
+  });
+});
+
+render(currentLang);
+</script>
+</body>
+</html>

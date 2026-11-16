@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deck 1 — Visão Geral | Newmont Argentina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:'Inter',sans-serif;overflow:hidden;color:#E8E8E8}
+h1,h2,h3{color:#fff}
+h1{font-weight:900;letter-spacing:-.03em;line-height:1.08}
+h2{font-weight:800;letter-spacing:-.025em;line-height:1.12;font-size:clamp(26px,3.2vw,38px)}
+h3{font-weight:700;letter-spacing:-.015em;color:#fff}
+p,span,li{font-weight:400;line-height:1.55;color:#D4D4D4}
+.presentation{width:100vw;height:100vh;overflow:hidden;position:relative}
+.slides{display:flex;height:100%;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.slide{width:100vw;height:100vh;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;padding:60px 76px}
+.slide::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(900px 420px at 72% 18%, rgba(255,214,0,.08) 0%, transparent 42%),
+  radial-gradient(800px 380px at 35% 20%, rgba(255,184,0,.06) 0%, transparent 42%),
+  linear-gradient(180deg,#000 0%,#050505 45%,#000 100%)}
+.slide::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.25;
+  background-image:radial-gradient(rgba(255,255,255,.05) .8px, transparent .8px);background-size:24px 24px}
+.slide>*{position:relative;z-index:1}
+.wrap{max-width:1340px;width:100%;max-height:92vh;overflow-y:auto;padding-right:6px}
+.wrap::-webkit-scrollbar{width:5px}.wrap::-webkit-scrollbar-thumb{background:rgba(255,214,0,.3);border-radius:4px}
+.gt{background:linear-gradient(135deg,#FFD600 0%,#FFB800 50%,#FFD600 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.gl{width:90px;height:4px;border-radius:2px;background:linear-gradient(90deg,#FFD600,#FFB800);margin-bottom:18px;animation:lineG .8s ease both;transform-origin:left}
+.gl.ce{margin:0 auto 18px auto;transform-origin:center}
+@keyframes lineG{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.tagline{font-size:13px;color:#999;margin-bottom:18px;max-width:900px}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.05);padding:20px 20px;backdrop-filter:blur(8px);transition:all .4s ease}
+.card:hover{border-color:rgba(255,214,0,.3);transform:translateY(-2px)}
+.cp{background:linear-gradient(145deg, rgba(20,20,20,.95) 0%, rgba(10,10,10,.98) 55%, rgba(0,0,0,1) 100%);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.6), 0 0 36px rgba(255,214,0,.07);padding:20px 20px;backdrop-filter:blur(10px)}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:9px 20px;border-radius:999px;margin-bottom:22px;background:rgba(255,214,0,.1);border:1px solid rgba(255,214,0,.3);font-size:12.5px;font-weight:600;color:#FFD600;letter-spacing:.05em;text-transform:uppercase}
+.tag-sm{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:7px;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.tf{background:rgba(94,232,154,.12);color:#5EE89A;border:1px solid rgba(94,232,154,.3)}
+.te{background:rgba(255,214,0,.12);color:#FFD600;border:1px solid rgba(255,214,0,.3)}
+.tj{background:rgba(200,109,215,.12);color:#C86DD7;border:1px solid rgba(200,109,215,.3)}
+.tp{background:rgba(255,107,107,.12);color:#FF6B6B;border:1px solid rgba(255,107,107,.3)}
+.tn{width:56px;height:56px;border-radius:15px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:#000;animation:glowP 3s ease-in-out infinite}
+.tn.n1{background:linear-gradient(145deg,#FFD600,#E6B800)}
+.tn.n2{background:linear-gradient(145deg,#FFC400,#D9A300);animation-delay:.5s}
+.tn.n3{background:linear-gradient(145deg,#FFB800,#CC9200);animation-delay:1s}
+@keyframes glowP{0%,100%{box-shadow:0 0 14px rgba(255,214,0,.15)}50%{box-shadow:0 0 28px rgba(255,214,0,.3)}}
+.ic{width:42px;height:42px;border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,214,0,.1)}
+.ic svg{width:21px;height:21px;color:#FFD600}
+.s5c{position:relative;overflow:hidden}
+.s5c::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#FFD600}
+.s5n{font-size:36px;font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:5px;color:#FFD600}
+.s5n.sm{font-size:26px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
+.mapbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;backdrop-filter:blur(8px)}
+.map-note{font-size:10px;color:#999;margin-bottom:6px;letter-spacing:.03em;text-transform:uppercase}
+.legend-map{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap}
+.leg{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#999}
+.dot{width:8px;height:8px;border-radius:3px}
+.dot.a{background:#FFD600}
+.dot.b{background:rgba(255,255,255,.15)}
+.quote{font-size:22px;font-weight:600;color:#fff;line-height:1.45;max-width:880px;margin:0 auto 18px auto;text-align:center;font-style:italic}
+.progress{position:fixed;top:0;left:0;height:3px;z-index:1000;background:linear-gradient(90deg,#FFD600,#FFB800,#FFD600);background-size:200% auto;animation:shimmer 3s linear infinite;transition:width .6s ease}
+.fs-btn{position:fixed;top:18px;right:18px;z-index:999;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:10px 16px;border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:7px;transition:all .3s ease;backdrop-filter:blur(6px);letter-spacing:.04em;text-transform:uppercase}
+.fs-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,214,0,.4)}
+.fs-btn svg{width:14px;height:14px}
+.top-left{position:fixed;top:18px;left:18px;z-index:999;display:flex;gap:10px;align-items:center}
+.lang-sel{display:flex;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:4px;backdrop-filter:blur(6px)}
+.lang-sel button{background:transparent;border:none;color:#999;padding:6px 11px;border-radius:8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .25s ease}
+.lang-sel button.active{background:#FFD600;color:#000}
+.home-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:9px 14px;border-radius:11px;cursor:pointer;font-size:11px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;backdrop-filter:blur(6px);transition:all .25s ease}
+.home-btn:hover{background:rgba(255,214,0,.15);color:#FFD600;border-color:rgba(255,214,0,.4)}
+.sc{position:fixed;bottom:30px;left:36px;z-index:998;color:#999;font-size:13px;font-weight:600;letter-spacing:.05em;background:rgba(0,0,0,.5);padding:8px 16px;border-radius:9px;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.08)}
+.sc .cn{color:#FFD600;font-weight:800}
+.ind{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:998;display:flex;gap:6px;background:rgba(0,0,0,.5);padding:8px 14px;border-radius:18px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08)}
+.ind .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);transition:all .4s ease;cursor:pointer}
+.ind .dot.active{background:#FFD600;box-shadow:0 0 12px rgba(255,214,0,.7);width:30px;border-radius:5px}
+.nav-arr{position:fixed;bottom:26px;right:36px;z-index:998;display:flex;gap:9px}
+.nav-arr button{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#D4D4D4;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(6px)}
+.nav-arr button:hover{background:rgba(255,214,0,.25);border-color:rgba(255,214,0,.5);color:#000;transform:scale(1.05)}
+.checklist{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.checklist li{list-style:none;padding-left:16px;position:relative;font-size:12.5px;color:#D4D4D4}
+.checklist li::before{content:'✓';position:absolute;left:0;color:#FFD600;font-weight:900}
+/* bar chart */
+.bchart{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.brow{display:grid;grid-template-columns:200px 1fr 54px;align-items:center;gap:10px}
+.brow .lbl{font-size:12px;color:#D4D4D4;text-align:right}
+.btrack{background:rgba(255,255,255,.06);border-radius:7px;height:16px;overflow:hidden;position:relative}
+.bfill{height:100%;border-radius:7px;background:linear-gradient(90deg,#FFD600,#FFB800)}
+.bfill.red{background:linear-gradient(90deg,#FF6B6B,#CC3B3B)}
+.bval{font-size:12px;color:#FFD600;font-weight:700}
+/* donut */
+.donut-wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap;justify-content:center}
+.donut{width:150px;height:150px;border-radius:50%;flex-shrink:0}
+.dleg{display:flex;flex-direction:column;gap:7px}
+.dleg .di{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#D4D4D4}
+.dleg .sq{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeScale{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.slide.active .au{animation:fadeUp .7s ease both}
+.slide.active .as{animation:fadeScale .7s ease both}
+.d1{animation-delay:.1s!important}.d2{animation-delay:.2s!important}.d3{animation-delay:.3s!important}
+.d4{animation-delay:.4s!important}.d5{animation-delay:.5s!important}.d6{animation-delay:.6s!important}.d7{animation-delay:.7s!important}
+.s1{text-align:center;max-width:980px;margin:0 auto}
+.s1 h1{font-size:clamp(42px,5.8vw,68px);margin-bottom:20px}
+.s1 .tag{font-size:18px;color:#D4D4D4;max-width:640px;margin:0 auto;line-height:1.5}
+[data-lang]{display:none}
+.lang-pt [data-lang="pt"]{display:block}
+.lang-en [data-lang="en"]{display:block}
+.lang-es [data-lang="es"]{display:block}
+[data-lang-inline]{display:none}
+.lang-pt [data-lang-inline="pt"]{display:inline}
+.lang-en [data-lang-inline="en"]{display:inline}
+.lang-es [data-lang-inline="es"]{display:inline}
+</style>
+</head>
+<body class="lang-pt">
+<div class="progress" id="prog" style="width:10%"></div>
+<div class="top-left">
+  <div class="lang-sel">
+    <button data-l="pt" class="active" onclick="setLang('pt')">PT</button>
+    <button data-l="en" onclick="setLang('en')">EN</button>
+    <button data-l="es" onclick="setLang('es')">ES</button>
+  </div>
+  <a class="home-btn" href="index.html">
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"></path></svg>
+    <span data-lang="pt">Index</span><span data-lang="en">Index</span><span data-lang="es">Index</span>
+  </a>
+</div>
+<button class="fs-btn" onclick="toggleFs()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"></path></svg>
+  <span id="fsTxt" data-lang="pt">Tela cheia</span><span id="fsTxtE" data-lang="en">Fullscreen</span><span id="fsTxtS" data-lang="es">Pantalla</span>
+</button>
+<div class="sc"><span class="cn" id="cn">1</span> / 10</div>
+<div class="ind" id="ind"></div>
+<div class="nav-arr"><button onclick="prev()">‹</button><button onclick="next()">›</button></div>
+
+<div class="presentation"><div class="slides" id="sw">
+
+<!-- 1 -->
+<section class="slide active">
+  <div class="s1">
+    <div class="badge au d1" data-lang="pt">Deck 1 de 9 · Programa de Expatriação · Revisão 4</div>
+    <div class="badge au d1" data-lang="en">Deck 1 of 9 · Expatriation Program · Revision 4</div>
+    <div class="badge au d1" data-lang="es">Deck 1 de 9 · Programa de Expatriación · Revisión 4</div>
+    <h1 class="au d2">
+      <span data-lang="pt"><span class="gt">Newmont</span> na Argentina: visão geral de segurança</span>
+      <span data-lang="en"><span class="gt">Newmont</span> in Argentina: security overview</span>
+      <span data-lang="es"><span class="gt">Newmont</span> en Argentina: visión general de seguridad</span>
+    </h1>
+    <p class="tag au d3">
+      <span data-lang="pt">Relatório consolidado de inteligência de risco — AMBA, Cerro Negro e o mercado de ouro e prata. Referência 15/11/2026, validade até 13/02/2027.</span>
+      <span data-lang="en">Consolidated risk intelligence report — AMBA, Cerro Negro and the gold/silver market. Reference 11/15/2026, valid until 02/13/2027.</span>
+      <span data-lang="es">Informe consolidado de inteligencia de riesgo — AMBA, Cerro Negro y el mercado de oro y plata. Referencia 15/11/2026, vigente hasta 13/02/2027.</span>
+    </p>
+  </div>
+</section>
+
+<!-- 2 - mapa geral + validade -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Dois territórios, <span class="gt">um programa</span></span><span data-lang="en">Two territories, <span class="gt">one program</span></span><span data-lang="es">Dos territorios, <span class="gt">un programa</span></span></h2>
+    <div class="grid2" style="margin-top:20px;align-items:start">
+      <div class="mapbox au d3">
+        <div class="map-note"><span data-lang="pt">Mapa — Argentina, visão nacional</span><span data-lang="en">Map — Argentina, national view</span><span data-lang="es">Mapa — Argentina, vista nacional</span></div>
+        <iframe src="https://www.google.com/maps?q=Argentina&z=5&output=embed" width="100%" height="300" style="border:0;border-radius:12px;filter:grayscale(.3) contrast(1.1)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="legend-map">
+          <div class="leg"><span class="dot a"></span><span data-lang="pt">AMBA — vida diária</span><span data-lang="en">AMBA — daily life</span><span data-lang="es">AMBA — vida diaria</span></div>
+          <div class="leg"><span class="dot b"></span><span data-lang="pt">Cerro Negro — operação</span><span data-lang="en">Cerro Negro — operations</span><span data-lang="es">Cerro Negro — operación</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card s5c au d4"><h3>AMBA</h3><p style="font-size:13px;margin-top:4px"><span data-lang="pt">Buenos Aires e região metropolitana — moradia, escola, vida social e escritório. Risco cotidiano: crime patrimonial oportunista.</span><span data-lang="en">Buenos Aires metro area — housing, school, social life and office. Daily risk: opportunistic property crime.</span><span data-lang="es">Área metropolitana de Buenos Aires — vivienda, escuela, vida social y oficina. Riesgo cotidiano: delito patrimonial oportunista.</span></p></div>
+        <div class="card s5c au d5"><h3>Cerro Negro</h3><p style="font-size:13px;margin-top:4px"><span data-lang="pt">Santa Cruz, ~60 km de Perito Moreno <span class="tag-sm tf" style="margin-left:4px">F</span> — operação Newmont, risco regulatório, trabalhista e político (Lei 90/10).</span><span data-lang="en">Santa Cruz, ~60 km from Perito Moreno <span class="tag-sm tf" style="margin-left:4px">F</span> — Newmont operation, regulatory, labor and political risk (Law 90/10).</span><span data-lang="es">Santa Cruz, ~60 km de Perito Moreno <span class="tag-sm tf" style="margin-left:4px">F</span> — operación Newmont, riesgo regulatorio, laboral y político (Ley 90/10).</span></p></div>
+        <div class="card s5c au d6"><h3><span data-lang="pt">Validade do relatório</span><span data-lang="en">Report validity</span><span data-lang="es">Vigencia del informe</span></h3><p style="font-size:13px;margin-top:4px"><span data-lang="pt">Revisão 4 · Referência 15/11/2026 · Válido 90 dias, até 13/02/2027, ou antes por gatilho (seção 10).</span><span data-lang="en">Revision 4 · Reference 11/15/2026 · Valid 90 days, until 02/13/2027, or earlier per trigger (section 10).</span><span data-lang="es">Revisión 4 · Referencia 15/11/2026 · Válido 90 días, hasta 13/02/2027, o antes por gatillo (sección 10).</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 - estrutura dos 9 decks -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Estrutura dos <span class="gt">9 decks</span></span><span data-lang="en">Structure of the <span class="gt">9 decks</span></span><span data-lang="es">Estructura de los <span class="gt">9 decks</span></span></h2>
+    <div class="grid3" style="margin-top:20px">
+      <div class="card au d2"><div class="tn n1">1</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Visão Geral</span><span data-lang="en">Overview</span><span data-lang="es">Visión General</span></h3></div>
+      <div class="card au d3"><div class="tn n2">2</div><h3 style="text-align:center;font-size:14px">AMBA</h3></div>
+      <div class="card au d4"><div class="tn n3">3</div><h3 style="text-align:center;font-size:14px">Cerro Negro</h3></div>
+      <div class="card au d5"><div class="tn n1">4</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Matriz de Riscos</span><span data-lang="en">Risk Matrix</span><span data-lang="es">Matriz de Riesgos</span></h3></div>
+      <div class="card au d6"><div class="tn n2">5</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Segurança Digital</span><span data-lang="en">Digital Security</span><span data-lang="es">Seguridad Digital</span></h3></div>
+      <div class="card au d7"><div class="tn n3">6</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Protocolos</span><span data-lang="en">Protocols</span><span data-lang="es">Protocolos</span></h3></div>
+    </div>
+    <div class="grid3" style="margin-top:16px">
+      <div class="card au d2"><div class="tn n1">7</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Mercado Ouro e Prata</span><span data-lang="en">Gold & Silver Market</span><span data-lang="es">Mercado de Oro y Plata</span></h3></div>
+      <div class="card au d3"><div class="tn n2">8</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Panorama Político</span><span data-lang="en">Political Landscape</span><span data-lang="es">Panorama Político</span></h3></div>
+      <div class="card au d4"><div class="tn n3">9</div><h3 style="text-align:center;font-size:14px"><span data-lang="pt">Governança & Gatilhos</span><span data-lang="en">Governance & Triggers</span><span data-lang="es">Gobernanza y Gatillos</span></h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 - metodologia -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Metodologia: fatos, <span class="gt">estimativas</span> e juízos</span><span data-lang="en">Methodology: facts, <span class="gt">estimates</span> and judgments</span><span data-lang="es">Metodología: hechos, <span class="gt">estimaciones</span> y juicios</span></h2>
+    <div class="grid4" style="margin-top:20px">
+      <div class="cp au d2"><span class="tag-sm tf">F</span><h3 style="margin-top:10px;font-size:15px"><span data-lang="pt">Fato verificado</span><span data-lang="en">Verified fact</span><span data-lang="es">Hecho verificado</span></h3><p style="font-size:12px;margin-top:4px"><span data-lang="pt">Fonte e data identificadas (SNIC, INDEC, EITI, imprensa)</span><span data-lang="en">Source and date identified</span><span data-lang="es">Fuente y fecha identificadas</span></p></div>
+      <div class="cp au d3"><span class="tag-sm te">E</span><h3 style="margin-top:10px;font-size:15px"><span data-lang="pt">Estimativa</span><span data-lang="en">Estimate</span><span data-lang="es">Estimación</span></h3><p style="font-size:12px;margin-top:4px"><span data-lang="pt">Projeção com nível de confiança, sem % de probabilidade</span><span data-lang="en">Projection with confidence level, no probability %</span><span data-lang="es">Proyección con nivel de confianza, sin % de probabilidad</span></p></div>
+      <div class="cp au d4"><span class="tag-sm tj">J</span><h3 style="margin-top:10px;font-size:15px"><span data-lang="pt">Juízo analítico</span><span data-lang="en">Analytical judgment</span><span data-lang="es">Juicio analítico</span></h3><p style="font-size:12px;margin-top:4px"><span data-lang="pt">Interpretação profissional, sempre identificada como tal</span><span data-lang="en">Professional interpretation, always identified</span><span data-lang="es">Interpretación profesional, siempre identificada</span></p></div>
+      <div class="cp au d5"><span class="tag-sm tp">P</span><h3 style="margin-top:10px;font-size:15px"><span data-lang="pt">Pendente</span><span data-lang="en">Pending</span><span data-lang="es">Pendiente</span></h3><p style="font-size:12px;margin-top:4px"><span data-lang="pt">Não extraído da fonte primária — não tratar como confirmado</span><span data-lang="en">Not yet extracted from primary source — do not treat as confirmed</span><span data-lang="es">No extraído de la fuente primaria — no tratar como confirmado</span></p></div>
+    </div>
+    <p class="au d6" style="margin-top:20px;max-width:900px;font-size:13px"><span data-lang="pt">O relatório não recomenda conduta ilegal, vigilância de pessoas ou evasão de autoridades. Não substitui assessoria jurídica argentina, consulta médica ou orientação de autoridades competentes.</span><span data-lang="en">The report does not recommend illegal conduct, surveillance of individuals, or evasion of authorities. Does not replace Argentine legal counsel, medical consultation, or guidance from competent authorities.</span><span data-lang="es">El informe no recomienda conducta ilegal, vigilancia de personas o evasión de autoridades. No sustituye asesoría jurídica argentina, consulta médica o orientación de autoridades competentes.</span></p>
+  </div>
+</section>
+
+<!-- 5 - panorama econômico (gráfico barras) -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Panorama econômico <span class="gt">argentino</span></span><span data-lang="en">Argentine economic <span class="gt">landscape</span></span><span data-lang="es">Panorama económico <span class="gt">argentino</span></span></h2>
+    <div class="bchart au d2">
+      <div class="brow"><span class="lbl">Pobreza 1º sem/26 <span class="tag-sm tf">F</span></span><div class="btrack"><div class="bfill red" style="width:32.3%"></div></div><span class="bval">32,3%</span></div>
+      <div class="brow"><span class="lbl">Indigência 1º sem/26 <span class="tag-sm tf">F</span></span><div class="btrack"><div class="bfill red" style="width:7.5%"></div></div><span class="bval">7,5%</span></div>
+      <div class="brow"><span class="lbl">Desemprego 2º trim/26 <span class="tag-sm tf">F</span></span><div class="btrack"><div class="bfill" style="width:7.9%"></div></div><span class="bval">7,9%</span></div>
+      <div class="brow"><span class="lbl">Projeção pobreza fim 2026 <span class="tag-sm te">E</span></span><div class="btrack"><div class="bfill" style="width:35%;opacity:.7"></div></div><span class="bval">~35%</span></div>
+    </div>
+    <p class="au d4" style="margin-top:18px;max-width:900px;font-size:13px"><span data-lang="pt">INDEC (set/2026, via Al Jazeera 25/09/2026): pobreza com alta de 4,1 p.p. frente ao semestre anterior; desemprego no maior nível desde 2021. UCA projeta ~35% até o fim de 2026 (confiança baixa, não oficial).</span><span data-lang="en">INDEC (Sep/2026, via Al Jazeera 09/25/2026): poverty up 4.1 pp vs prior half-year; unemployment at highest level since 2021. UCA projects ~35% by end of 2026 (low confidence, not official).</span><span data-lang="es">INDEC (set/2026, vía Al Jazeera 25/09/2026): pobreza con alza de 4,1 p.p. frente al semestre anterior; desempleo en el nivel más alto desde 2021. UCA proyecta ~35% hacia fin de 2026 (confianza baja, no oficial).</span></p>
+    <div class="card s5c au d5" style="margin-top:12px"><h3 style="font-size:14px"><span class="tag-sm tj">J</span> <span data-lang="pt">Leitura analítica</span><span data-lang="en">Analytical reading</span><span data-lang="es">Lectura analítica</span></h3><p style="font-size:12.5px;margin-top:6px"><span data-lang="pt">A deterioração social eleva a pressão por crime patrimonial oportunista e aumenta a pressão política por emprego local e regalias sobre empresas de mineração estrangeiras.</span><span data-lang="en">Social deterioration raises pressure for opportunistic property crime and increases political pressure for local jobs and royalties on foreign mining companies.</span><span data-lang="es">El deterioro social eleva la presión por delito patrimonial oportunista y aumenta la presión política por empleo local y regalías sobre empresas mineras extranjeras.</span></p></div>
+  </div>
+</section>
+
+<!-- 6 - criminalidade nacional (gráfico) -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Criminalidade: <span class="gt">quadro nacional</span></span><span data-lang="en">Crime: <span class="gt">national picture</span></span><span data-lang="es">Criminalidad: <span class="gt">cuadro nacional</span></span></h2>
+    <div class="grid2" style="margin-top:18px">
+      <div class="card au d2">
+        <h3 style="font-size:14px">Homicídio doloso <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <div class="bchart" style="margin-top:10px">
+          <div class="brow" style="grid-template-columns:120px 1fr 46px"><span class="lbl" style="font-size:11px">Nacional 2025</span><div class="btrack"><div class="bfill" style="width:72%"></div></div><span class="bval" style="font-size:11px">3,6/100k</span></div>
+          <div class="brow" style="grid-template-columns:120px 1fr 46px"><span class="lbl" style="font-size:11px">CABA 2025</span><div class="btrack"><div class="bfill" style="width:50%"></div></div><span class="bval" style="font-size:11px">2,5/100k</span></div>
+        </div>
+        <p style="font-size:11.5px;margin-top:10px"><span data-lang="pt">Nacional: −7,3% vs. 2024 (SNIC). CABA: 78 casos, −3% vs. 2024. Confiança alta.</span><span data-lang="en">National: −7.3% vs 2024 (SNIC). CABA: 78 cases, −3% vs 2024. High confidence.</span><span data-lang="es">Nacional: −7,3% vs. 2024 (SNIC). CABA: 78 casos, −3% vs. 2024. Confianza alta.</span></p>
+      </div>
+      <div class="card au d3">
+        <h3 style="font-size:14px"><span data-lang="pt">Sequestro extorsivo</span><span data-lang="en">Extortive kidnapping</span><span data-lang="es">Secuestro extorsivo</span> <span class="tag-sm tf" style="margin-left:4px">F</span></h3>
+        <div class="bchart" style="margin-top:10px">
+          <div class="brow" style="grid-template-columns:90px 1fr 36px"><span class="lbl" style="font-size:11px">2015</span><div class="btrack"><div class="bfill red" style="width:100%"></div></div><span class="bval" style="font-size:11px">294</span></div>
+          <div class="brow" style="grid-template-columns:90px 1fr 36px"><span class="lbl" style="font-size:11px">2020</span><div class="btrack"><div class="bfill red" style="width:15%"></div></div><span class="bval" style="font-size:11px">44</span></div>
+          <div class="brow" style="grid-template-columns:90px 1fr 36px"><span class="lbl" style="font-size:11px">2025</span><div class="btrack"><div class="bfill red" style="width:5%"></div></div><span class="bval" style="font-size:11px">14</span></div>
+        </div>
+        <p style="font-size:11.5px;margin-top:10px"><span data-lang="pt">Mínimo da série de 10 anos (UFECO). 2026 até 31/08: 12 casos, 9 na Província de Buenos Aires.</span><span data-lang="en">Decade low (UFECO). 2026 through 08/31: 12 cases, 9 in Buenos Aires Province.</span><span data-lang="es">Mínimo de la serie de 10 años (UFECO). 2026 hasta 31/08: 12 casos, 9 en la Provincia de Buenos Aires.</span></p>
+      </div>
+    </div>
+    <p class="au d4" style="margin-top:14px;font-size:12px;max-width:900px"><span data-lang="pt">Nota de consistência: a Província de Buenos Aires tem taxa de homicídio superior à Ciudad. Famílias em San Isidro, Vicente López, Tigre ou Pilar não devem usar a taxa de 2,5 como referência.</span><span data-lang="en">Consistency note: Buenos Aires Province has a higher homicide rate than the Ciudad. Families in San Isidro, Vicente López, Tigre or Pilar should not use the 2.5 rate as reference.</span><span data-lang="es">Nota de consistencia: la Provincia de Buenos Aires tiene tasa de homicidio superior a la Ciudad. Familias en San Isidro, Vicente López, Tigre o Pilar no deben usar la tasa de 2,5 como referencia.</span></p>
+  </div>
+</section>
+
+<!-- 7 - crime CABA detalhado (gráfico) -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Crime na <span class="gt">Ciudad de Buenos Aires</span>, 2025</span><span data-lang="en">Crime in <span class="gt">Ciudad de Buenos Aires</span>, 2025</span><span data-lang="es">Delito en la <span class="gt">Ciudad de Buenos Aires</span>, 2025</span></h2>
+    <div class="bchart au d2">
+      <div class="brow"><span class="lbl">Roubos totais (≈137/dia)</span><div class="btrack"><div class="bfill" style="width:100%"></div></div><span class="bval">50.069</span></div>
+      <div class="brow"><span class="lbl">Furtos (≈136/dia)</span><div class="btrack"><div class="bfill" style="width:99%"></div></div><span class="bval">49.641</span></div>
+      <div class="brow"><span class="lbl">Roubos com moto (≈15/dia)</span><div class="btrack"><div class="bfill" style="width:11%"></div></div><span class="bval">5.587</span></div>
+      <div class="brow"><span class="lbl">Roubos com arma</span><div class="btrack"><div class="bfill" style="width:11%"></div></div><span class="bval">5.566</span></div>
+      <div class="brow"><span class="lbl">Roubos de veículo</span><div class="btrack"><div class="bfill" style="width:1%"></div></div><span class="bval">524</span></div>
+      <div class="brow"><span class="lbl">Homicídios dolosos</span><div class="btrack"><div class="bfill red" style="width:0.2%"></div></div><span class="bval">78</span></div>
+    </div>
+    <p class="au d3" style="margin-top:16px;font-size:12.5px;max-width:900px"><span class="tag-sm tf">F</span> <span data-lang="pt">Fonte: Mapa del Delito 2025, Gobierno de la Ciudad, divulgado fev/2026 (Infobae, Clarín, Buenos Aires Times). Variações: roubos totais −27%, furtos −21%, roubos com moto −3%, roubos com arma −34%, roubos de veículo −54%.</span><span data-lang="en">Source: Mapa del Delito 2025, Ciudad Government, released Feb/2026. Variations: total robberies −27%, thefts −21%, motorbike robberies −3%, armed robberies −34%, vehicle theft −54%.</span><span data-lang="es">Fuente: Mapa del Delito 2025, Gobierno de la Ciudad, difundido feb/2026. Variaciones: robos totales −27%, hurtos −21%, robos con moto −3%, robos con arma −34%, robo de vehículo −54%.</span></p>
+    <div class="card s5c au d4" style="margin-top:10px"><p style="font-size:12.5px"><span class="tag-sm tj">J</span> <span data-lang="pt">O homicídio em queda não reduz o risco patrimonial. O roubo com moto é quase estável e segue o principal risco cotidiano para famílias.</span><span data-lang="en">Falling homicide does not reduce property risk. Motorbike robbery is nearly stable and remains the main daily risk for families.</span><span data-lang="es">El homicidio en baja no reduce el riesgo patrimonial. El robo con moto es casi estable y sigue siendo el principal riesgo cotidiano para las familias.</span></p></div>
+  </div>
+</section>
+
+<!-- 8 - mercado ouro/prata resumo (donut) -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Mercado de ouro e prata: <span class="gt">peso do setor</span></span><span data-lang="en">Gold & silver market: <span class="gt">sector weight</span></span><span data-lang="es">Mercado de oro y plata: <span class="gt">peso del sector</span></span></h2>
+    <div class="donut-wrap au d2" style="margin-top:14px">
+      <div class="donut" style="background:conic-gradient(#FFD600 0% 67.4%, #FFB800 67.4% 82.5%, #FF6B6B 82.5% 95.4%, rgba(255,255,255,.1) 95.4% 100%)"></div>
+      <div class="dleg">
+        <div class="di"><span class="sq" style="background:#FFD600"></span>Ouro — 67,4%</div>
+        <div class="di"><span class="sq" style="background:#FFB800"></span>Lítio — 15,1%</div>
+        <div class="di"><span class="sq" style="background:#FF6B6B"></span>Prata — 12,9%</div>
+        <div class="di"><span class="sq" style="background:rgba(255,255,255,.2)"></span><span data-lang="pt">Outros — 4,6%</span><span data-lang="en">Other — 4.6%</span><span data-lang="es">Otros — 4,6%</span></div>
+      </div>
+    </div>
+    <div class="grid4" style="margin-top:18px">
+      <div class="card as d2" style="text-align:center"><div class="s5n sm">US$ 6.073M</div><p style="font-size:11px"><span data-lang="pt">Exportações mineiras 2025 (EITI)</span><span data-lang="en">2025 mining exports (EITI)</span><span data-lang="es">Exportaciones mineras 2025 (EITI)</span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">+30%</div><p style="font-size:11px"><span data-lang="pt">Alta vs. 2024 (US$ 4.673M)</span><span data-lang="en">Growth vs 2024 (US$ 4,673M)</span><span data-lang="es">Alza vs. 2024 (US$ 4.673M)</span></p></div>
+      <div class="card as d4" style="text-align:center"><div class="s5n sm">6,9%</div><p style="font-size:11px"><span data-lang="pt">Participação na exportação total do país</span><span data-lang="en">Share of total country exports</span><span data-lang="es">Participación en la exportación total del país</span></p></div>
+      <div class="card as d5" style="text-align:center"><div class="s5n sm">39,5%</div><p style="font-size:11px"><span data-lang="pt">Santa Cruz nas exportações mineiras — onde está Cerro Negro</span><span data-lang="en">Santa Cruz in mining exports — where Cerro Negro is</span><span data-lang="es">Santa Cruz en las exportaciones mineras — donde está Cerro Negro</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 - cerro negro status resumido -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Cerro Negro: <span class="gt">status em 15/11/2026</span></span><span data-lang="en">Cerro Negro: <span class="gt">status as of 11/15/2026</span></span><span data-lang="es">Cerro Negro: <span class="gt">estado al 15/11/2026</span></span></h2>
+    <div class="grid2" style="margin-top:18px">
+      <div class="card s5c au d2"><h3 style="font-size:14px"><span class="tag-sm tf">F</span> <span data-lang="pt">Confirmado até 22/09</span><span data-lang="en">Confirmed through 09/22</span><span data-lang="es">Confirmado hasta 22/09</span></h3><p style="font-size:12px;margin-top:6px"><span data-lang="pt">Conflito passou da fase de inspeção para acompanhamento de requerimentos e prazos. Sumários permanecem em curso.</span><span data-lang="en">Conflict moved from inspection to tracking of requirements and deadlines. Administrative proceedings remain open.</span><span data-lang="es">El conflicto pasó de la fase de inspección al seguimiento de requerimientos y plazos. Los sumarios siguen en curso.</span></p></div>
+      <div class="card s5c au d3"><h3 style="font-size:14px"><span class="tag-sm tp">P</span> <span data-lang="pt">Não verificado</span><span data-lang="en">Not verified</span><span data-lang="es">No verificado</span></h3><p style="font-size:12px;margin-top:6px"><span data-lang="pt">Reabertura efetiva dos oito setores, resultado dos sumários, multas, acordo sindical sobre Lei 90/10 e inspeções posteriores a 22/09.</span><span data-lang="en">Effective reopening of the eight sectors, outcome of proceedings, fines, union agreement on Law 90/10, and inspections after 09/22.</span><span data-lang="es">Reapertura efectiva de los ocho sectores, resultado de los sumarios, multas, acuerdo sindical sobre la Ley 90/10 e inspecciones posteriores al 22/09.</span></p></div>
+    </div>
+    <p class="au d4" style="margin-top:14px;font-size:12px;max-width:900px"><span class="tag-sm tf">F</span> <span data-lang="pt">Clarín (15/09/2026, confiança média) atribui a Javier Aravena o levantamento das oito clausuras após plano de remediação. É declaração de governo no dia da reunião, não ata. Detalhamento completo no Deck 3.</span><span data-lang="en">Clarín (09/15/2026, medium confidence) attributes to Javier Aravena the lifting of the eight closures after a remediation plan. It is a government statement on the day of the meeting, not meeting minutes. Full detail in Deck 3.</span><span data-lang="es">Clarín (15/09/2026, confianza media) atribuye a Javier Aravena el levantamiento de las ocho clausuras tras un plan de remediación. Es declaración de gobierno el día de la reunión, no un acta. Detalle completo en el Deck 3.</span></p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <div class="wrap" style="text-align:center">
+    <div class="gl ce au d1"></div>
+    <p class="quote au d2">
+      <span data-lang="pt">"Segurança é rotina, protocolo e disciplina — não é medo."</span>
+      <span data-lang="en">"Security is routine, protocol and discipline — not fear."</span>
+      <span data-lang="es">"La seguridad es rutina, protocolo y disciplina — no es miedo."</span>
+    </p>
+    <h2 class="au d3"><span data-lang="pt">Siga para o <span class="gt">Deck 2 — AMBA</span></span><span data-lang="en">Continue to <span class="gt">Deck 2 — AMBA</span></span><span data-lang="es">Continúe al <span class="gt">Deck 2 — AMBA</span></span></h2>
+    <p class="au d4" style="max-width:720px;margin:14px auto 0;font-size:13px"><span data-lang="pt">Revisão obrigatória até 13 de fevereiro de 2027, ou antes por gatilho de revisão (Deck 9).</span><span data-lang="en">Mandatory review by February 13, 2027, or earlier upon a review trigger (Deck 9).</span><span data-lang="es">Revisión obligatoria hasta el 13 de febrero de 2027, o antes por gatillo de revisión (Deck 9).</span></p>
+    <a class="home-btn au d5" style="display:inline-flex;margin-top:18px" href="index.html">
+      <span data-lang="pt">Voltar ao Index</span><span data-lang="en">Back to Index</span><span data-lang="es">Volver al Index</span>
+    </a>
+  </div>
+</section>
+
+</div></div>
+
+<script>
+const T = 10; let C = 0;
+const W = document.getElementById('sw');
+const CN = document.getElementById('cn');
+const P = document.getElementById('prog');
+const I = document.getElementById('ind');
+for (let i = 0; i < T; i++) { const d = document.createElement('div'); d.classList.add('dot'); if (i === 0) d.classList.add('active'); d.onclick = () => go(i); I.appendChild(d); }
+function upd() { I.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === C)); CN.textContent = C + 1; P.style.width = ((C + 1) / T * 100) + '%'; document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === C)); }
+function go(i) { if (i < 0 || i >= T) return; C = i; W.style.transform = `translateX(-${C * 100}vw)`; upd(); }
+function next() { if (C < T - 1) go(C + 1); }
+function prev() { if (C > 0) go(C - 1); }
+document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); } if (e.key === 'f' || e.key === 'F') toggleFs(); });
+let tx = 0;
+document.addEventListener('touchstart', e => tx = e.changedTouches[0].screenX);
+document.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].screenX; if (Math.abs(d) > 50) { d > 0 ? next() : prev(); } });
+function toggleFs() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(() => {}); } else { document.exitFullscreen(); } }
+document.addEventListener('fullscreenchange', () => { document.getElementById('fsTxt').textContent = document.fullscreenElement ? 'Sair' : 'Tela cheia'; document.getElementById('fsTxtE').textContent = document.fullscreenElement ? 'Exit' : 'Fullscreen'; document.getElementById('fsTxtS').textContent = document.fullscreenElement ? 'Salir' : 'Pantalla'; });
+function setLang(l) { document.body.className = 'lang-' + l; document.querySelectorAll('.lang-sel button').forEach(b => b.classList.toggle('active', b.dataset.l === l)); }
+upd();
+</script>
+</body>
+</html>

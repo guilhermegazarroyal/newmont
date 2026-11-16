@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deck 4 — Matriz de Riscos | Newmont Argentina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:'Inter',sans-serif;overflow:hidden;color:#E8E8E8}
+h1,h2,h3{color:#fff}
+h1{font-weight:900;letter-spacing:-.03em;line-height:1.08}
+h2{font-weight:800;letter-spacing:-.025em;line-height:1.12;font-size:clamp(26px,3.2vw,38px)}
+h3{font-weight:700;letter-spacing:-.015em;color:#fff}
+p,span,li{font-weight:400;line-height:1.55;color:#D4D4D4}
+.presentation{width:100vw;height:100vh;overflow:hidden;position:relative}
+.slides{display:flex;height:100%;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.slide{width:100vw;height:100vh;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;padding:56px 72px}
+.slide::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(900px 420px at 72% 18%, rgba(255,214,0,.08) 0%, transparent 42%),
+  radial-gradient(800px 380px at 35% 20%, rgba(255,184,0,.06) 0%, transparent 42%),
+  linear-gradient(180deg,#000 0%,#050505 45%,#000 100%)}
+.slide::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.25;
+  background-image:radial-gradient(rgba(255,255,255,.05) .8px, transparent .8px);background-size:24px 24px}
+.slide>*{position:relative;z-index:1}
+.wrap{max-width:1340px;width:100%;max-height:92vh;overflow-y:auto;padding-right:6px}
+.wrap::-webkit-scrollbar{width:5px}.wrap::-webkit-scrollbar-thumb{background:rgba(255,214,0,.3);border-radius:4px}
+.gt{background:linear-gradient(135deg,#FFD600 0%,#FFB800 50%,#FFD600 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.gl{width:90px;height:4px;border-radius:2px;background:linear-gradient(90deg,#FFD600,#FFB800);margin-bottom:18px;animation:lineG .8s ease both;transform-origin:left}
+.gl.ce{margin:0 auto 18px auto;transform-origin:center}
+@keyframes lineG{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.05);padding:20px 20px;backdrop-filter:blur(8px);transition:all .4s ease}
+.card:hover{border-color:rgba(255,214,0,.3);transform:translateY(-2px)}
+.cp{background:linear-gradient(145deg, rgba(20,20,20,.95) 0%, rgba(10,10,10,.98) 55%, rgba(0,0,0,1) 100%);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.6), 0 0 36px rgba(255,214,0,.07);padding:20px 20px;backdrop-filter:blur(10px)}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:9px 20px;border-radius:999px;margin-bottom:22px;background:rgba(255,214,0,.1);border:1px solid rgba(255,214,0,.3);font-size:12.5px;font-weight:600;color:#FFD600;letter-spacing:.05em;text-transform:uppercase}
+.tag-sm{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:7px;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.tf{background:rgba(94,232,154,.12);color:#5EE89A;border:1px solid rgba(94,232,154,.3)}
+.te{background:rgba(255,214,0,.12);color:#FFD600;border:1px solid rgba(255,214,0,.3)}
+.tj{background:rgba(200,109,215,.12);color:#C86DD7;border:1px solid rgba(200,109,215,.3)}
+.tp{background:rgba(255,107,107,.12);color:#FF6B6B;border:1px solid rgba(255,107,107,.3)}
+.ic{width:42px;height:42px;border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,214,0,.1)}
+.ic svg{width:21px;height:21px;color:#FFD600}
+.s5c{position:relative;overflow:hidden}
+.s5c::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#FFD600}
+.s5n{font-size:38px;font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:5px;color:#FFD600}
+.s5n.sm{font-size:27px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
+.quote{font-size:22px;font-weight:600;color:#fff;line-height:1.45;max-width:880px;margin:0 auto 18px auto;text-align:center;font-style:italic}
+.progress{position:fixed;top:0;left:0;height:3px;z-index:1000;background:linear-gradient(90deg,#FFD600,#FFB800,#FFD600);background-size:200% auto;animation:shimmer 3s linear infinite;transition:width .6s ease}
+.fs-btn{position:fixed;top:18px;left:18px;z-index:999;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:10px 16px;border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:7px;transition:all .3s ease;backdrop-filter:blur(6px);letter-spacing:.04em;text-transform:uppercase}
+.fs-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,214,0,.4)}
+.fs-btn svg{width:14px;height:14px}
+.top-right{position:fixed;top:18px;right:18px;z-index:999;display:flex;gap:10px;align-items:center}
+.lang-sel{display:flex;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:4px;backdrop-filter:blur(6px)}
+.lang-sel button{background:transparent;border:none;color:#999;padding:6px 11px;border-radius:8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .25s ease}
+.lang-sel button.active{background:#FFD600;color:#000}
+.home-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:9px 14px;border-radius:11px;cursor:pointer;font-size:11px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;backdrop-filter:blur(6px);transition:all .25s ease}
+.home-btn:hover{background:rgba(255,214,0,.15);color:#FFD600;border-color:rgba(255,214,0,.4)}
+.sc{position:fixed;bottom:30px;left:36px;z-index:998;color:#999;font-size:13px;font-weight:600;letter-spacing:.05em;background:rgba(0,0,0,.5);padding:8px 16px;border-radius:9px;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.08)}
+.sc .cn{color:#FFD600;font-weight:800}
+.ind{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:998;display:flex;gap:6px;background:rgba(0,0,0,.5);padding:8px 14px;border-radius:18px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08)}
+.ind .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);transition:all .4s ease;cursor:pointer}
+.ind .dot.active{background:#FFD600;box-shadow:0 0 12px rgba(255,214,0,.7);width:30px;border-radius:5px}
+.nav-arr{position:fixed;bottom:26px;right:36px;z-index:998;display:flex;gap:9px}
+.nav-arr button{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#D4D4D4;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(6px)}
+.nav-arr button:hover{background:rgba(255,214,0,.25);border-color:rgba(255,214,0,.5);color:#000;transform:scale(1.05)}
+.checklist{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.checklist li{list-style:none;padding-left:16px;position:relative;font-size:12.5px;color:#D4D4D4}
+.checklist li::before{content:'✓';position:absolute;left:0;color:#FFD600;font-weight:900}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{color:#FFD600;text-align:left;padding:8px 10px;border-bottom:1px solid rgba(255,214,0,.3);font-weight:700}
+td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.07);color:#D4D4D4}
+.mat{display:grid;grid-template-columns:150px 1fr 1fr 1fr 1fr;gap:5px;margin-top:14px}
+.mat .hd{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.04em;text-align:center;padding:6px;font-weight:700}
+.mat .rl{font-size:10.5px;color:#999;text-transform:uppercase;letter-spacing:.03em;display:flex;align-items:center;padding:0 6px;font-weight:700}
+.mat .cell{border-radius:10px;min-height:58px;padding:7px 8px;display:flex;flex-direction:column;justify-content:center;gap:2px;font-size:9.5px;border:1px solid rgba(255,255,255,.08)}
+.mat .lo{background:rgba(255,184,0,.06)}
+.mat .md{background:rgba(255,214,0,.1)}
+.mat .hi{background:rgba(255,107,107,.1)}
+.mat .cr{background:rgba(255,60,60,.18)}
+.chip{display:inline-block;padding:2px 6px;border-radius:6px;font-size:9px;font-weight:800;margin:1px 0;color:#000}
+.chip.r{background:#FF6B6B}
+.chip.y{background:#FFD600}
+.chip.g{background:#FFB800}
+.bchart{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.brow{display:grid;grid-template-columns:150px 1fr 60px;align-items:center;gap:8px}
+.brow .lbl{font-size:11px;color:#D4D4D4;text-align:right}
+.btrack{background:rgba(255,255,255,.06);border-radius:7px;height:14px;overflow:hidden}
+.bfill{height:100%;border-radius:7px;background:linear-gradient(90deg,#FFD600,#FFB800)}
+.bfill.red{background:linear-gradient(90deg,#FF6B6B,#CC3B3B)}
+.bval{font-size:11px;color:#FFD600;font-weight:700}
+.donut-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center}
+.donut{width:130px;height:130px;border-radius:50%;flex-shrink:0}
+.dleg{display:flex;flex-direction:column;gap:6px}
+.dleg .di{display:flex;align-items:center;gap:8px;font-size:12px;color:#D4D4D4}
+.dleg .sq{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.mapbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;backdrop-filter:blur(8px)}
+.map-note{font-size:10px;color:#999;margin-bottom:6px;letter-spacing:.03em;text-transform:uppercase}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeScale{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.slide.active .au{animation:fadeUp .7s ease both}
+.slide.active .as{animation:fadeScale .7s ease both}
+.d1{animation-delay:.1s!important}.d2{animation-delay:.2s!important}.d3{animation-delay:.3s!important}
+.d4{animation-delay:.4s!important}.d5{animation-delay:.5s!important}.d6{animation-delay:.6s!important}.d7{animation-delay:.7s!important}
+.s1{text-align:center;max-width:980px;margin:0 auto}
+.s1 h1{font-size:clamp(42px,5.8vw,68px);margin-bottom:20px}
+.s1 .tag{font-size:18px;color:#D4D4D4;max-width:640px;margin:0 auto;line-height:1.5}
+[data-lang]{display:none}
+.lang-pt [data-lang="pt"]{display:block}
+.lang-en [data-lang="en"]{display:block}
+.lang-es [data-lang="es"]{display:block}
+[data-lang-inline]{display:none}
+.lang-pt [data-lang-inline="pt"]{display:inline}
+.lang-en [data-lang-inline="en"]{display:inline}
+.lang-es [data-lang-inline="es"]{display:inline}
+</style>
+</head>
+<body class="lang-pt">
+<div class="progress" id="prog" style="width:9%"></div>
+<div class="top-right">
+  <div class="lang-sel">
+    <button data-l="pt" class="active" onclick="setLang('pt')">PT</button>
+    <button data-l="en" onclick="setLang('en')">EN</button>
+    <button data-l="es" onclick="setLang('es')">ES</button>
+  </div>
+  <a class="home-btn" href="index.html">
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"></path></svg>
+    <span data-lang="pt">Index</span><span data-lang="en">Index</span><span data-lang="es">Index</span>
+  </a>
+</div>
+<button class="fs-btn" onclick="toggleFs()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"></path></svg>
+  <span id="fsTxt" data-lang="pt">Tela cheia</span><span id="fsTxtE" data-lang="en">Fullscreen</span><span id="fsTxtS" data-lang="es">Pantalla</span>
+</button>
+<div class="sc"><span class="cn" id="cn">1</span> / 11</div>
+<div class="ind" id="ind"></div>
+<div class="nav-arr"><button onclick="prev()">‹</button><button onclick="next()">›</button></div>
+
+<div class="presentation"><div class="slides" id="sw">
+
+<!-- 1 -->
+<section class="slide active">
+  <div class="s1">
+    <div class="badge au d1" data-lang="pt">Deck 4 de 9 · Síntese para o Comitê</div>
+    <div class="badge au d1" data-lang="en">Deck 4 of 9 · Committee Synthesis</div>
+    <div class="badge au d1" data-lang="es">Deck 4 de 9 · Síntesis para el Comité</div>
+    <h1 class="au d2">
+      <span data-lang="pt">A <span class="gt">matriz consolidada</span> que ordena as prioridades</span>
+      <span data-lang="en">The <span class="gt">consolidated matrix</span> that orders the priorities</span>
+      <span data-lang="es">La <span class="gt">matriz consolidada</span> que ordena las prioridades</span>
+    </h1>
+    <p class="tag au d3">
+      <span data-lang="pt">10 riscos setoriais (Cerro Negro e cadeia de valor) + 6 riscos individuais e familiares (AMBA), cruzados por probabilidade e impacto — base objetiva para a decisão do comitê, com revisão de 15/11/2026.</span>
+      <span data-lang="en">10 sector risks (Cerro Negro and value chain) + 6 individual/family risks (AMBA), cross-referenced by probability and impact — objective basis for the committee's decision, revised 11/15/2026.</span>
+      <span data-lang="es">10 riesgos sectoriales (Cerro Negro y cadena de valor) + 6 riesgos individuales y familiares (AMBA), cruzados por probabilidad e impacto — base objetiva para la decisión del comité, revisada el 15/11/2026.</span>
+    </p>
+  </div>
+</section>
+
+<!-- 2 - os 10 riscos setoriais com prob/impacto/nível -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Matriz setorial: os <span class="gt">10 riscos</span> do ouro e prata</span><span data-lang="en">Sector matrix: the <span class="gt">10 risks</span> of gold and silver</span><span data-lang="es">Matriz sectorial: los <span class="gt">10 riesgos</span> del oro y la plata</span></h2>
+    <table class="au d2" style="margin-top:14px">
+      <tr><th>#</th><th><span data-lang="pt">Risco</span><span data-lang="en">Risk</span><span data-lang="es">Riesgo</span></th><th><span data-lang="pt">Probabilidade</span><span data-lang="en">Probability</span><span data-lang="es">Probabilidad</span></th><th><span data-lang="pt">Impacto</span><span data-lang="en">Impact</span><span data-lang="es">Impacto</span></th><th><span data-lang="pt">Nível</span><span data-lang="en">Level</span><span data-lang="es">Nivel</span></th></tr>
+      <tr><td>1</td><td><span data-lang="pt">Conflito regulatório e trabalhista em Cerro Negro</span><span data-lang="en">Regulatory and labor conflict at Cerro Negro</span><span data-lang="es">Conflicto regulatorio y laboral en Cerro Negro</span></td><td><span data-lang="pt">Provável</span><span data-lang="en">Likely</span><span data-lang="es">Probable</span></td><td><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></td><td><span class="chip r">Alto</span></td></tr>
+      <tr><td>2</td><td><span data-lang="pt">Dano reputacional e político ligado à Lei 90/10</span><span data-lang="en">Reputational/political damage tied to the 90/10 Law</span><span data-lang="es">Daño reputacional y político ligado a la Ley 90/10</span></td><td><span data-lang="pt">Muito provável</span><span data-lang="en">Very likely</span><span data-lang="es">Muy probable</span></td><td><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></td><td><span class="chip r">Crítico</span></td></tr>
+      <tr><td>3</td><td><span data-lang="pt">Exposição nominal de executivos na imprensa</span><span data-lang="en">Executives named in the press</span><span data-lang="es">Exposición nominal de ejecutivos en la prensa</span></td><td><span data-lang="pt">Provável</span><span data-lang="en">Likely</span><span data-lang="es">Probable</span></td><td><span data-lang="pt">Médio</span><span data-lang="en">Medium</span><span data-lang="es">Medio</span></td><td><span class="chip y">Alto</span></td></tr>
+      <tr><td>4</td><td><span data-lang="pt">Roubo de cargas e veículos em rotas de acesso</span><span data-lang="en">Cargo/vehicle theft on access routes</span><span data-lang="es">Robo de cargas y vehículos en rutas de acceso</span></td><td><span data-lang="pt">Possível</span><span data-lang="en">Possible</span><span data-lang="es">Posible</span></td><td><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></td><td><span class="chip y">Alto</span></td></tr>
+      <tr><td>5</td><td><span data-lang="pt">Phishing e fraude de pagamento (executivos/fornecedores)</span><span data-lang="en">Phishing and payment fraud (execs/vendors)</span><span data-lang="es">Phishing y fraude de pago (ejecutivos/proveedores)</span></td><td><span data-lang="pt">Provável</span><span data-lang="en">Likely</span><span data-lang="es">Probable</span></td><td><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></td><td><span class="chip y">Alto</span></td></tr>
+      <tr><td>6</td><td><span data-lang="pt">Espionagem sobre reservas e negociações</span><span data-lang="en">Espionage over reserves and negotiations</span><span data-lang="es">Espionaje sobre reservas y negociaciones</span></td><td><span data-lang="pt">Possível</span><span data-lang="en">Possible</span><span data-lang="es">Posible</span></td><td><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></td><td><span class="chip y">Alto</span></td></tr>
+      <tr><td>7</td><td><span data-lang="pt">Acidente na RN 40 ou acessos ao site</span><span data-lang="en">Accident on RN 40 or site access roads</span><span data-lang="es">Accidente en la RN 40 o accesos al sitio</span></td><td><span data-lang="pt">Possível</span><span data-lang="en">Possible</span><span data-lang="es">Posible</span></td><td><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></td><td><span class="chip y">Alto</span></td></tr>
+      <tr><td>8</td><td><span data-lang="pt">Evacuação médica em região remota</span><span data-lang="en">Medical evacuation in remote area</span><span data-lang="es">Evacuación médica en región remota</span></td><td><span data-lang="pt">Possível</span><span data-lang="en">Possible</span><span data-lang="es">Posible</span></td><td><span data-lang="pt">Crítico</span><span data-lang="en">Critical</span><span data-lang="es">Crítico</span></td><td><span class="chip y">Alto</span></td></tr>
+      <tr><td>9</td><td><span data-lang="pt">Protesto/bloqueio comunitário (San Juan, Catamarca)</span><span data-lang="en">Community protest/blockade (San Juan, Catamarca)</span><span data-lang="es">Protesta/bloqueo comunitario (San Juan, Catamarca)</span></td><td><span data-lang="pt">Possível</span><span data-lang="en">Possible</span><span data-lang="es">Posible</span></td><td><span data-lang="pt">Médio</span><span data-lang="en">Medium</span><span data-lang="es">Medio</span></td><td><span class="chip g">Médio</span></td></tr>
+      <tr><td>10</td><td><span data-lang="pt">Sequestro extorsivo de executivo ou familiar</span><span data-lang="en">Extortive kidnapping of executive or family</span><span data-lang="es">Secuestro extorsivo de ejecutivo o familiar</span></td><td><span data-lang="pt">Raro</span><span data-lang="en">Rare</span><span data-lang="es">Raro</span></td><td><span data-lang="pt">Crítico</span><span data-lang="en">Critical</span><span data-lang="es">Crítico</span></td><td><span class="chip g">Médio</span></td></tr>
+    </table>
+    <p class="au d4" style="margin-top:10px;font-size:11px;color:#777"><span class="tag-sm tj">J</span> <span data-lang="pt">Escala: Muito provável / Provável / Possível / Improvável / Raro × Baixo / Médio / Alto / Crítico. Fonte: relatório consolidado, seção 5.3.</span><span data-lang="en">Scale: Very likely / Likely / Possible / Unlikely / Rare × Low / Medium / High / Critical. Source: consolidated report, section 5.3.</span><span data-lang="es">Escala: Muy probable / Probable / Posible / Improbable / Raro × Bajo / Medio / Alto / Crítico. Fuente: informe consolidado, sección 5.3.</span></p>
+  </div>
+</section>
+
+<!-- 3 - matriz heatmap setorial -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Heatmap <span class="gt">probabilidade × impacto</span> (setorial)</span><span data-lang="en">Heatmap of <span class="gt">probability × impact</span> (sector)</span><span data-lang="es">Mapa de calor <span class="gt">probabilidad × impacto</span> (sectorial)</span></h2>
+    <div class="mat au d2">
+      <div class="hd"></div>
+      <div class="hd"><span data-lang="pt">Baixo</span><span data-lang="en">Low</span><span data-lang="es">Bajo</span></div>
+      <div class="hd"><span data-lang="pt">Médio</span><span data-lang="en">Medium</span><span data-lang="es">Medio</span></div>
+      <div class="hd"><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></div>
+      <div class="hd"><span data-lang="pt">Crítico</span><span data-lang="en">Critical</span><span data-lang="es">Crítico</span></div>
+      <div class="rl"><span data-lang="pt">Muito provável</span><span data-lang="en">Very likely</span><span data-lang="es">Muy probable</span></div>
+      <div class="cell lo"></div><div class="cell md"></div>
+      <div class="cell cr"><span class="chip r">#2</span> <span data-lang="pt">Lei 90/10</span><span data-lang="en">90/10 Law</span><span data-lang="es">Ley 90/10</span></div>
+      <div class="cell cr"></div>
+      <div class="rl"><span data-lang="pt">Provável</span><span data-lang="en">Likely</span><span data-lang="es">Probable</span></div>
+      <div class="cell lo"></div>
+      <div class="cell md"><span class="chip y">#3</span> <span data-lang="pt">Exposição na imprensa</span><span data-lang="en">Press exposure</span><span data-lang="es">Exposición en prensa</span></div>
+      <div class="cell hi"><span class="chip y">#1</span> <span class="chip y">#5</span><span data-lang="pt">Conflito trabalhista / Phishing</span><span data-lang="en">Labor conflict / Phishing</span><span data-lang="es">Conflicto laboral / Phishing</span></div>
+      <div class="cell hi"></div>
+      <div class="rl"><span data-lang="pt">Possível</span><span data-lang="en">Possible</span><span data-lang="es">Posible</span></div>
+      <div class="cell lo"></div>
+      <div class="cell md"><span class="chip g">#9</span> <span data-lang="pt">Bloqueio comunitário</span><span data-lang="en">Community blockade</span><span data-lang="es">Bloqueo comunitario</span></div>
+      <div class="cell hi"><span class="chip g">#4</span> <span class="chip g">#6</span> <span class="chip g">#7</span><span data-lang="pt">Roubo rotas / Espionagem / Acidente</span><span data-lang="en">Route theft / Espionage / Accident</span><span data-lang="es">Robo en rutas / Espionaje / Accidente</span></div>
+      <div class="cell cr"><span class="chip g">#8</span><span data-lang="pt">Evacuação médica</span><span data-lang="en">Medical evacuation</span><span data-lang="es">Evacuación médica</span></div>
+      <div class="rl"><span data-lang="pt">Raro</span><span data-lang="en">Rare</span><span data-lang="es">Raro</span></div>
+      <div class="cell lo"></div><div class="cell md"></div><div class="cell hi"></div>
+      <div class="cell cr"><span class="chip r">#10</span><span data-lang="pt">Sequestro extorsivo</span><span data-lang="en">Extortive kidnapping</span><span data-lang="es">Secuestro extorsivo</span></div>
+    </div>
+    <p class="au d4" style="margin-top:10px;font-size:11px;color:#777"><span class="tag-sm tf">F</span> <span data-lang="pt">Revisão de 15/11/2026, sem mudança de nível: riscos 1, 2 e 10 mantidos.</span><span data-lang="en">11/15/2026 revision, no level change: risks 1, 2 and 10 maintained.</span><span data-lang="es">Revisión del 15/11/2026, sin cambio de nivel: riesgos 1, 2 y 10 mantenidos.</span></p>
+  </div>
+</section>
+
+<!-- 4 - riscos individuais/familiares AMBA -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Matriz individual e familiar — <span class="gt">AMBA</span></span><span data-lang="en">Individual and family matrix — <span class="gt">AMBA</span></span><span data-lang="es">Matriz individual y familiar — <span class="gt">AMBA</span></span></h2>
+    <table class="au d2" style="margin-top:14px">
+      <tr><th><span data-lang="pt">Risco</span><span data-lang="en">Risk</span><span data-lang="es">Riesgo</span></th><th><span data-lang="pt">Vulnerabilidade</span><span data-lang="en">Vulnerability</span><span data-lang="es">Vulnerabilidad</span></th><th><span data-lang="pt">Prob.</span><span data-lang="en">Prob.</span><span data-lang="es">Prob.</span></th><th><span data-lang="pt">Impacto</span><span data-lang="en">Impact</span><span data-lang="es">Impacto</span></th><th><span data-lang="pt">Nível</span><span data-lang="en">Level</span><span data-lang="es">Nivel</span></th></tr>
+      <tr><td><span data-lang="pt">Roubo com moto e trânsito</span><span data-lang="en">Motorbike/traffic robbery</span><span data-lang="es">Robo con moto y tránsito</span></td><td><span data-lang="pt">Celular na mão, relógio visível, semáforo</span><span data-lang="en">Phone in hand, visible watch, traffic lights</span><span data-lang="es">Celular en mano, reloj visible, semáforo</span></td><td><span class="chip r">M. prov.</span></td><td><span data-lang="pt">Médio-alto</span><span data-lang="en">Medium-high</span><span data-lang="es">Medio-alto</span></td><td><span class="chip r">Alto</span></td></tr>
+      <tr><td><span data-lang="pt">Golpe com droga em bebida/app</span><span data-lang="en">Drug-facilitated robbery (bar/app)</span><span data-lang="es">Estafa con droga en bebida/app</span></td><td><span data-lang="pt">Viajante sozinho na 1ª semana</span><span data-lang="en">Traveler alone in week 1</span><span data-lang="es">Viajero solo en la 1ª semana</span></td><td><span class="chip y">Possível</span></td><td><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></td><td><span class="chip y">Médio*</span></td></tr>
+      <tr><td><span data-lang="pt">Sequestro extorsivo</span><span data-lang="en">Extortive kidnapping</span><span data-lang="es">Secuestro extorsivo</span></td><td><span data-lang="pt">Ostentação, rotina publicada, motorista informal</span><span data-lang="en">Ostentation, published routine, informal driver</span><span data-lang="es">Ostentación, rutina publicada, chofer informal</span></td><td><span class="chip g">Raro</span></td><td><span data-lang="pt">Crítico</span><span data-lang="en">Critical</span><span data-lang="es">Crítico</span></td><td><span class="chip g">Médio</span></td></tr>
+      <tr><td><span data-lang="pt">Protesto em Buenos Aires</span><span data-lang="en">Protest in Buenos Aires</span><span data-lang="es">Protesta en Buenos Aires</span></td><td><span data-lang="pt">Cortes e piquetes em eixos conhecidos</span><span data-lang="en">Cuts and pickets on known axes</span><span data-lang="es">Cortes y piquetes en ejes conocidos</span></td><td><span class="chip y">M. prov. de encontrar</span></td><td><span data-lang="pt">Baixo-médio</span><span data-lang="en">Low-medium</span><span data-lang="es">Bajo-medio</span></td><td><span class="chip y">Médio</span></td></tr>
+      <tr><td><span data-lang="pt">Residência e prestadores</span><span data-lang="en">Residence and service staff</span><span data-lang="es">Residencia y prestadores</span></td><td><span data-lang="pt">Contratação informal, cópia de chave</span><span data-lang="en">Informal hiring, key copying</span><span data-lang="es">Contratación informal, copia de llave</span></td><td><span class="chip g">Possível</span></td><td><span data-lang="pt">Alto se houver criança</span><span data-lang="en">High if children present</span><span data-lang="es">Alto si hay niños</span></td><td><span class="chip g">Médio</span></td></tr>
+      <tr><td><span data-lang="pt">Saúde e acesso a cuidado</span><span data-lang="en">Health and care access</span><span data-lang="es">Salud y acceso a atención</span></td><td><span data-lang="pt">Dependente sem cobertura, medicação crônica</span><span data-lang="en">Dependent without coverage, chronic medication</span><span data-lang="es">Dependiente sin cobertura, medicación crónica</span></td><td><span class="chip g">Possível</span></td><td><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></td><td><span class="chip g">Médio</span></td></tr>
+    </table>
+    <p class="au d3" style="margin-top:10px;font-size:11px;color:#777">*<span data-lang="pt">impacto alto se não houver regra de baixa exposição em bares/apps.</span><span data-lang="en">high impact if there is no low-exposure rule for bars/apps.</span><span data-lang="es">impacto alto si no hay regla de baja exposición en bares/apps.</span></p>
+  </div>
+</section>
+
+<!-- 5 - top 3 prioridades -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">As <span class="gt">3 prioridades</span> do comitê</span><span data-lang="en">The committee's <span class="gt">3 priorities</span></span><span data-lang="es">Las <span class="gt">3 prioridades</span> del comité</span></h2>
+    <div class="grid3" style="margin-top:22px">
+      <div class="cp au d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+        <h3 style="font-size:15px"><span data-lang="pt">1. Dano reputacional/político (Lei 90/10)</span><span data-lang="en">1. Reputational/political damage (90/10 Law)</span><span data-lang="es">1. Daño reputacional/político (Ley 90/10)</span></h3>
+        <p style="font-size:12.5px;margin-top:6px"><span data-lang="pt">Único risco Crítico da matriz — muito provável e alto impacto.</span><span data-lang="en">The matrix's only Critical risk — very likely and high impact.</span><span data-lang="es">Único riesgo Crítico de la matriz — muy probable y alto impacto.</span></p>
+      </div>
+      <div class="cp au d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M13 21V11l6 4v6"></path></svg></div>
+        <h3 style="font-size:15px"><span data-lang="pt">2. Conflito regulatório e trabalhista</span><span data-lang="en">2. Regulatory and labor conflict</span><span data-lang="es">2. Conflicto regulatorio y laboral</span></h3>
+        <p style="font-size:12.5px;margin-top:6px"><span data-lang="pt">Provável/Alto — sumários em curso, reabertura não confirmada em ata.</span><span data-lang="en">Likely/High — proceedings ongoing, reopening not confirmed in minutes.</span><span data-lang="es">Probable/Alto — sumarios en curso, reapertura no confirmada en acta.</span></p>
+      </div>
+      <div class="cp au d4">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11V7a3 3 0 116 0v4M5 11h14v10H5z"></path></svg></div>
+        <h3 style="font-size:15px"><span data-lang="pt">3. Roubo com moto (AMBA)</span><span data-lang="en">3. Motorbike robbery (AMBA)</span><span data-lang="es">3. Robo con moto (AMBA)</span></h3>
+        <p style="font-size:12.5px;margin-top:6px"><span data-lang="pt">Muito provável/Médio-alto — único risco com probabilidade "muito provável" para a família.</span><span data-lang="en">Very likely/Medium-high — the only "very likely" risk for the family.</span><span data-lang="es">Muy probable/Medio-alto — el único riesgo "muy probable" para la familia.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 - gráfico comparativo AMBA vs Cerro Negro -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Perfis de risco <span class="gt">distintos</span></span><span data-lang="en"><span class="gt">Distinct</span> risk profiles</span><span data-lang="es">Perfiles de riesgo <span class="gt">distintos</span></span></h2>
+    <div class="grid2" style="margin-top:18px">
+      <div class="cp au d2">
+        <h3>AMBA</h3>
+        <div class="bchart" style="margin-top:10px">
+          <div class="brow"><span class="lbl">Taxa homicídio CABA</span><div class="btrack"><div class="bfill" style="width:25%"></div></div><span class="bval">2,5/100k</span></div>
+          <div class="brow"><span class="lbl">Roubos com moto/dia</span><div class="btrack"><div class="bfill" style="width:70%"></div></div><span class="bval">~15</span></div>
+          <div class="brow"><span class="lbl">Sequestro extorsivo 2026 (até 31/08)</span><div class="btrack"><div class="bfill red" style="width:50%"></div></div><span class="bval">9 na PBA</span></div>
+        </div>
+        <p style="font-size:12px;margin-top:10px"><span data-lang="pt">Dominância de crime patrimonial oportunista; letalidade baixa.</span><span data-lang="en">Dominance of opportunistic property crime; low lethality.</span><span data-lang="es">Dominancia de delito patrimonial oportunista; letalidad baja.</span></p>
+      </div>
+      <div class="cp au d3">
+        <h3>Cerro Negro</h3>
+        <div class="bchart" style="margin-top:10px">
+          <div class="brow"><span class="lbl">Setores clausurados (set/26)</span><div class="btrack"><div class="bfill red" style="width:80%"></div></div><span class="bval">8</span></div>
+          <div class="brow"><span class="lbl">Sumários administrativos</span><div class="btrack"><div class="bfill red" style="width:70%"></div></div><span class="bval">14–16</span></div>
+          <div class="brow"><span class="lbl">Produção ouro/prata/doré (jan–jul/26)</span><div class="btrack"><div class="bfill red" style="width:15.7%"></div></div><span class="bval">−15,7%</span></div>
+        </div>
+        <p style="font-size:12px;margin-top:10px"><span data-lang="pt">Dominância de risco regulatório e trabalhista; política mais relevante que crime comum.</span><span data-lang="en">Dominance of regulatory and labor risk; politics more relevant than common crime.</span><span data-lang="es">Dominancia de riesgo regulatorio y laboral; política más relevante que el delito común.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 - vetores de risco do setor (mapa de vetores) -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Mapa de <span class="gt">vetores</span> do setor</span><span data-lang="en">Sector <span class="gt">vector</span> map</span><span data-lang="es">Mapa de <span class="gt">vectores</span> del sector</span></h2>
+    <table class="au d2" style="margin-top:14px">
+      <tr><th><span data-lang="pt">Vetor</span><span data-lang="en">Vector</span><span data-lang="es">Vector</span></th><th><span data-lang="pt">Onde é mais forte</span><span data-lang="en">Strongest where</span><span data-lang="es">Dónde es más fuerte</span></th><th><span data-lang="pt">Quem é mais exposto</span><span data-lang="en">Most exposed</span><span data-lang="es">Más expuesto</span></th></tr>
+      <tr><td><span data-lang="pt">Trabalhista</span><span data-lang="en">Labor</span><span data-lang="es">Laboral</span></td><td>Santa Cruz</td><td><span data-lang="pt">Gestores, RH, executivos de campo</span><span data-lang="en">Managers, HR, field executives</span><span data-lang="es">Gestores, RH, ejecutivos de campo</span></td></tr>
+      <tr><td><span data-lang="pt">Regulatório e fiscal</span><span data-lang="en">Regulatory and fiscal</span><span data-lang="es">Regulatorio y fiscal</span></td><td>Santa Cruz, San Juan</td><td><span data-lang="pt">Diretoria, jurídico, operações</span><span data-lang="en">Leadership, legal, operations</span><span data-lang="es">Dirección, jurídico, operaciones</span></td></tr>
+      <tr><td><span data-lang="pt">Político</span><span data-lang="en">Political</span><span data-lang="es">Político</span></td><td><span data-lang="pt">Todas; mais intenso em período eleitoral</span><span data-lang="en">All; more intense during elections</span><span data-lang="es">Todas; más intenso en período electoral</span></td><td><span data-lang="pt">Executivos citados na imprensa</span><span data-lang="en">Executives named in press</span><span data-lang="es">Ejecutivos citados en la prensa</span></td></tr>
+      <tr><td><span data-lang="pt">Comunitário e hídrico</span><span data-lang="en">Community and water</span><span data-lang="es">Comunitario e hídrico</span></td><td>San Juan, Catamarca, Salta, Jujuy</td><td><span data-lang="pt">Equipes de campo, motoristas, visitantes</span><span data-lang="en">Field teams, drivers, visitors</span><span data-lang="es">Equipos de campo, choferes, visitantes</span></td></tr>
+      <tr><td><span data-lang="pt">Ambiental</span><span data-lang="en">Environmental</span><span data-lang="es">Ambiental</span></td><td>San Juan, Catamarca</td><td><span data-lang="pt">Licenciamento e reputação</span><span data-lang="en">Licensing and reputation</span><span data-lang="es">Licenciamiento y reputación</span></td></tr>
+      <tr><td><span data-lang="pt">Criminal patrimonial</span><span data-lang="en">Property crime</span><span data-lang="es">Criminal patrimonial</span></td><td><span data-lang="pt">Rotas e estradas provinciais</span><span data-lang="en">Routes and provincial roads</span><span data-lang="es">Rutas y caminos provinciales</span></td><td><span data-lang="pt">Motoristas, logística</span><span data-lang="en">Drivers, logistics</span><span data-lang="es">Choferes, logística</span></td></tr>
+      <tr><td>Digital</td><td><span data-lang="pt">Global, em licitações</span><span data-lang="en">Global, during bids</span><span data-lang="es">Global, en licitaciones</span></td><td><span data-lang="pt">Executivos, financeiro, jurídico, geologia</span><span data-lang="en">Execs, finance, legal, geology</span><span data-lang="es">Ejecutivos, finanzas, jurídico, geología</span></td></tr>
+      <tr><td><span data-lang="pt">Reputacional</span><span data-lang="en">Reputational</span><span data-lang="es">Reputacional</span></td><td>Santa Cruz, San Juan</td><td><span data-lang="pt">Executivos e famílias</span><span data-lang="en">Executives and families</span><span data-lang="es">Ejecutivos y familias</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 8 - mapa geográfico -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Distribuição geográfica dos <span class="gt">riscos</span></span><span data-lang="en">Geographic <span class="gt">risk</span> distribution</span><span data-lang="es">Distribución geográfica de los <span class="gt">riesgos</span></span></h2>
+    <div class="grid2" style="margin-top:18px;align-items:start">
+      <div class="mapbox au d2">
+        <div class="map-note"><span data-lang="pt">Mapa — Argentina, províncias mineiras</span><span data-lang="en">Map — Argentina, mining provinces</span><span data-lang="es">Mapa — Argentina, provincias mineras</span></div>
+        <iframe src="https://www.google.com/maps?q=Argentina&z=5&output=embed" width="100%" height="320" style="border:0;border-radius:12px;filter:grayscale(.3) contrast(1.1)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card s5c au d3"><h3 style="font-size:14px">Santa Cruz (Cerro Negro)</h3><p style="font-size:12.5px;margin-top:4px"><span data-lang="pt">Riscos 1, 2, 9 (trabalhista, político, bloqueio) — 39,5% das exportações mineiras nacionais <span class="tag-sm tf">F</span></span><span data-lang="en">Risks 1, 2, 9 (labor, political, blockade) — 39.5% of national mining exports <span class="tag-sm tf">F</span></span><span data-lang="es">Riesgos 1, 2, 9 (laboral, político, bloqueo) — 39,5% de las exportaciones mineras nacionales <span class="tag-sm tf">F</span></span></p></div>
+        <div class="card s5c au d4"><h3 style="font-size:14px">San Juan, Catamarca, Salta, Jujuy</h3><p style="font-size:12.5px;margin-top:4px"><span data-lang="pt">Riscos 6, 9 (comunitário/hídrico, espionagem) — 58,9% combinados das exportações <span class="tag-sm tf">F</span></span><span data-lang="en">Risks 6, 9 (community/water, espionage) — 58.9% combined exports <span class="tag-sm tf">F</span></span><span data-lang="es">Riesgos 6, 9 (comunitario/hídrico, espionaje) — 58,9% combinado de exportaciones <span class="tag-sm tf">F</span></span></p></div>
+        <div class="card s5c au d5"><h3 style="font-size:14px">AMBA</h3><p style="font-size:12.5px;margin-top:4px"><span data-lang="pt">Riscos 3, 4, 7, 8, 10 (patrimonial, droga, digital, falso sequestro, sequestro) — perfil de residência familiar</span><span data-lang="en">Risks 3, 4, 7, 8, 10 (property, drugs, digital, fake/real kidnapping) — family residence profile</span><span data-lang="es">Riesgos 3, 4, 7, 8, 10 (patrimonial, droga, digital, falso/real secuestro) — perfil de residencia familiar</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 - números-chave -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Números-chave da <span class="gt">matriz</span></span><span data-lang="en">Key figures of the <span class="gt">matrix</span></span><span data-lang="es">Cifras clave de la <span class="gt">matriz</span></span></h2>
+    <div class="grid4" style="margin-top:20px">
+      <div class="card as d2" style="text-align:center"><div class="s5n">16</div><p style="font-size:12px"><span data-lang="pt">Riscos mapeados no total (10 setoriais + 6 individuais/familiares)</span><span data-lang="en">Total risks mapped (10 sector + 6 individual/family)</span><span data-lang="es">Riesgos mapeados en total (10 sectoriales + 6 individuales/familiares)</span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">1</div><p style="font-size:12px"><span data-lang="pt">Risco Crítico — dano reputacional/político (Lei 90/10)</span><span data-lang="en">Critical risk — reputational/political damage (90/10 Law)</span><span data-lang="es">Riesgo Crítico — daño reputacional/político (Ley 90/10)</span></p></div>
+      <div class="card as d4" style="text-align:center"><div class="s5n sm">7</div><p style="font-size:12px"><span data-lang="pt">Riscos classificados como Alto</span><span data-lang="en">Risks classified as High</span><span data-lang="es">Riesgos clasificados como Alto</span></p></div>
+      <div class="card as d5" style="text-align:center"><div class="s5n sm">90</div><p style="font-size:12px"><span data-lang="pt">Dias até a revisão obrigatória (13/02/2027)</span><span data-lang="en">Days until mandatory review (02/13/2027)</span><span data-lang="es">Días hasta la revisión obligatoria (13/02/2027)</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 - critério de priorização -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Como a <span class="gt">priorização</span> foi feita</span><span data-lang="en">How the <span class="gt">prioritization</span> was made</span><span data-lang="es">Cómo se hizo la <span class="gt">priorización</span></span></h2>
+    <ul class="checklist au d2" style="margin-top:16px;font-size:14px;gap:12px">
+      <li><span data-lang="pt">Probabilidade e impacto conforme seções 5.3 (setorial) e 6 (individual/familiar) do relatório consolidado</span><span data-lang="en">Probability and impact per sections 5.3 (sector) and 6 (individual/family) of the consolidated report</span><span data-lang="es">Probabilidad e impacto según secciones 5.3 (sectorial) y 6 (individual/familiar) del informe consolidado</span></li>
+      <li><span data-lang="pt">Sem atribuição de probabilidade numérica — falta de série histórica confiável <span class="tag-sm tj">J</span></span><span data-lang="en">No numeric probability assigned — lack of reliable historical series <span class="tag-sm tj">J</span></span><span data-lang="es">Sin asignación de probabilidad numérica — falta de serie histórica confiable <span class="tag-sm tj">J</span></span></li>
+      <li><span data-lang="pt">Riscos de maior quadrante recebem protocolo próprio nos Decks 5 e 6</span><span data-lang="en">Risks in the highest quadrant receive dedicated protocol in Decks 5 and 6</span><span data-lang="es">Los riesgos del cuadrante más alto reciben protocolo propio en los Decks 5 y 6</span></li>
+      <li><span data-lang="pt">Revisão antecipada diante de qualquer gatilho da seção 10 do relatório</span><span data-lang="en">Early review upon any trigger in section 10 of the report</span><span data-lang="es">Revisión anticipada ante cualquier gatillo de la sección 10 del informe</span></li>
+    </ul>
+    <div class="card s5c au d3" style="margin-top:16px"><p style="font-size:12.5px"><span class="tag-sm tp">P</span> <span data-lang="pt">Pendências que impedem fechamento total da avaliação: séries de produção por operação (SIACAM), status de Cerro Negro após 22/09/2026, e taxas SNIC 2025 por província.</span><span data-lang="en">Pendencies blocking full assessment closure: per-operation production series (SIACAM), Cerro Negro status after 09/22/2026, and 2025 SNIC provincial rates.</span><span data-lang="es">Pendientes que impiden el cierre total de la evaluación: series de producción por operación (SIACAM), estado de Cerro Negro después del 22/09/2026, y tasas SNIC 2025 por provincia.</span></p></div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <div class="wrap" style="text-align:center">
+    <div class="gl ce au d1"></div>
+    <p class="quote au d2">
+      <span data-lang="pt">"Priorizar não é ignorar o resto — é saber onde agir primeiro."</span>
+      <span data-lang="en">"Prioritizing isn't ignoring the rest — it's knowing where to act first."</span>
+      <span data-lang="es">"Priorizar no es ignorar el resto — es saber dónde actuar primero."</span>
+    </p>
+    <h2 class="au d3"><span data-lang="pt">Siga para o <span class="gt">Deck 5 — Segurança Digital</span></span><span data-lang="en">Continue to <span class="gt">Deck 5 — Digital Security</span></span><span data-lang="es">Continúe al <span class="gt">Deck 5 — Seguridad Digital</span></span></h2>
+    <a class="home-btn au d4" style="display:inline-flex;margin-top:18px" href="index.html">
+      <span data-lang="pt">Voltar ao Index</span><span data-lang="en">Back to Index</span><span data-lang="es">Volver al Index</span>
+    </a>
+  </div>
+</section>
+
+</div></div>
+
+<script>
+const T = 11; let C = 0;
+const W = document.getElementById('sw');
+const CN = document.getElementById('cn');
+const P = document.getElementById('prog');
+const I = document.getElementById('ind');
+for (let i = 0; i < T; i++) { const d = document.createElement('div'); d.classList.add('dot'); if (i === 0) d.classList.add('active'); d.onclick = () => go(i); I.appendChild(d); }
+function upd() { I.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === C)); CN.textContent = C + 1; P.style.width = ((C + 1) / T * 100) + '%'; document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === C)); }
+function go(i) { if (i < 0 || i >= T) return; C = i; W.style.transform = `translateX(-${C * 100}vw)`; upd(); }
+function next() { if (C < T - 1) go(C + 1); }
+function prev() { if (C > 0) go(C - 1); }
+document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); } if (e.key === 'f' || e.key === 'F') toggleFs(); });
+let tx = 0;
+document.addEventListener('touchstart', e => tx = e.changedTouches[0].screenX);
+document.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].screenX; if (Math.abs(d) > 50) { d > 0 ? next() : prev(); } });
+function toggleFs() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(() => {}); } else { document.exitFullscreen(); } }
+document.addEventListener('fullscreenchange', () => { document.getElementById('fsTxt').textContent = document.fullscreenElement ? 'Sair' : 'Tela cheia'; document.getElementById('fsTxtE').textContent = document.fullscreenElement ? 'Exit' : 'Fullscreen'; document.getElementById('fsTxtS').textContent = document.fullscreenElement ? 'Salir' : 'Pantalla'; });
+function setLang(l) { document.body.className = 'lang-' + l; document.querySelectorAll('.lang-sel button').forEach(b => b.classList.toggle('active', b.dataset.l === l)); }
+upd();
+</script>
+</body>
+</html>

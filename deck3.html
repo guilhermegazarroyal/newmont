@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><script src="https://myhub.ia.br/canvas-vendor/tailwind.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deck 3 — Cerro Negro | Newmont Argentina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:'Inter',sans-serif;overflow:hidden;color:#E8E8E8}
+h1,h2,h3{color:#fff}
+h1{font-weight:900;letter-spacing:-.03em;line-height:1.08}
+h2{font-weight:800;letter-spacing:-.025em;line-height:1.12;font-size:clamp(26px,3.2vw,38px)}
+h3{font-weight:700;letter-spacing:-.015em;color:#fff}
+p,span,li{font-weight:400;line-height:1.55;color:#D4D4D4}
+.presentation{width:100vw;height:100vh;overflow:hidden;position:relative}
+.slides{display:flex;height:100%;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.slide{width:100vw;height:100vh;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;padding:56px 72px}
+.slide::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(900px 420px at 72% 18%, rgba(255,214,0,.08) 0%, transparent 42%),
+  radial-gradient(800px 380px at 35% 20%, rgba(255,184,0,.06) 0%, transparent 42%),
+  linear-gradient(180deg,#000 0%,#050505 45%,#000 100%)}
+.slide::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.25;
+  background-image:radial-gradient(rgba(255,255,255,.05) .8px, transparent .8px);background-size:24px 24px}
+.slide>*{position:relative;z-index:1}
+.wrap{max-width:1340px;width:100%;max-height:92vh;overflow-y:auto;padding-right:6px}
+.wrap::-webkit-scrollbar{width:5px}.wrap::-webkit-scrollbar-thumb{background:rgba(255,214,0,.3);border-radius:4px}
+.gt{background:linear-gradient(135deg,#FFD600 0%,#FFB800 50%,#FFD600 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.gl{width:90px;height:4px;border-radius:2px;background:linear-gradient(90deg,#FFD600,#FFB800);margin-bottom:18px;animation:lineG .8s ease both;transform-origin:left}
+.gl.ce{margin:0 auto 18px auto;transform-origin:center}
+@keyframes lineG{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.05);padding:20px 20px;backdrop-filter:blur(8px);transition:all .4s ease}
+.card:hover{border-color:rgba(255,214,0,.3);transform:translateY(-2px)}
+.cp{background:linear-gradient(145deg, rgba(20,20,20,.95) 0%, rgba(10,10,10,.98) 55%, rgba(0,0,0,1) 100%);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.6), 0 0 36px rgba(255,214,0,.07);padding:20px 20px;backdrop-filter:blur(10px)}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:9px 20px;border-radius:999px;margin-bottom:22px;background:rgba(255,214,0,.1);border:1px solid rgba(255,214,0,.3);font-size:12.5px;font-weight:600;color:#FFD600;letter-spacing:.05em;text-transform:uppercase}
+.tag-sm{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:7px;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.tf{background:rgba(94,232,154,.12);color:#5EE89A;border:1px solid rgba(94,232,154,.3)}
+.te{background:rgba(255,214,0,.12);color:#FFD600;border:1px solid rgba(255,214,0,.3)}
+.tj{background:rgba(200,109,215,.12);color:#C86DD7;border:1px solid rgba(200,109,215,.3)}
+.tp{background:rgba(255,107,107,.12);color:#FF6B6B;border:1px solid rgba(255,107,107,.3)}
+.ic{width:42px;height:42px;border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,214,0,.1)}
+.ic svg{width:21px;height:21px;color:#FFD600}
+.s5c{position:relative;overflow:hidden}
+.s5c::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:#FFD600}
+.s5n{font-size:38px;font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:5px;color:#FFD600}
+.s5n.sm{font-size:27px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
+.mapbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;backdrop-filter:blur(8px)}
+.map-note{font-size:10px;color:#999;margin-bottom:6px;letter-spacing:.03em;text-transform:uppercase}
+.quote{font-size:22px;font-weight:600;color:#fff;line-height:1.45;max-width:880px;margin:0 auto 18px auto;text-align:center;font-style:italic}
+.progress{position:fixed;top:0;left:0;height:3px;z-index:1000;background:linear-gradient(90deg,#FFD600,#FFB800,#FFD600);background-size:200% auto;animation:shimmer 3s linear infinite;transition:width .6s ease}
+.fs-btn{position:fixed;top:18px;left:18px;z-index:999;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:10px 16px;border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:7px;transition:all .3s ease;backdrop-filter:blur(6px);letter-spacing:.04em;text-transform:uppercase}
+.fs-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,214,0,.4)}
+.fs-btn svg{width:14px;height:14px}
+.top-right{position:fixed;top:18px;right:18px;z-index:999;display:flex;gap:10px;align-items:center}
+.lang-sel{display:flex;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:4px;backdrop-filter:blur(6px)}
+.lang-sel button{background:transparent;border:none;color:#999;padding:6px 11px;border-radius:8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .25s ease}
+.lang-sel button.active{background:#FFD600;color:#000}
+.home-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#999;padding:9px 14px;border-radius:11px;cursor:pointer;font-size:11px;font-weight:700;text-decoration:none;display:flex;align-items:center;gap:6px;backdrop-filter:blur(6px);transition:all .25s ease}
+.home-btn:hover{background:rgba(255,214,0,.15);color:#FFD600;border-color:rgba(255,214,0,.4)}
+.sc{position:fixed;bottom:30px;left:36px;z-index:998;color:#999;font-size:13px;font-weight:600;letter-spacing:.05em;background:rgba(0,0,0,.5);padding:8px 16px;border-radius:9px;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.08)}
+.sc .cn{color:#FFD600;font-weight:800}
+.ind{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:998;display:flex;gap:6px;background:rgba(0,0,0,.5);padding:8px 14px;border-radius:18px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08)}
+.ind .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);transition:all .4s ease;cursor:pointer}
+.ind .dot.active{background:#FFD600;box-shadow:0 0 12px rgba(255,214,0,.7);width:30px;border-radius:5px}
+.nav-arr{position:fixed;bottom:26px;right:36px;z-index:998;display:flex;gap:9px}
+.nav-arr button{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#D4D4D4;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;backdrop-filter:blur(6px)}
+.nav-arr button:hover{background:rgba(255,214,0,.25);border-color:rgba(255,214,0,.5);color:#000;transform:scale(1.05)}
+.checklist{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.checklist li{list-style:none;padding-left:16px;position:relative;font-size:12.5px;color:#D4D4D4}
+.checklist li::before{content:'✓';position:absolute;left:0;color:#FFD600;font-weight:900}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{color:#FFD600;text-align:left;padding:8px 10px;border-bottom:1px solid rgba(255,214,0,.3);font-weight:700}
+td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.07);color:#D4D4D4}
+/* timeline vertical */
+.tl{display:flex;flex-direction:column;gap:0;margin-top:16px}
+.tlrow{display:grid;grid-template-columns:110px 24px 1fr;gap:14px;position:relative}
+.tlrow .tdate{font-size:12px;font-weight:800;color:#FFD600;padding-top:2px;text-align:right}
+.tlline{display:flex;flex-direction:column;align-items:center}
+.tldot{width:14px;height:14px;border-radius:50%;background:#FFD600;box-shadow:0 0 10px rgba(255,214,0,.5);flex-shrink:0}
+.tlbar{width:2px;flex:1;background:rgba(255,214,0,.25);min-height:18px}
+.tlcontent{padding-bottom:16px}
+.tlcontent h4{font-size:13px;color:#fff;margin-bottom:3px}
+.tlcontent p{font-size:12px;margin:0}
+/* matrix heatmap */
+.mat{display:grid;grid-template-columns:150px 1fr 1fr 1fr 1fr;gap:5px;margin-top:14px}
+.mat .hd{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.04em;text-align:center;padding:6px;font-weight:700}
+.mat .rl{font-size:10.5px;color:#999;text-transform:uppercase;letter-spacing:.03em;display:flex;align-items:center;padding:0 6px;font-weight:700}
+.mat .cell{border-radius:10px;min-height:52px;padding:6px 8px;display:flex;flex-direction:column;justify-content:center;gap:2px;font-size:9.5px;border:1px solid rgba(255,255,255,.08)}
+.mat .lo{background:rgba(255,184,0,.06)}
+.mat .md{background:rgba(255,214,0,.1)}
+.mat .hi{background:rgba(255,107,107,.1)}
+.mat .cr{background:rgba(255,60,60,.18)}
+.chip{display:inline-block;padding:2px 6px;border-radius:6px;font-size:9px;font-weight:800;margin:1px 0;color:#000}
+.chip.r{background:#FF6B6B}
+.chip.y{background:#FFD600}
+.chip.g{background:#FFB800}
+/* donut */
+.donut-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center}
+.donut{width:130px;height:130px;border-radius:50%;flex-shrink:0}
+.dleg{display:flex;flex-direction:column;gap:6px}
+.dleg .di{display:flex;align-items:center;gap:8px;font-size:12px;color:#D4D4D4}
+.dleg .sq{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+/* bars */
+.bchart{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.brow{display:grid;grid-template-columns:150px 1fr 60px;align-items:center;gap:8px}
+.brow .lbl{font-size:11px;color:#D4D4D4;text-align:right}
+.btrack{background:rgba(255,255,255,.06);border-radius:7px;height:14px;overflow:hidden}
+.bfill{height:100%;border-radius:7px;background:linear-gradient(90deg,#FFD600,#FFB800)}
+.bfill.red{background:linear-gradient(90deg,#FF6B6B,#CC3B3B)}
+.bval{font-size:11px;color:#FFD600;font-weight:700}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeScale{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.slide.active .au{animation:fadeUp .7s ease both}
+.slide.active .as{animation:fadeScale .7s ease both}
+.d1{animation-delay:.1s!important}.d2{animation-delay:.2s!important}.d3{animation-delay:.3s!important}
+.d4{animation-delay:.4s!important}.d5{animation-delay:.5s!important}.d6{animation-delay:.6s!important}.d7{animation-delay:.7s!important}
+.s1{text-align:center;max-width:980px;margin:0 auto}
+.s1 h1{font-size:clamp(42px,5.8vw,68px);margin-bottom:20px}
+.s1 .tag{font-size:18px;color:#D4D4D4;max-width:640px;margin:0 auto;line-height:1.5}
+[data-lang]{display:none}
+.lang-pt [data-lang="pt"]{display:block}
+.lang-en [data-lang="en"]{display:block}
+.lang-es [data-lang="es"]{display:block}
+[data-lang-inline]{display:none}
+.lang-pt [data-lang-inline="pt"]{display:inline}
+.lang-en [data-lang-inline="en"]{display:inline}
+.lang-es [data-lang-inline="es"]{display:inline}
+</style>
+</head>
+<body class="lang-pt">
+<div class="progress" id="prog" style="width:9%"></div>
+<div class="top-right">
+  <div class="lang-sel">
+    <button data-l="pt" class="active" onclick="setLang('pt')">PT</button>
+    <button data-l="en" onclick="setLang('en')">EN</button>
+    <button data-l="es" onclick="setLang('es')">ES</button>
+  </div>
+  <a class="home-btn" href="index.html">
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"></path></svg>
+    <span data-lang="pt">Index</span><span data-lang="en">Index</span><span data-lang="es">Index</span>
+  </a>
+</div>
+<button class="fs-btn" onclick="toggleFs()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"></path></svg>
+  <span id="fsTxt" data-lang="pt">Tela cheia</span><span id="fsTxtE" data-lang="en">Fullscreen</span><span id="fsTxtS" data-lang="es">Pantalla</span>
+</button>
+<div class="sc"><span class="cn" id="cn">1</span> / 11</div>
+<div class="ind" id="ind"></div>
+<div class="nav-arr"><button onclick="prev()">‹</button><button onclick="next()">›</button></div>
+
+<div class="presentation"><div class="slides" id="sw">
+
+<!-- 1 -->
+<section class="slide active">
+  <div class="s1">
+    <div class="badge au d1" data-lang="pt">Deck 3 de 9 · Operação Cerro Negro</div>
+    <div class="badge au d1" data-lang="en">Deck 3 of 9 · Cerro Negro Operation</div>
+    <div class="badge au d1" data-lang="es">Deck 3 de 9 · Operación Cerro Negro</div>
+    <h1 class="au d2">
+      <span data-lang="pt">Cerro Negro: o conflito <span class="gt">trabalhista</span> que chegou ao comitê</span>
+      <span data-lang="en">Cerro Negro: the <span class="gt">labor</span> conflict that reached the committee</span>
+      <span data-lang="es">Cerro Negro: el conflicto <span class="gt">laboral</span> que llegó al comité</span>
+    </h1>
+    <p class="tag au d3">
+      <span data-lang="pt">Inspeções, clausuras e a crise sindical de setembro de 2026 — cronologia verificada e o que permanece pendente em 15/11/2026.</span>
+      <span data-lang="en">Inspections, closures and the September 2026 union crisis — verified timeline and what remains pending as of 11/15/2026.</span>
+      <span data-lang="es">Inspecciones, clausuras y la crisis sindical de septiembre de 2026 — cronología verificada y lo que permanece pendiente al 15/11/2026.</span>
+    </p>
+  </div>
+</section>
+
+<!-- 2 - mapa + contexto -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">A mina em <span class="gt">Santa Cruz</span></span><span data-lang="en">The mine in <span class="gt">Santa Cruz</span></span><span data-lang="es">La mina en <span class="gt">Santa Cruz</span></span></h2>
+    <div class="grid2" style="margin-top:18px;align-items:start">
+      <div class="mapbox au d3">
+        <div class="map-note"><span data-lang="pt">Mapa — Cerro Negro, Santa Cruz</span><span data-lang="en">Map — Cerro Negro, Santa Cruz</span><span data-lang="es">Mapa — Cerro Negro, Santa Cruz</span></div>
+        <iframe src="https://www.google.com/maps?q=Perito+Moreno,Santa+Cruz,Argentina&z=9&output=embed" width="100%" height="300" style="border:0;border-radius:12px;filter:grayscale(.3) contrast(1.1)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card s5c au d4"><h3 style="font-size:14px"><span data-lang="pt">Isolamento</span><span data-lang="en">Isolation</span><span data-lang="es">Aislamiento</span> <span class="tag-sm tf" style="margin-left:4px">F</span></h3><p style="font-size:12.5px;margin-top:4px"><span data-lang="pt">~60 km de Perito Moreno (El Patagónico, 14/09/2026) — resposta de emergência mais lenta que em áreas urbanas.</span><span data-lang="en">~60 km from Perito Moreno (El Patagónico, 09/14/2026) — slower emergency response than urban areas.</span><span data-lang="es">~60 km de Perito Moreno (El Patagónico, 14/09/2026) — respuesta de emergencia más lenta que en áreas urbanas.</span></p></div>
+        <div class="card s5c au d5"><h3 style="font-size:14px"><span data-lang="pt">Peso econômico</span><span data-lang="en">Economic weight</span><span data-lang="es">Peso económico</span> <span class="tag-sm tf" style="margin-left:4px">F</span></h3><p style="font-size:12.5px;margin-top:4px"><span data-lang="pt">Santa Cruz é 39,5% das exportações mineiras nacionais (1º sem. 2026); mineração é ~89% das exportações provinciais.</span><span data-lang="en">Santa Cruz is 39.5% of national mining exports (H1 2026); mining is ~89% of provincial exports.</span><span data-lang="es">Santa Cruz es 39,5% de las exportaciones mineras nacionales (1er sem. 2026); la minería es ~89% de las exportaciones provinciales.</span></p></div>
+        <div class="card s5c au d6"><h3 style="font-size:14px"><span data-lang="pt">Interlocutor político</span><span data-lang="en">Political counterpart</span><span data-lang="es">Interlocutor político</span> <span class="tag-sm tf" style="margin-left:4px">F</span></h3><p style="font-size:12.5px;margin-top:4px"><span data-lang="pt">Governador Claudio Vidal — canal direto nas negociações da crise de setembro de 2026 (La Opinión Austral, 15/09/2026).</span><span data-lang="en">Governor Claudio Vidal — direct channel in the September 2026 crisis negotiations (La Opinión Austral, 09/15/2026).</span><span data-lang="es">Gobernador Claudio Vidal — canal directo en las negociaciones de la crisis de septiembre de 2026 (La Opinión Austral, 15/09/2026).</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 - cronologia verificada completa -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Cronologia verificada: <span class="gt">setembro de 2026</span></span><span data-lang="en">Verified timeline: <span class="gt">September 2026</span></span><span data-lang="es">Cronología verificada: <span class="gt">septiembre de 2026</span></span></h2>
+    <div class="tl au d2">
+      <div class="tlrow"><div class="tdate"><span data-lang="pt">Semanas antes</span><span data-lang="en">Weeks before</span><span data-lang="es">Semanas antes</span></div><div class="tlline"><div class="tldot"></div><div class="tlbar"></div></div><div class="tlcontent"><h4><span data-lang="pt">Primeira inspeção de rotina <span class="tag-sm te">E</span></span><span data-lang="en">First routine inspection <span class="tag-sm te">E</span></span><span data-lang="es">Primera inspección de rutina <span class="tag-sm te">E</span></span></h4><p><span data-lang="pt">Sobre normas trabalhistas e de segurança; empresa teria contestado o procedimento. Fonte: El Patagónico (14/09), relato do governo, confiança média.</span><span data-lang="en">On labor and safety rules; company reportedly contested the procedure. Source: El Patagónico (09/14), government account, medium confidence.</span><span data-lang="es">Sobre normas laborales y de seguridad; la empresa habría contestado el procedimiento. Fuente: El Patagónico (14/09), relato del gobierno, confianza media.</span></p></div></div>
+      <div class="tlrow"><div class="tdate">11/09/2026</div><div class="tlline"><div class="tldot"></div><div class="tlbar"></div></div><div class="tlcontent"><h4><span data-lang="pt">Inspeção com apoio policial <span class="tag-sm tf">F</span></span><span data-lang="en">Inspection with police support <span class="tag-sm tf">F</span></span><span data-lang="es">Inspección con apoyo policial <span class="tag-sm tf">F</span></span></h4><p><span data-lang="pt">Seis cessações de tarefas e ordem judicial para ingresso no predio. Prensa Santa Cruz (11–12/09), confiança alta quanto à existência.</span><span data-lang="en">Six task stoppages and judicial order for entry into the premises. Prensa Santa Cruz (09/11–12), high confidence regarding occurrence.</span><span data-lang="es">Seis cesaciones de tareas y orden judicial de ingreso al predio. Prensa Santa Cruz (11–12/09), confianza alta sobre la existencia.</span></p></div></div>
+      <div class="tlrow"><div class="tdate">12–14/09/2026</div><div class="tlline"><div class="tldot"></div><div class="tlbar"></div></div><div class="tlcontent"><h4><span data-lang="pt">Declarações de Javier Aravena <span class="tag-sm te">E</span></span><span data-lang="en">Javier Aravena statements <span class="tag-sm te">E</span></span><span data-lang="es">Declaraciones de Javier Aravena <span class="tag-sm te">E</span></span></h4><p><span data-lang="pt">Secretário afirma veículos escondidos sob a mina (não verificado de forma independente) e 14–16 sumários administrativos; ~50 ônibus e +2.000 empregados em alerta. El Patagónico (14/09), confiança média.</span><span data-lang="en">Secretary claims vehicles hidden under the mine (not independently verified) and 14–16 administrative proceedings; ~50 buses and 2,000+ employees on alert. El Patagónico (09/14), medium confidence.</span><span data-lang="es">El secretario afirma vehículos ocultos bajo la mina (no verificado de forma independiente) y 14–16 sumarios administrativos; ~50 ómnibus y +2.000 empleados en alerta. El Patagónico (14/09), confianza media.</span></p></div></div>
+      <div class="tlrow"><div class="tdate">14/09/2026</div><div class="tlline"><div class="tldot"></div><div class="tlbar"></div></div><div class="tlcontent"><h4><span data-lang="pt">Clausura de 8 setores <span class="tag-sm tf">F</span></span><span data-lang="en">Closure of 8 sectors <span class="tag-sm tf">F</span></span><span data-lang="es">Clausura de 8 sectores <span class="tag-sm tf">F</span></span></h4><p><span data-lang="pt">Governo confirma clausura por riscos severos; salários mantidos durante o sumário; reabertura condicionada à correção. Examedia (14/09), confiança média-alta.</span><span data-lang="en">Government confirms closure due to severe risks; wages maintained during proceedings; reopening conditioned on correction. Examedia (09/14), medium-high confidence.</span><span data-lang="es">El gobierno confirma clausura por riesgos severos; salarios mantenidos durante el sumario; reapertura condicionada a la corrección. Examedia (14/09), confianza media-alta.</span></p></div></div>
+      <div class="tlrow"><div class="tdate">15/09/2026</div><div class="tlline"><div class="tldot"></div><div class="tlbar"></div></div><div class="tlcontent"><h4><span data-lang="pt">Reunião Vidal–Newmont <span class="tag-sm tf">F</span></span><span data-lang="en">Vidal–Newmont meeting <span class="tag-sm tf">F</span></span><span data-lang="es">Reunión Vidal–Newmont <span class="tag-sm tf">F</span></span></h4><p><span data-lang="pt">Governador reúne-se com a diretoria; empresa se compromete a corrigir observações; Vidal cobra Lei 90/10 e anuncia reunião com sindicatos. La Opinión Austral (15/09), confiança alta quanto ao encontro.</span><span data-lang="en">Governor meets with leadership; company commits to fixing observations; Vidal demands compliance with the 90/10 Law and announces meeting with unions. La Opinión Austral (09/15), high confidence regarding the meeting.</span><span data-lang="es">El gobernador se reúne con la dirección; la empresa se compromete a corregir observaciones; Vidal exige la Ley 90/10 y anuncia reunión con sindicatos. La Opinión Austral (15/09), confianza alta sobre el encuentro.</span></p></div></div>
+      <div class="tlrow"><div class="tdate">15/09/2026</div><div class="tlline"><div class="tldot"></div><div class="tlbar"></div></div><div class="tlcontent"><h4><span data-lang="pt">Levantamento das clausuras (atribuído) <span class="tag-sm tp">P</span></span><span data-lang="en">Closure lifting (attributed) <span class="tag-sm tp">P</span></span><span data-lang="es">Levantamiento de clausuras (atribuido) <span class="tag-sm tp">P</span></span></h4><p><span data-lang="pt">Clarín atribui a Aravena o levantamento das oito clausuras após plano de remediação, com retomada gradual. Confiança média; é declaração de governo, sem ata ou lista de setores.</span><span data-lang="en">Clarín attributes to Aravena the lifting of the eight closures after a remediation plan, with gradual resumption. Medium confidence; it is a government statement, without minutes or sector list.</span><span data-lang="es">Clarín atribuye a Aravena el levantamiento de las ocho clausuras tras un plan de remediación, con retomada gradual. Confianza media; es declaración de gobierno, sin acta ni lista de sectores.</span></p></div></div>
+      <div class="tlrow"><div class="tdate">22/09/2026</div><div class="tlline"><div class="tldot" style="background:#5EE89A"></div></div><div class="tlcontent"><h4><span data-lang="pt">Reunião de seguimento <span class="tag-sm tf">F</span></span><span data-lang="en">Follow-up meeting <span class="tag-sm tf">F</span></span><span data-lang="es">Reunión de seguimiento <span class="tag-sm tf">F</span></span></h4><p><span data-lang="pt">Ministros e secretários provinciais com representantes da Newmont (Legal, RH, Projetos, Relações Laborais). Revisão de atas e requerimentos com prazos. Ministerio de Energía y Minería de Santa Cruz, confiança alta quanto ao conteúdo.</span><span data-lang="en">Provincial ministers/secretaries with Newmont representatives (Legal, HR, Projects, Labor Relations). Review of minutes and requirements with deadlines. Ministerio de Energía y Minería de Santa Cruz, high confidence on content.</span><span data-lang="es">Ministros y secretarios provinciales con representantes de Newmont (Legal, RH, Proyectos, Relaciones Laborales). Revisión de actas y requerimientos con plazos. Ministerio de Energía y Minería de Santa Cruz, confianza alta sobre el contenido.</span></p></div></div>
+    </div>
+    <p class="au d6" style="margin-top:6px;font-size:11px;color:#777;max-width:900px"><span data-lang="pt">Nota: metadado da página ministerial indica março/2025, inconsistente com o conteúdo de 22/09/2026 — verificar data no original antes de citar.</span><span data-lang="en">Note: the ministerial page metadata shows March/2025, inconsistent with the 09/22/2026 content — verify the date in the original before citing.</span><span data-lang="es">Nota: el metadato de la página ministerial indica marzo/2025, inconsistente con el contenido del 22/09/2026 — verificar la fecha en el original antes de citar.</span></p>
+  </div>
+</section>
+
+<!-- 4 - estado em 15/11 e pendências -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Estado em <span class="gt">15/11/2026</span>: o que é fato, o que é pendência</span><span data-lang="en">Status as of <span class="gt">11/15/2026</span>: fact vs. pending</span><span data-lang="es">Estado al <span class="gt">15/11/2026</span>: qué es hecho, qué es pendiente</span></h2>
+    <div class="grid2" style="margin-top:18px">
+      <div class="cp au d2"><span class="tag-sm tf">F</span><h3 style="margin-top:10px;font-size:15px"><span data-lang="pt">Confirmado</span><span data-lang="en">Confirmed</span><span data-lang="es">Confirmado</span></h3><ul class="checklist" style="margin-top:8px"><li><span data-lang="pt">Conflito passou da fase de inspeção para acompanhamento de requerimentos e prazos</span><span data-lang="en">Conflict moved from inspection to tracking of requirements and deadlines</span><span data-lang="es">El conflicto pasó de inspección al seguimiento de requerimientos y plazos</span></li><li><span data-lang="pt">Sumários administrativos permanecem em curso</span><span data-lang="en">Administrative proceedings remain open</span><span data-lang="es">Los sumarios administrativos siguen en curso</span></li><li><span data-lang="pt">Reunião de seguimento ocorreu em 22/09, com revisão de atas</span><span data-lang="en">Follow-up meeting occurred on 09/22, with minutes review</span><span data-lang="es">La reunión de seguimiento ocurrió el 22/09, con revisión de actas</span></li></ul></div>
+      <div class="cp au d3"><span class="tag-sm tp">P</span><h3 style="margin-top:10px;font-size:15px"><span data-lang="pt">Não verificado</span><span data-lang="en">Not verified</span><span data-lang="es">No verificado</span></h3><ul class="checklist" style="margin-top:8px"><li><span data-lang="pt">Reabertura efetiva dos oito setores</span><span data-lang="en">Effective reopening of the eight sectors</span><span data-lang="es">Reapertura efectiva de los ocho sectores</span></li><li><span data-lang="pt">Resultado dos sumários e eventuais multas</span><span data-lang="en">Outcome of proceedings and possible fines</span><span data-lang="es">Resultado de los sumarios y eventuales multas</span></li><li><span data-lang="pt">Acordo sindical sobre a Lei 90/10 e inspeções posteriores a 22/09</span><span data-lang="en">Union agreement on the 90/10 Law and inspections after 09/22</span><span data-lang="es">Acuerdo sindical sobre la Ley 90/10 e inspecciones posteriores al 22/09</span></li></ul></div>
+    </div>
+    <div class="card s5c au d4" style="margin-top:14px"><p style="font-size:12.5px"><span class="tag-sm tj">J</span> <span data-lang="pt">Peça de 14/11/2026 (MoM) republica a clausura de setembro sem mencionar o levantamento ou a reunião de 22/09 — sinal de que a narrativa ainda circula, não é estado operacional confirmado. Não há mudança de nível na matriz nesta revisão.</span><span data-lang="en">A 11/14/2026 piece (MoM) republishes the September closure without mentioning the lifting or the 09/22 meeting — a sign the narrative still circulates, not confirmed operational status. No level change in the matrix this revision.</span><span data-lang="es">Una pieza del 14/11/2026 (MoM) republica la clausura de septiembre sin mencionar el levantamiento ni la reunión del 22/09 — señal de que la narrativa sigue circulando, no es estado operativo confirmado. No hay cambio de nivel en la matriz en esta revisión.</span></p></div>
+    <p class="au d5" style="margin-top:12px;font-size:11px;color:#777;max-width:900px"><span data-lang="pt">Dados não incorporados por falta de fonte confiável: "~3.900 onças e US$ 13 milhões por semana"; "mais de 1.200 trabalhadores" (não reconciliado com os +2.000 oficiais); "Lei 70/10" (o texto correto é Lei 90/10).</span><span data-lang="en">Data not incorporated due to unreliable sourcing: "~3,900 oz and US$ 13 million per week"; "over 1,200 workers" (not reconciled with the official 2,000+); "Law 70/10" (correct is Law 90/10).</span><span data-lang="es">Datos no incorporados por falta de fuente confiable: "~3.900 onzas y US$ 13 millones por semana"; "más de 1.200 trabajadores" (no reconciliado con los +2.000 oficiales); "Ley 70/10" (el texto correcto es Ley 90/10).</span></p>
+  </div>
+</section>
+
+<!-- 5 - Lei 90/10 -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">A <span class="gt">Lei 90/10</span>: pano de fundo regulatório</span><span data-lang="en">The <span class="gt">90/10 Law</span>: regulatory backdrop</span><span data-lang="es">La <span class="gt">Ley 90/10</span>: trasfondo regulatorio</span></h2>
+    <div class="donut-wrap au d2" style="margin-top:16px">
+      <div class="donut" style="background:conic-gradient(#FFD600 0% 90%, #FF6B6B 90% 100%)"></div>
+      <div class="dleg">
+        <div class="di"><span class="sq" style="background:#FFD600"></span><span data-lang="pt">Mão de obra local exigida — 90%</span><span data-lang="en">Required local labor — 90%</span><span data-lang="es">Mano de obra local exigida — 90%</span></div>
+        <div class="di"><span class="sq" style="background:#FF6B6B"></span><span data-lang="pt">Limite fora da província — até 10%</span><span data-lang="en">Out-of-province cap — up to 10%</span><span data-lang="es">Límite fuera de la provincia — hasta 10%</span></div>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="cp au d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11V7a3 3 0 116 0v4M5 11h14v10H5z"></path></svg></div>
+        <h3 style="font-size:14px"><span data-lang="pt">O que estabelece</span><span data-lang="en">What it establishes</span><span data-lang="es">Qué establece</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">Exige 90% de mão de obra local de Santa Cruz nas operações mineiras</span><span data-lang="en">Requires 90% local Santa Cruz labor in mining operations</span><span data-lang="es">Exige 90% de mano de obra local de Santa Cruz en operaciones mineras</span></li>
+          <li><span data-lang="pt">Limita até 10% de contratação fora da província</span><span data-lang="en">Caps outside-province hiring at 10%</span><span data-lang="es">Limita hasta 10% de contratación fuera de la provincia</span></li>
+          <li><span data-lang="pt">Fiscalizada por inspeções periódicas da Secretaría de Trabajo de Santa Cruz</span><span data-lang="en">Enforced by periodic Secretaría de Trabajo de Santa Cruz inspections</span><span data-lang="es">Fiscalizada por inspecciones periódicas de la Secretaría de Trabajo de Santa Cruz</span></li>
+        </ul>
+      </div>
+      <div class="cp au d4">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+        <h3 style="font-size:14px"><span data-lang="pt">Implicação prática</span><span data-lang="en">Practical implication</span><span data-lang="es">Implicación práctica</span> <span class="tag-sm tj" style="margin-left:4px">J</span></h3>
+        <ul class="checklist">
+          <li><span data-lang="pt">Descumprimento percebido gera inspeção e risco de clausura</span><span data-lang="en">Perceived non-compliance triggers inspection and closure risk</span><span data-lang="es">El incumplimiento percibido genera inspección y riesgo de clausura</span></li>
+          <li><span data-lang="pt">Tensiona a contratação de especialistas expatriados</span><span data-lang="en">Creates friction around expatriate specialist hiring</span><span data-lang="es">Tensiona la contratación de especialistas expatriados</span></li>
+          <li><span data-lang="pt">Queda de 15,7% na produção (jan–jul/26) com receita recorde amplia pressão por produtividade e por cumprimento da lei</span><span data-lang="en">15.7% production drop (Jan–Jul/26) with record revenue increases pressure for productivity and compliance</span><span data-lang="es">Caída de 15,7% en la producción (ene–jul/26) con ingresos récord amplía la presión por productividad y cumplimiento</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 - sindicatos -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Mapa dos <span class="gt">atores</span> e marco regulatório</span><span data-lang="en">Map of <span class="gt">actors</span> and regulatory framework</span><span data-lang="es">Mapa de los <span class="gt">actores</span> y marco regulatorio</span></h2>
+    <table class="au d2" style="margin-top:14px">
+      <tr><th><span data-lang="pt">Ator / norma</span><span data-lang="en">Actor / norm</span><span data-lang="es">Actor / norma</span></th><th><span data-lang="pt">Função</span><span data-lang="en">Function</span><span data-lang="es">Función</span></th><th><span data-lang="pt">Relevância para o risco</span><span data-lang="en">Risk relevance</span><span data-lang="es">Relevancia para el riesgo</span></th></tr>
+      <tr><td>AOMA</td><td><span data-lang="pt">Sindicato dos mineiros — negociações de categoria</span><span data-lang="en">Miners' union — category negotiations</span><span data-lang="es">Sindicato de mineros — negociaciones de categoría</span></td><td><span data-lang="pt">Interlocutor principal em disputas de emprego</span><span data-lang="en">Primary counterpart in employment disputes</span><span data-lang="es">Interlocutor principal en disputas de empleo</span></td></tr>
+      <tr><td><span data-lang="pt">Sindicatos locais de Santa Cruz</span><span data-lang="en">Local Santa Cruz unions</span><span data-lang="es">Sindicatos locales de Santa Cruz</span></td><td><span data-lang="pt">Pressão por Lei 90/10 e contratação regional</span><span data-lang="en">Pressure for 90/10 Law and regional hiring</span><span data-lang="es">Presión por Ley 90/10 y contratación regional</span></td><td><span data-lang="pt">Podem mobilizar com presença no yacimiento</span><span data-lang="en">May mobilize with presence at the site</span><span data-lang="es">Pueden movilizar con presencia en el yacimiento</span></td></tr>
+      <tr><td><span data-lang="pt">Governo provincial / Claudio Vidal</span><span data-lang="en">Provincial government / Claudio Vidal</span><span data-lang="es">Gobierno provincial / Claudio Vidal</span></td><td><span data-lang="pt">Fiscalizador e mediador político</span><span data-lang="en">Regulator and political mediator</span><span data-lang="es">Fiscalizador y mediador político</span></td><td><span data-lang="pt">Uso do conflito em disputas de regalias e campanha — sem data de eleição provincial fixada</span><span data-lang="en">Uses conflict in royalty disputes and campaigns — no provincial election date set</span><span data-lang="es">Uso del conflicto en disputas de regalías y campaña — sin fecha de elección provincial fijada</span></td></tr>
+      <tr><td><span data-lang="pt">Secretaría de Trabajo de Santa Cruz</span><span data-lang="en">Secretaría de Trabajo de Santa Cruz</span><span data-lang="es">Secretaría de Trabajo de Santa Cruz</span></td><td><span data-lang="pt">Inspeções laborais e de segurança</span><span data-lang="en">Labor and safety inspections</span><span data-lang="es">Inspecciones laborales y de seguridad</span></td><td><span data-lang="pt">Autora dos sumários administrativos</span><span data-lang="en">Author of administrative proceedings</span><span data-lang="es">Autora de los sumarios administrativos</span></td></tr>
+      <tr><td><span data-lang="pt">Ministerio de Energía y Minería</span></td><td><span data-lang="pt">Fiscalização e policía minera</span><span data-lang="en">Enforcement and mining police</span><span data-lang="es">Fiscalización y policía minera</span></td><td><span data-lang="pt">Órgão das atas de setembro e novembro</span><span data-lang="en">Body behind the September/November minutes</span><span data-lang="es">Órgano de las actas de septiembre y noviembre</span></td></tr>
+      <tr><td>RIGI</td><td><span data-lang="pt">Estabilidade fiscal/regulatória de longo prazo</span><span data-lang="en">Long-term fiscal/regulatory stability</span><span data-lang="es">Estabilidad fiscal/regulatoria de largo plazo</span></td><td><span data-lang="pt">Mineração concentra ~65% das aplicações — benefício gera contestação política</span><span data-lang="en">Mining accounts for ~65% of applications — benefit generates political contestation</span><span data-lang="es">La minería concentra ~65% de las aplicaciones — beneficio genera contestación política</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 7 - números em gráfico -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">O que os <span class="gt">números</span> mostram</span><span data-lang="en">What the <span class="gt">numbers</span> show</span><span data-lang="es">Qué muestran los <span class="gt">números</span></span></h2>
+    <div class="grid4" style="margin-top:20px">
+      <div class="card as d2" style="text-align:center"><div class="s5n">90/10</div><p style="font-size:11px"><span data-lang="pt">Proporção legal de mão de obra local vs. fora da província</span><span data-lang="en">Legal ratio of local vs. out-of-province labor</span><span data-lang="es">Proporción legal de mano de obra local vs. fuera de la provincia</span></p></div>
+      <div class="card as d3" style="text-align:center"><div class="s5n sm">~60 km</div><p style="font-size:11px"><span data-lang="pt">Distância da mina a Perito Moreno <span class="tag-sm tf">F</span></span><span data-lang="en">Distance from the mine to Perito Moreno <span class="tag-sm tf">F</span></span><span data-lang="es">Distancia de la mina a Perito Moreno <span class="tag-sm tf">F</span></span></p></div>
+      <div class="card as d4" style="text-align:center"><div class="s5n sm">8</div><p style="font-size:11px"><span data-lang="pt">Setores sob clausura em 14/09/2026 <span class="tag-sm tf">F</span></span><span data-lang="en">Sectors under closure on 09/14/2026 <span class="tag-sm tf">F</span></span><span data-lang="es">Sectores bajo clausura al 14/09/2026 <span class="tag-sm tf">F</span></span></p></div>
+      <div class="card as d5" style="text-align:center"><div class="s5n sm">14–16</div><p style="font-size:11px"><span data-lang="pt">Sumários administrativos citados pelo governo <span class="tag-sm te">E</span></span><span data-lang="en">Administrative proceedings cited by government <span class="tag-sm te">E</span></span><span data-lang="es">Sumarios administrativos citados por el gobierno <span class="tag-sm te">E</span></span></p></div>
+    </div>
+    <div class="bchart au d2" style="margin-top:18px">
+      <div class="brow"><span class="lbl">Santa Cruz — exportações mineiras nacionais</span><div class="btrack"><div class="bfill" style="width:39.5%"></div></div><span class="bval">39,5%</span></div>
+      <div class="brow"><span class="lbl">Mineração — exportações provinciais de Santa Cruz</span><div class="btrack"><div class="bfill" style="width:89%"></div></div><span class="bval">~89%</span></div>
+      <div class="brow"><span class="lbl">Produção ouro/prata/doré — variação jan–jul/26</span><div class="btrack"><div class="bfill red" style="width:15.7%"></div></div><span class="bval">−15,7%</span></div>
+      <div class="brow"><span class="lbl">Empregados em alerta durante inspeção (set/26)</span><div class="btrack"><div class="bfill" style="width:66%;opacity:.7"></div></div><span class="bval">+2.000</span></div>
+    </div>
+    <p class="au d6" style="margin-top:12px;font-size:11px;color:#777;max-width:900px"><span data-lang="pt">Fontes: Energía 360 (07/11/2026), Clarín/INDEC (10/09/2026), El Patagónico (14/09/2026). Produção física específica de Cerro Negro permanece pendente (SIACAM).</span><span data-lang="en">Sources: Energía 360 (11/07/2026), Clarín/INDEC (09/10/2026), El Patagónico (09/14/2026). Cerro Negro-specific physical production remains pending (SIACAM).</span><span data-lang="es">Fuentes: Energía 360 (07/11/2026), Clarín/INDEC (10/09/2026), El Patagónico (14/09/2026). La producción física específica de Cerro Negro permanece pendiente (SIACAM).</span></p>
+  </div>
+</section>
+
+<!-- 8 - cenários -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Três cenários para os próximos <span class="gt">90 dias</span></span><span data-lang="en">Three scenarios for the next <span class="gt">90 days</span></span><span data-lang="es">Tres escenarios para los próximos <span class="gt">90 días</span></span></h2>
+    <table class="au d2" style="margin-top:16px">
+      <tr><th><span data-lang="pt">Cenário</span><span data-lang="en">Scenario</span><span data-lang="es">Escenario</span></th><th><span data-lang="pt">Descrição</span><span data-lang="en">Description</span><span data-lang="es">Descripción</span></th><th><span data-lang="pt">Sinais de alerta</span><span data-lang="en">Warning signs</span><span data-lang="es">Señales de alerta</span></th></tr>
+      <tr><td><span class="chip g">A</span> <span data-lang="pt">Normalização</span><span data-lang="en">Normalization</span><span data-lang="es">Normalización</span></td><td><span data-lang="pt">Cumprimento dos requerimentos, reabertura gradual, acordo sobre Lei 90/10</span><span data-lang="en">Compliance with requirements, gradual reopening, agreement on the 90/10 Law</span><span data-lang="es">Cumplimiento de requerimientos, reapertura gradual, acuerdo sobre la Ley 90/10</span></td><td><span data-lang="pt">Reuniões tripartites, reabertura de setores, encerramento de sumários</span><span data-lang="en">Tripartite meetings, sector reopening, closing of proceedings</span><span data-lang="es">Reuniones tripartitas, reapertura de sectores, cierre de sumarios</span></td></tr>
+      <tr><td><span class="chip y">B</span> <span data-lang="pt">Baixa intensidade</span><span data-lang="en">Low intensity</span><span data-lang="es">Baja intensidad</span></td><td><span data-lang="pt">Sumários, multas e disputas regulatórias sem paralisação ampla</span><span data-lang="en">Proceedings, fines and regulatory disputes without broad stoppage</span><span data-lang="es">Sumarios, multas y disputas regulatorias sin paralización amplia</span></td><td><span data-lang="pt">Novas inspeções, multas, protestos pontuais</span><span data-lang="en">New inspections, fines, isolated protests</span><span data-lang="es">Nuevas inspecciones, multas, protestas puntuales</span></td></tr>
+      <tr><td><span class="chip r">C</span> <span data-lang="pt">Escalada</span><span data-lang="en">Escalation</span><span data-lang="es">Escalada</span></td><td><span data-lang="pt">Nova clausura ampla, greve ou pressão política sobre a empresa</span><span data-lang="en">New broad closure, strike or political pressure on the company</span><span data-lang="es">Nueva clausura amplia, huelga o presión política sobre la empresa</span></td><td><span data-lang="pt">Desmobilização de pessoal, bloqueio de rota, pronunciamentos oficiais contra a empresa</span><span data-lang="en">Staff demobilization, route blockade, official statements against the company</span><span data-lang="es">Desmovilización de personal, bloqueo de ruta, pronunciamientos oficiales contra la empresa</span></td></tr>
+    </table>
+    <div class="card s5c au d4" style="margin-top:14px"><p style="font-size:12.5px"><span class="tag-sm tj">J</span> <span data-lang="pt">O cenário B é o mais provável no curto prazo, pela existência de sumários pendentes e pela pauta da Lei 90/10 — sem atribuição de probabilidade numérica, por falta de série histórica confiável. Um anúncio de levantamento de clausuras, se confirmado, desloca a situação para A, mas não encerra o conflito enquanto sumários e requerimentos seguirem abertos.</span><span data-lang="en">Scenario B is the most likely in the short term, given pending proceedings and the 90/10 Law agenda — no numeric probability assigned, due to lack of a reliable historical series. A confirmed closure-lifting announcement shifts the situation to A, but does not end the conflict while proceedings and requirements remain open.</span><span data-lang="es">El escenario B es el más probable en el corto plazo, por los sumarios pendientes y la agenda de la Ley 90/10 — sin probabilidad numérica asignada, por falta de serie histórica confiable. Un anuncio confirmado de levantamiento de clausuras desplaza la situación hacia A, pero no cierra el conflicto mientras sumarios y requerimientos sigan abiertos.</span></p></div>
+  </div>
+</section>
+
+<!-- 9 - matriz de riscos setoriais -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Matriz de riscos <span class="gt">conectados ao setor</span></span><span data-lang="en">Risks <span class="gt">connected to the sector</span></span><span data-lang="es">Matriz de riesgos <span class="gt">conectados al sector</span></span></h2>
+    <div class="mat au d2">
+      <div class="hd"></div>
+      <div class="hd"><span data-lang="pt">Baixo</span><span data-lang="en">Low</span><span data-lang="es">Bajo</span></div>
+      <div class="hd"><span data-lang="pt">Médio</span><span data-lang="en">Medium</span><span data-lang="es">Medio</span></div>
+      <div class="hd"><span data-lang="pt">Alto</span><span data-lang="en">High</span><span data-lang="es">Alto</span></div>
+      <div class="hd"><span data-lang="pt">Crítico</span><span data-lang="en">Critical</span><span data-lang="es">Crítico</span></div>
+      <div class="rl"><span data-lang="pt">Muito provável</span><span data-lang="en">Very likely</span><span data-lang="es">Muy probable</span></div>
+      <div class="cell lo"></div><div class="cell md"></div>
+      <div class="cell cr"><span class="chip r">#2</span><span data-lang="pt">Dano reputacional/Lei 90/10</span><span data-lang="en">Reputational damage/90-10 Law</span><span data-lang="es">Daño reputacional/Ley 90/10</span></div>
+      <div class="cell cr"></div>
+      <div class="rl"><span data-lang="pt">Provável</span><span data-lang="en">Likely</span><span data-lang="es">Probable</span></div>
+      <div class="cell lo"></div>
+      <div class="cell md"><span class="chip y">#3</span><span data-lang="pt">Exposição nominal</span><span data-lang="en">Nominal exposure</span><span data-lang="es">Exposición nominal</span></div>
+      <div class="cell hi"><span class="chip y">#1</span><span data-lang="pt">Conflito trabalhista</span><span data-lang="en">Labor conflict</span><span data-lang="es">Conflicto laboral</span><br><span class="chip y">#5</span><span data-lang="pt">Phishing fornecedores</span><span data-lang="en">Vendor phishing</span><span data-lang="es">Phishing a proveedores</span></div>
+      <div class="cell hi"></div>
+      <div class="rl"><span data-lang="pt">Possível</span><span data-lang="en">Possible</span><span data-lang="es">Posible</span></div>
+      <div class="cell lo"></div>
+      <div class="cell md"><span class="chip g">#9</span><span data-lang="pt">Bloqueio comunitário</span><span data-lang="en">Community blockade</span><span data-lang="es">Bloqueo comunitario</span></div>
+      <div class="cell hi"><span class="chip g">#4</span> <span class="chip g">#6</span> <span class="chip g">#7</span><span data-lang="pt">Roubo rotas / Espionagem / Acidente estrada</span><span data-lang="en">Route theft / Espionage / Road accident</span><span data-lang="es">Robo en rutas / Espionaje / Accidente en ruta</span></div>
+      <div class="cell cr"><span class="chip g">#8</span><span data-lang="pt">Evacuação médica remota</span><span data-lang="en">Remote medical evacuation</span><span data-lang="es">Evacuación médica remota</span></div>
+      <div class="rl"><span data-lang="pt">Raro</span><span data-lang="en">Rare</span><span data-lang="es">Raro</span></div>
+      <div class="cell lo"></div><div class="cell md"><span class="chip r">#10</span><span data-lang="pt">Sequestro extorsivo</span><span data-lang="en">Extortive kidnapping</span><span data-lang="es">Secuestro extorsivo</span></div><div class="cell hi"></div><div class="cell cr"></div>
+    </div>
+    <p class="au d4" style="margin-top:10px;font-size:11px;color:#777"><span data-lang="pt">Revisão de 15/11/2026: riscos 1, 2 e 10 mantidos sem mudança de nível.</span><span data-lang="en">11/15/2026 revision: risks 1, 2 and 10 maintained without level change.</span><span data-lang="es">Revisión del 15/11/2026: riesgos 1, 2 y 10 mantenidos sin cambio de nivel.</span></p>
+  </div>
+</section>
+
+<!-- 10 - exposição e conduta -->
+<section class="slide">
+  <div class="wrap">
+    <div class="gl au d1"></div>
+    <h2 class="au d2"><span data-lang="pt">Exposição do staff e <span class="gt">conduta recomendada</span></span><span data-lang="en">Staff exposure and <span class="gt">recommended conduct</span></span><span data-lang="es">Exposición del personal y <span class="gt">conducta recomendada</span></span></h2>
+    <div class="grid2" style="margin-top:16px">
+      <div class="cp au d2">
+        <h3 style="font-size:14px"><span data-lang="pt">Padrões relevantes</span><span data-lang="en">Relevant patterns</span><span data-lang="es">Patrones relevantes</span> <span class="tag-sm tj" style="margin-left:4px">J</span></h3>
+        <ul class="checklist" style="margin-top:8px">
+          <li><span data-lang="pt">A fase de inspeção é a mais perigosa: polícia, ordem judicial, veículos retidos e multidão em alerta</span><span data-lang="en">The inspection phase is the most dangerous: police, judicial order, retained vehicles and crowd on alert</span><span data-lang="es">La fase de inspección es la más peligrosa: policía, orden judicial, vehículos retenidos y multitud en alerta</span></li>
+          <li><span data-lang="pt">O executivo vira rosto da empresa em disputas de regalias e emprego</span><span data-lang="en">The executive becomes the company's face in royalty and employment disputes</span><span data-lang="es">El ejecutivo se convierte en el rostro de la empresa en disputas de regalías y empleo</span></li>
+          <li><span data-lang="pt">Altitude, aridez e Patagônia multiplicam o impacto de incidentes médicos e logísticos</span><span data-lang="en">Altitude, aridity and Patagonia multiply the impact of medical and logistical incidents</span><span data-lang="es">Altitud, aridez y Patagonia multiplican el impacto de incidentes médicos y logísticos</span></li>
+        </ul>
+      </div>
+      <div class="cp au d3">
+        <h3 style="font-size:14px"><span data-lang="pt">Conduta em período de tensão</span><span data-lang="en">Conduct during periods of tension</span><span data-lang="es">Conducta en período de tensión</span></h3>
+        <ul class="checklist" style="margin-top:8px">
+          <li><span data-lang="pt">Nenhum comentário espontâneo sobre a Lei 90/10 ou negociações sindicais</span><span data-lang="en">No spontaneous comments on the 90/10 Law or union negotiations</span><span data-lang="es">Ningún comentario espontáneo sobre la Ley 90/10 o negociaciones sindicales</span></li>
+          <li><span data-lang="pt">Evitar trajetos em horário de mobilização conhecida; reportar bloqueio imediatamente</span><span data-lang="en">Avoid travel during known mobilization hours; report blockades immediately</span><span data-lang="es">Evitar trayectos en horario de movilización conocida; reportar bloqueos de inmediato</span></li>
+          <li><span data-lang="pt">Porta-voz único para qualquer contato com imprensa ou sindicato</span><span data-lang="en">Single spokesperson for any press or union contact</span><span data-lang="es">Vocero único para cualquier contacto con prensa o sindicato</span></li>
+          <li><span data-lang="pt">Inspeção/polícia no portão: identificar, registrar em vídeo, abrir por canal jurídico; expatriado sai da cena</span><span data-lang="en">Inspection/police at the gate: identify, record on video, open via legal channel; expatriate leaves the scene</span><span data-lang="es">Inspección/policía en el portón: identificar, registrar en video, abrir por canal jurídico; el expatriado se retira</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <div class="wrap" style="text-align:center">
+    <div class="gl ce au d1"></div>
+    <p class="quote au d2">
+      <span data-lang="pt">"Conflito trabalhista se administra com protocolo — não se evita com silêncio."</span>
+      <span data-lang="en">"Labor conflict is managed through protocol — not avoided through silence."</span>
+      <span data-lang="es">"El conflicto laboral se administra con protocolo — no se evita con silencio."</span>
+    </p>
+    <h2 class="au d3"><span data-lang="pt">Siga para a <span class="gt">Matriz de Riscos</span> (Deck 4)</span><span data-lang="en">Continue to the <span class="gt">Risk Matrix</span> (Deck 4)</span><span data-lang="es">Continúe a la <span class="gt">Matriz de Riesgos</span> (Deck 4)</span></h2>
+    <p class="au d4" style="max-width:720px;margin:12px auto 0;font-size:13px"><span data-lang="pt">Gatilho de revisão imediata: qualquer fonte primária posterior a 22/09/2026 sobre resultado de sumário, multa, reabertura de setor ou acordo da Lei 90/10.</span><span data-lang="en">Immediate review trigger: any primary source after 09/22/2026 on proceeding outcomes, fines, sector reopening or 90/10 Law agreement.</span><span data-lang="es">Gatillo de revisión inmediata: cualquier fuente primaria posterior al 22/09/2026 sobre resultado de sumario, multa, reapertura de sector o acuerdo de la Ley 90/10.</span></p>
+    <a class="home-btn au d5" style="display:inline-flex;margin-top:18px" href="index.html">
+      <span data-lang="pt">Voltar ao Index</span><span data-lang="en">Back to Index</span><span data-lang="es">Volver al Index</span>
+    </a>
+  </div>
+</section>
+
+</div></div>
+
+<script>
+const T = 11; let C = 0;
+const W = document.getElementById('sw');
+const CN = document.getElementById('cn');
+const P = document.getElementById('prog');
+const I = document.getElementById('ind');
+for (let i = 0; i < T; i++) { const d = document.createElement('div'); d.classList.add('dot'); if (i === 0) d.classList.add('active'); d.onclick = () => go(i); I.appendChild(d); }
+function upd() { I.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === C)); CN.textContent = C + 1; P.style.width = ((C + 1) / T * 100) + '%'; document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === C)); }
+function go(i) { if (i < 0 || i >= T) return; C = i; W.style.transform = `translateX(-${C * 100}vw)`; upd(); }
+function next() { if (C < T - 1) go(C + 1); }
+function prev() { if (C > 0) go(C - 1); }
+document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); } if (e.key === 'f' || e.key === 'F') toggleFs(); });
+let tx = 0;
+document.addEventListener('touchstart', e => tx = e.changedTouches[0].screenX);
+document.addEventListener('touchend', e => { const d = tx - e.changedTouches[0].screenX; if (Math.abs(d) > 50) { d > 0 ? next() : prev(); } });
+function toggleFs() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(() => {}); } else { document.exitFullscreen(); } }
+document.addEventListener('fullscreenchange', () => { document.getElementById('fsTxt').textContent = document.fullscreenElement ? 'Sair' : 'Tela cheia'; document.getElementById('fsTxtE').textContent = document.fullscreenElement ? 'Exit' : 'Fullscreen'; document.getElementById('fsTxtS').textContent = document.fullscreenElement ? 'Salir' : 'Pantalla'; });
+function setLang(l) { document.body.className = 'lang-' + l; document.querySelectorAll('.lang-sel button').forEach(b => b.classList.toggle('active', b.dataset.l === l)); }
+upd();
+</script>
+</body>
+</html>
